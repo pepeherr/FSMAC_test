@@ -1,0 +1,7 @@
+{
+  "ruby.lint": {
+    "rubocop": true
+  },
+  "ruby.rubocop.executePath": "bundle",
+  "ruby.rubocop.configFile": "${workspaceFolder}/.rubocop.yml"
+}

@@ -885,6 +885,8 @@ DEPENDENCIES
   net-imap (~> 0.5.0)
   net-pop (~> 0.1.1)
   puma (>= 6.3.1)
+  rubocop
+  rubocop-rails
   web-console (~> 4.2)
 
 RUBY VERSION

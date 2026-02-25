@@ -25,6 +25,9 @@ group :development, :test do
   gem "decidim-dev", "0.31.1"
   gem "net-imap", "~> 0.5.0"
   gem "net-pop", "~> 0.1.1"
+
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
 end
 
 group :development do
