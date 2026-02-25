@@ -1,0 +1,58 @@
+<% new_proposal ||= false %>
+<%= form.text_field :title, value: form_presenter.title, data: { controller: "character-counter" } %>
+
+<%= text_editor_for_proposal_body(form) %>
+
+<% if @form.geocoding_enabled? %>
+  <div id="address_input">
+    <div class="address-fill">
+      <%= form.geocoding_field :address, placeholder: t("decidim.proposals.proposals.placeholder.address"), data: { screen_reader_announcement: t("decidim.proposals.proposals.edit_form_fields.marker_added") } %>
+    </div>
+    <div id="address_map" class="proposal__container">
+      <p class="help-text">
+        <%= t("instructions", scope: "decidim.proposals.proposals.dynamic_map_instructions") %> <%= t("description", scope: "decidim.proposals.proposals.dynamic_map_instructions") %>
+      </p>
+      <%= dynamic_map_for proposal_preview_data_for_map(@form.to_h) %>
+    </div>
+  </div>
+<% end %>
+
+<% if @form.taxonomy_filters&.any? %>
+  <% @form.taxonomy_filters.each do |filter| %>
+    <%= filter_taxonomy_items_select_field form, :taxonomies, filter %>
+  <% end %>
+<% end %>
+
+<% if component_settings.attachments_allowed? && (new_proposal || @proposal) %>
+  <%= form.attachment :documents,
+                      multiple: true,
+                      label: t("decidim.proposals.proposals.edit.add_attachments"),
+                      button_label: t("decidim.proposals.proposals.edit.add_attachments"),
+                      button_edit_label: t("decidim.proposals.proposals.edit.edit_attachments"),
+                      button_class: "button button__lg button__transparent-secondary w-full",
+                      help_i18n_scope: "decidim.forms.file_help.file",
+                      help_text: t("attachment_legend", scope: "decidim.proposals.proposals.edit") %>
+<% end %>
+
+<!-- Selección del parent_objective_id de la Necesidad para las acciones -->
+<!-- ------------------------------------------------------------------- -->
+
+<% if current_component.fsmac_action? %> <!-- ID del componente Acciones -->
+  <% objective_component = current_component.participatory_space.components.detect(&:fsmac_need?) %>
+  <div class="field">
+    <label for="proposal_parent_objective_id">
+       t("Necesidad")
+    </label>
+    <%= form.collection_select :parent_objective_id,
+          need_component = current_component.participatory_space.components
+                         .detect(&:fsmac_need?),
+          Decidim::Proposals::Proposal
+            .where(decidim_component_id: need_component.id)
+            .where(parent_objective_id: nil),
+          :id,
+          ->(proposal) { translated_attribute(proposal.title) },
+          { include_blank: t("fsmac.choose_option") },
+          { required: true }
+    %>
+  </div>
+<% end %>

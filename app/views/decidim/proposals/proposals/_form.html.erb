@@ -1,0 +1,8 @@
+<div class="field">
+  <%= form.label :parent_objective_id, "Objetivo padre (si es Acción)" %>
+  <%= form.collection_select :parent_objective_id,
+        Decidim::Proposals::Proposal.where(parent_objective_id: nil),
+        :id,
+        :title,
+        include_blank: "Ninguno" %>
+</div>
