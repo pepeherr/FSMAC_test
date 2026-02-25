@@ -45,7 +45,7 @@
     </label>
     <%= form.collection_select :parent_objective_id,
           need_component = current_component.participatory_space.components
-                         .detect(&:fsmac_need?)
+                         .detect(&:fsmac_need?),
           Decidim::Proposals::Proposal
             .where(decidim_component_id: need_component.id)
             .where(parent_objective_id: nil),
