@@ -1,0 +1,32 @@
+# config/initializers/zzz_decidim_view_patches.rb
+
+# Parcheamos directamente los métodos que generan HTML
+if defined?(Decidim::Assemblies::AssemblyPresenter)
+  Decidim::Assemblies::AssemblyPresenter.class_eval do
+    def title
+      if assembly.parent_id.nil?
+        "Asamblea: #{assembly.title}"
+      else
+        "Círculo: #{assembly.title}"
+      end
+    end
+  end
+end
+
+# Parcheamos el helper de navegación
+if defined?(Decidim::Assemblies::AssemblyBreadcrumb)
+  Decidim::Assemblies::AssemblyBreadcrumb.class_eval do
+    def breadcrumb_items
+      items = []
+      current = assembly
+      while current
+        items.unshift({
+          label: current.parent_id.nil? ? "Asamblea" : "Círculo",
+          url: current_path(current)
+        })
+        current = current.parent
+      end
+      items
+    end
+  end
+end

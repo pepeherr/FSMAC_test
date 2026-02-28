@@ -1,0 +1,40 @@
+# config/initializers/decidim_translation_overrides.rb
+# Sobrescribe múltiples términos relacionados con "Asamblea" por "Círculo".
+
+if I18n.locale_available?(:es)
+  es_overrides = {
+    decidim: {
+      assemblies: {
+        assemblies: "Círculos",
+        assembly: "Círculo",
+        # Títulos de páginas y filtros comunes
+        admin: {
+          assemblies: "Círculos",
+          assembly: "Círculo",
+          assembly_types: {
+            assembly_types: "Tipos de círculos"
+          }
+        },
+        filters: {
+          assemblies: "Círculos",
+          assembly: "Círculo"
+        },
+        pages: {
+          home: {
+            highlighted_assemblies: "Círculos destacados"
+          }
+        }
+      },
+      # A veces el término aparece en el menú principal o migas de pan
+      menu: {
+        assemblies: "Círculos"
+      },
+      breadcrumb: {
+        assembly: "Círculo",
+        assemblies: "Círculos"
+      }
+    }
+  }
+
+  I18n.backend.store_translations(:es, es_overrides)
+end

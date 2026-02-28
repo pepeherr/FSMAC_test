@@ -1,0 +1,196 @@
+# config/locales/overrides.es.yml
+# Sobrescribe todas las traducciones de "Asamblea" por "Círculo" en el frontend
+# El admin se mantiene intacto (no incluimos claves :admin)
+
+es:
+  decidim:
+    # MENÚ PRINCIPAL
+    menu:
+      assemblies: "Círculos"
+      processes: "Conflictos"
+    
+    # TÍTULOS PRINCIPALES
+    index:
+      title: "Círculos"
+    
+    # BLOQUES DE CONTENIDO (frontend)
+    content_blocks:
+      children_assemblies:
+        name: "Círculos"
+      highlighted_assemblies:
+        name: "Círculos destacados"
+      related_assemblies:
+        name: "Círculos relacionados"
+      dates_metadata:
+        name: "Metadatos de fechas"
+      extra_data:
+        name: "Tipo y duración"
+      highlighted_assemblies:
+        name: "Círculos"
+    
+    # PÁGINA DE INICIO
+    pages:
+      home:
+        highlighted_assemblies:
+          active_spaces: "Círculos activos"
+          see_all_spaces: "Ver todos los círculos"
+      user_profile:
+        member_of:
+          member_of: "Miembro de círculos"
+    
+    # ACTIVIDAD RECIENTE
+    last_activity:
+      new_assembly: "Nuevo círculo:"
+    
+    # FILTROS Y BÚSQUEDA
+    filter:
+      all: "Todos los tipos"
+      commission: "Comisión"
+      consultative_advisory: "Consultiva / Asesora"
+      executive: "Ejecutivo"
+      government: "Gobierno"
+      help: "Muestra:"
+      others: "Otros"
+      participatory: "Participativo"
+      working_group: "Grupo de trabajo"
+    
+    # DETALLE DE ASAMBLEA (CÍRCULO)
+    assemblies:
+      # Descripción y metadatos
+      description:
+        area_name: "Área"
+        closing_date: "Fecha de finalización"
+        created_by: "Creada por"
+        creation_date: "Fecha de creación"
+        data: "Datos del círculo"                       #
+        developer_group: "Grupo promotor"
+        duration: "Duración"
+        included_at: "Incluido el"
+        indefinite_duration: "Indefinida"
+        local_area: "Área de organización"
+        meta_scope: "Ámbito"
+        participatory_scope: "Qué se decide"
+        participatory_structure: "Cómo se decide"
+        target: "Quién participa"
+        title: "Acerca de este círculo"                 #
+      
+      # Filtros específicos
+      filters:
+        names:
+          all: "Todos"
+        type: "Tipo"
+      
+      # Vista de detalle
+      show:
+        duration: "Duración"
+        private_space: "Este es un círculo privado"
+        social_networks_title: "Visita el círculo en"
+        title: "Acerca de este círculo"
+      
+      # Miembros
+      assembly_members:
+        index:
+          members: "Miembros del círculo"
+      
+      # Tipos de creadores
+      created_by:
+        city_council: "Ayuntamiento"
+        others: "Otros"
+        public: "Público"
+
+      assembly:
+        highlighted_assemblies: "Círculos actuales"
+    
+    # MODELO DE DATOS (textos que aparecen en formularios del frontend)
+    activemodel:
+      models:
+        assembly: "Círculo"
+      attributes:
+        assembly:
+          title: "Título"
+          slug: "Identificador"
+          subtitle: "Subtítulo"
+          description: "Descripción"
+          short_description: "Descripción corta"
+          hashtag: "Hashtag"
+          created_by: "Creado por"
+          meta_scope: "Ámbito"
+          developer_group: "Grupo promotor"
+          local_area: "Área de organización"
+          target: "Quién participa"
+          participatory_scope: "Qué se decide"
+          participatory_structure: "Cómo se decide"
+          area: "Área"
+          duration: "Duración"
+          closing_date: "Fecha de finalización"
+          created_by_other: "Otro creador"
+          creation_date: "Fecha de creación"
+          included_at: "Incluido el"
+          parent: "Círculo contenedor"
+          private_space: "Espacio privado"
+          promotes: "Participantes destacados"
+          show_statistics: "Mostrar estadísticas"
+          scopes_enabled: "Ámbitos habilitados"
+          scope: "Ámbito"
+          banner_image: "Imagen de cabecera"
+          hero_image: "Imagen principal"
+    
+    activerecord:
+      models:
+        assembly: "Círculo"
+      attributes:
+        assembly:
+          title: "Título"
+          slug: "Identificador"
+          subtitle: "Subtítulo"
+          description: "Descripción"
+          short_description: "Descripción corta"
+          hashtag: "Hashtag"
+          created_by: "Creado por"
+          meta_scope: "Ámbito"
+          developer_group: "Grupo promotor"
+          local_area: "Área de organización"
+          target: "Quién participa"
+          participatory_scope: "Qué se decide"
+          participatory_structure: "Cómo se decide"
+          area: "Área"
+          duration: "Duración"
+          closing_date: "Fecha de finalización"
+          created_by_other: "Otro creador"
+          creation_date: "Fecha de creación"
+          included_at: "Incluido el"
+          parent: "Círculo contenedor"
+          private_space: "Espacio privado"
+          promotes: "Participantes destacados"
+          show_statistics: "Mostrar estadísticas"
+          scopes_enabled: "Ámbitos habilitados"
+          scope: "Ámbito"
+          banner_image: "Imagen de cabecera"
+          hero_image: "Imagen principal"
+    
+    # NOTIFICACIONES Y EMAILS
+    assembly:
+      update:
+        success: "Círculo actualizado correctamente"
+        error: "Error al actualizar el círculo"
+      create:
+        success: "Círculo creado correctamente"
+        error: "Error al crear el círculo"
+      destroy:
+        success: "Círculo eliminado correctamente"
+        error: "Error al eliminar el círculo"
+    
+    # EVENTOS Y ACTIVIDADES
+    events:
+      assemblies:
+        create_assembly_event:
+          email_intro: 'El círculo "%{resource_title}" ha sido creado en %{participatory_space_title}.'
+          email_outro: 'Has recibido esta notificación porque sigues el espacio %{participatory_space_title}.'
+          email_subject: 'Nuevo círculo creado en %{participatory_space_title}'
+          notification_title: 'El círculo <a href="%{resource_path}">%{resource_title}</a> ha sido creado en %{participatory_space_title}.'
+        update_assembly_event:
+          email_intro: 'El círculo "%{resource_title}" ha sido actualizado en %{participatory_space_title}.'
+          email_outro: 'Has recibido esta notificación porque sigues el espacio %{participatory_space_title}.'
+          email_subject: 'Círculo actualizado en %{participatory_space_title}'
+          notification_title: 'El círculo <a href="%{resource_path}">%{resource_title}</a> ha sido actualizado en %{participatory_space_title}.'
+    

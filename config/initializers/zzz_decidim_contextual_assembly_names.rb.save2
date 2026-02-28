@@ -1,0 +1,173 @@
+# config/initializers/zzz_decidim_contextual_assembly_names.rb
+# frozen_string_literal: true
+
+# Este archivo debe ejecutarse MUY TEMPRANO en la inicialización
+
+# 1. DEFINIR LOS MÓDULOS PRIMERO (para que estén disponibles)
+module AssemblyContextualOverrides
+  # Métodos de instancia para Assembly
+  module InstanceMethods
+    def contextual_name
+      parent_id.nil? ? "Asamblea" : "Círculo"
+    end
+
+    def contextual_name_plural
+      parent_id.nil? ? "Asambleas" : "Círculos"
+    end
+
+    def contextual_name_with_title
+      "#{contextual_name}: #{title}"
+    end
+  end
+
+  # Métodos de clase para Assembly
+  module ClassMethods
+    def contextual_collection_name(assemblies)
+      if assemblies.all? { |a| a.parent_id.nil? }
+        "Asambleas"
+      elsif assemblies.all? { |a| a.parent_id.present? }
+        "Círculos"
+      else
+        "Espacios participativos"
+      end
+    end
+  end
+
+  # Helpers para vistas
+  module ViewHelpers
+    def assembly_display_name(assembly)
+      return assembly.contextual_name if assembly.respond_to?(:contextual_name)
+      assembly.parent_id.nil? ? "Asamblea" : "Círculo"
+    end
+
+    def assembly_breadcrumb(assembly)
+      if assembly.parent_id.nil?
+        "Asamblea: #{assembly.title}"
+      else
+        parent = assembly.parent
+        if parent
+          "Asamblea: #{parent.title} > Círculo: #{assembly.title}"
+        else
+          "Círculo: #{assembly.title}"
+        end
+      end
+    end
+
+    def assemblies_section_title(assemblies)
+      Decidim::Assembly.contextual_collection_name(assemblies)
+    end
+  end
+end
+
+# 2. TRADUCCIONES GLOBALES (siempre funcionan)
+if defined?(I18n) && I18n.locale_available?(:es)
+  global_overrides = {
+    decidim: {
+      menu: { assemblies: "Asambleas" },
+      index: { title: "Asambleas" },
+      pages: {
+        home: {
+          highlighted_assemblies: {
+            active_spaces: "Asambleas activas",
+            see_all_spaces: "Ver todas las asambleas"
+          }
+        }
+      },
+      admin: {
+        assemblies: {
+          assemblies: "Asambleas",
+          new: { title: "Nueva asamblea" },
+          edit: { title: "Configurar asamblea" },
+          form: {
+            select_parent_assembly: "Selecciona una asamblea contenedora",
+            parent_id_help: "Si eliges una asamblea contenedora, este espacio será un círculo dependiente"
+          }
+        }
+      },
+      content_blocks: {
+        children_assemblies: { name: "Círculos" },
+        highlighted_assemblies: { name: "Asambleas destacadas" },
+        related_assemblies: { name: "Asambleas relacionadas" }
+      },
+      last_activity: { new_assembly: "Nueva asamblea:" }
+    }
+  }
+
+  I18n.backend.store_translations(:es, global_overrides)
+end
+
+# 3. PARCHAR DIRECTAMENTE LA CLASE (en el momento de carga)
+if defined?(Decidim::Assembly)
+  # Incluimos métodos de instancia
+  Decidim::Assembly.include(AssemblyContextualOverrides::InstanceMethods)
+  
+  # Extendemos métodos de clase
+  Decidim::Assembly.extend(AssemblyContextualOverrides::ClassMethods)
+  
+  # Forzamos la inclusión en todas las instancias existentes
+  if Decidim::Assembly.respond_to?(:all)
+    Decidim::Assembly.all.each do |assembly|
+      assembly.singleton_class.include(AssemblyContextualOverrides::InstanceMethods) unless assembly.respond_to?(:contextual_name)
+    rescue
+      # Ignoramos errores por si no hay registros
+    end
+  end
+end
+
+# 4. PARCHAR APPLICATION_CONTROLLER PARA INCLUIR HELPERS
+if defined?(ApplicationController)
+  ApplicationController.include(AssemblyContextualOverrides::ViewHelpers)
+end
+
+# 5. PARCHAR CÉLULAS/VISTAS DE DECIDIM
+# Esto es crucial - muchas vistas usan AssemblyPresenter
+if defined?(Decidim::AssemblyPresenter)
+  Decidim::AssemblyPresenter.class_eval do
+    def display_name
+      assembly.parent_id.nil? ? "Asamblea" : "Círculo"
+    end
+    
+    def display_name_with_title
+      "#{display_name}: #{assembly.title}"
+    end
+  end
+end
+
+# 6. PARCHAR EL NAVEGADOR DE ESPACIOS (breadcrumbs)
+if defined?(Decidim::ParticipatorySpaces::SpaceBreadcrumbCell)
+  Decidim::ParticipatorySpaces::SpaceBreadcrumbCell.class_eval do
+    def space_name
+      if model.respond_to?(:contextual_name)
+        model.contextual_name
+      elsif model.parent_id.nil?
+        "Asamblea"
+      else
+        "Círculo"
+      end
+    end
+  end
+end
+
+# 7. HOOK PARA RECARGA EN DESARROLLO
+if Rails.env.development?
+  ActiveSupport::Reloader.to_prepare do
+    # Reaplicamos los parches después de cada recarga
+    if defined?(Decidim::Assembly)
+      Decidim::Assembly.include(AssemblyContextualOverrides::InstanceMethods) unless Decidim::Assembly.ancestors.include?(AssemblyContextualOverrides::InstanceMethods)
+      Decidim::Assembly.extend(AssemblyContextualOverrides::ClassMethods) unless Decidim::Assembly.singleton_class.ancestors.include?(AssemblyContextualOverrides::ClassMethods)
+    end
+    
+    if defined?(ApplicationController)
+      ApplicationController.include(AssemblyContextualOverrides::ViewHelpers) unless ApplicationController.ancestors.include?(AssemblyContextualOverrides::ViewHelpers)
+    end
+  end
+end
+
+# 8. MENSAJE DE CONFIRMACIÓN
+puts "\n" + "="*70
+puts "🔧 PARCHE CONTEXTUAL INSTALADO: Asamblea (raíz) / Círculo (hijas)"
+puts "="*70
+puts "✅ Métodos inyectados en Decidim::Assembly"
+puts "✅ Traducciones globales actualizadas"
+puts "✅ Helpers incluidos en ApplicationController"
+puts "="*70

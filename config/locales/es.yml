@@ -1,0 +1,132 @@
+es:
+  decidim:
+    
+    proposals:
+      actions:
+        parent_objective_label: "Necesidad"
+        parent_objective_blank: "Elige una opción"
+
+    activerecord:
+      attributes:
+        decidim/proposals/proposal:
+        parent_objective: "Necesidad"
+
+    activemodel:
+      attributes:
+        decidim/proposals/proposal_form:
+        parent_objective_id: "Necesidad"
+    
+    # MENÚ PRINCIPAL
+    menu:
+      assemblies: "Círculos"
+      processes: "Conflictos"
+    
+    assemblies:
+      index:
+        title: "Círculos"
+
+      assemblies:
+        description:
+          data: "Datos del círculo"
+          title: "Acerca de este círculo"
+        show:
+          title: "Acerca de este círculo"
+      
+      content_blocks:
+        children_assemblies:
+          name: "Círculos"
+        higlighted_assemblies:
+          name: "Círculos"
+        related_assemblies:
+          name: "Círculos relacionados"
+      
+      last_activity:
+        new_assembly: "Nuevo círculo:"
+
+      pages:
+        home:
+          highlighted_assemblies:
+            active_spaces: "Circulos activos"
+            see_all_spaces: "Ver todos los círculos"
+      
+      show:
+        private_space: "Este es un círculo privado"
+        social_networks_title: "Visita el círculo en"
+        
+    participatory_processes:
+      show:
+        related_assemblies: "Círculos relacionados"
+        belongs_to_group: "Este conflicto pertenece a" 
+        related_processes: "Conflictos relacionados"
+
+      index:
+        title: "Conflictos"
+      last_activity:
+        new_participatory_process: "Nuevo conflicto"
+      pages:
+        home:
+          hightlighted_processes:
+            active_spaces: "Conflictos activos"
+            see_all_spaces: "Ver todos los conflictos"
+      
+      participatory_processes: 
+        show:
+          title: "Descripción"     # Antes: "Acerca de este conflicto"
+        description:
+          data: "Datos del conflicto"
+          title: "Acerca de este conflicto"
+        filters:
+          counters:
+            active:
+              one: "Un conflicto activo"
+              other: "%{count} conflictos activos"
+            all:
+              one: "Un conflicto"
+              other: "%{count} conflictos"
+            past:
+              one: "Un conflicto pasado"
+              other: "%{count} conflictos pasados"
+            upcoming:
+              one: "Un próximo conflicto"
+              other: "%{count} próximos conflictos"
+          explanations:
+            no_active: "Sin conflictos activos"
+            no_active_nor_upcoming: "No hay conflictos activos ni futuros"
+            no_active_nor_upcoming_callout: "No hay conflictos activos ni futuros"
+      
+    statistics:
+      assemblies_count: "Círculos"
+      processes_count: "Conflictos"
+    
+    participatory_process_groups:
+      show:
+        title: "Grupos de conflictos"
+      content_blocks:
+        title:
+          participatory_processes:
+            one: "1 conflicto"
+            other: "%{count} conflictos"
+        participatory_processes:
+          name: "Conflictos"
+          active: "Conflictos activos"
+
+  layouts:
+    decidim:
+      assemblies:
+        index:
+          promoted_assemblies: "Círculos"
+        metadata:
+          children_item:
+            one: "%{count} círculo"
+            other: "%{count} círculos"
+        order_by_assemblies:
+          assemblies:
+            one: "%{count} Foro"
+            other: "%{count} círculos"
+      participatory_process:
+        index:
+          promoted_processes: "Conflictos"
+        participatory_process:
+          more_info_about: "Más información sobre el conflicto %{resource_name}"
+          take_part_in: "Participa en el conflicto %{resource_name}"
+
