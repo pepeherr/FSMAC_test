@@ -1,0 +1,437 @@
+# Archivo generado automáticamente el 2026-03-01 18:09
+# SOLO claves que contienen: asamblea, proceso (y variantes)
+# Incluye TODOS los namespaces (decidim, activemodel, activerecord, layouts, etc.)
+# Reemplazos aplicados: asamblea→círculo, proceso→conflicto
+es:
+  decidim:
+    admin:
+      participatory_process_groups:
+        destroy:
+          success: Grupo de conflictos participativos eliminado correctamente.
+        update:
+          error: Se ha producido un error al actualizar este grupo de conflictos participativos.
+          success: Grupo de conflictos participativos actualizado correctamente.
+      participatory_process_imports:
+        create:
+          success: el conflictos participativo se ha importado correctamente.
+        new:
+          title: Importar conflicto participativo
+      participatory_process_publications:
+        create:
+          error: Se ha producido un error al publicar este conflicto participativo.
+          success: el conflicto participativo se ha publicado correctamente.
+        destroy:
+          error: Se ha producido un error al despublicar este conflicto participativo.
+          success: el conflicto participativo se ha despublicado correctamente.
+      participatory_process_step_activations:
+        create:
+          error: Se ha producido un error al activar esta fase del conflicto participativo.
+          success: La fase del conflicto participativo se ha activado correctamente.
+      participatory_process_steps:
+        create:
+          error: Se ha producido un error al crear una nueva fase del conflicto participativo.
+          success: La fase del conflicto participativo se ha creado correctamente.
+        destroy:
+          success: La fase del conflicto participativo se ha eliminado correctamente.
+        edit:
+          cta_deprecated:
+            body_html: 'La configuración del CTA a través de la Fase del conflicto participativo está obsoleta con el nuevo diseño. Ahora esto se hace en la <b>Página de Inicio</b>, usando el bloque de contenido <b>Imagen principal y botón de acción</b> .Lo hemos dejado aquí para que migres las CTAs que necesites. Los campos <i>Ruta del botón de acción</i> y <i>Texto del botón de acción</i> se eliminaran en la próxima versión.'
+          title: Editar fase del conflicto participativo
+        new:
+          title: Nueva fase del conflicto participativo
+        ordering:
+          error: Se ha producido un error en la reordenación de las fases de este conflicto participativo.
+        update:
+          error: Se ha producido un error en la actualización de esta fase del conflicto participativo.
+          success: La fase del conflicto participativo se ha actualizado correctamente.
+      participatory_process_user_roles:
+        create:
+          error: Ha habido un error al añadir una participante a este conflicto participativo.
+        destroy:
+          success: La administradora ha sido eliminada correctamente de este conflicto participativo.
+        index:
+          process_admins_title: Administradoras del conflicto participativo
+        new:
+          title: Nueva administradora del conflicto participativo
+        update:
+          error: Se ha producido un error al actualizar una administradora para este conflicto participativo.
+          success: Administradora actualizada correctamente para este conflicto participativo.
+      participatory_processes:
+        create:
+          error: Se ha producido un error al crear un nuevo conflicto participativo.
+          success: el conflicto participativo se ha creado correctamente. Sigue ahora con la configuración de las fases.
+        new:
+          title: Nuevo conflicto participativo
+        update:
+          error: Se ha producido un error al actualizar este conflicto participativo.
+          success: el conflicto participativo se ha actualizado correctamente.
+      participatory_processes_duplicates:
+        create:
+          error: Se ha producido un error al duplicar este conflicto participativo.
+          success: el conflicto participativo se ha duplicado correctamente.
+    admin:
+      actions:
+        confirm_delete_assembly: '¿Seguro que quieres eliminar este círculo? Si cambias de opinión, puedes restaurarlo más tarde.'
+        confirm_delete_process: '¿Seguro que quieres eliminar este conflicto? Si cambias de opinión, puedes restaurarlo más tarde.'
+        new_assembly: Nuevo círculo
+        new_process: Nuevo conflicto
+        new_process_group: Nuevo grupo de conflictos
+        new_process_user_role: Nueva administradora del conflicto
+        see_process: Ver el conflicto
+        view_deleted_assemblies: Ver los círculos eliminadas
+        view_deleted_processes: Ver los conflictos eliminados
+      assemblies:
+        create:
+          error: Se ha producido un error al crear un nuevo círculo.
+          success: círculo creado con éxito. Ahora puedes añadir componentes y configurarlos.
+        manage_trash:
+          title: círculos eliminadas
+        new:
+          title: Nuevo círculo
+        update:
+          error: Se ha producido un error al actualizar este circulo.
+          success: el círculo se ha actualizado correctamente.
+      assemblies_duplicates:
+        create:
+          error: Se ha producido un error al duplicar este circulo.
+          success: el círculo se ha duplicado correctamente.
+      assembly_duplicates:
+        new:
+          title: Duplicar círculo
+      assembly_imports:
+        create:
+          error: Ha habido un problema importando este circulo.
+          success: círculo importado con éxito.
+        new:
+          title: Importar círculo
+      assembly_publications:
+        create:
+          error: Se ha producido un error al publicar este circulo.
+          success: círculo publicado correctamente.
+        destroy:
+          error: Se ha producido un error al despublicar este circulo.
+          success: círculo despublicado correctamente.
+      assembly_user_roles:
+        create:
+          error: Se ha producido un error al añadir una administradora para este circulo.
+          success: Administradora añadida correctamente a este circulo.
+        destroy:
+          success: Administradora eliminada correctamente de este circulo.
+        edit:
+          title: Actualizar administradora del círculo
+        index:
+          assembly_admins_title: Administradoras del círculo
+        new:
+          title: Nueva administradora del círculo
+        update:
+          error: Se ha producido un error al actualizar una administradora para este circulo.
+          success: Administradora actualizada correctamente para este circulo.
+      filters:
+        decidim_participatory_process_group_id_eq:
+          label: Por grupo de conflictos
+      menu:
+        assemblies: Círculos
+        assemblies_submenu:
+          assembly_admins: Administradoras del círculo
+          info: Acerca de este circulo
+          see_assembly: Ver el círculo
+        authorization_revocation:
+          before_date_info: Útil si el conflicto ya ha comenzado y quieres revocar los permisos del conflicto anterior.
+        participatory_process_groups: Grupos de conflictos
+        participatory_processes: Conflictos
+        participatory_processes_submenu:
+          info: Acerca de este conflicto
+          process_admins: Administradoras del conflicto
+          steps: Fases del conflicto
+      models:
+        assembly:
+          name: círculo
+        assembly_user_role:
+          name: Administradora del círculo
+        participatory_process:
+          name: conflicto participativo
+        participatory_process_group:
+          name: Grupo de conflictos
+        participatory_process_step:
+          name: Fase del conflicto participativo
+        participatory_process_user_role:
+          name: Administradora del conflicto participativo
+      newsletters:
+        select_recipients_to_deliver:
+          select_assemblies: Seleccionar círculos
+          select_participatory_processes: Seleccionar conflictos participativos
+      participatory_process_duplicates:
+        new:
+          title: Duplicar el conflicto participativo
+      participatory_process_groups:
+        destroy:
+          error: Se ha producido un error al eliminar el grupo de conflictos participativos.
+          success: Grupo de procesos participativos eliminado correctamente.
+        edit:
+          title: Editar grupo de conflictos
+        new:
+          title: Nuevo grupo de conflictos
+        update:
+          error: Se ha producido un error al actualizar este grupo de procesos participativos.
+          success: Grupo de procesos participativos actualizado correctamente.
+      participatory_process_imports:
+        create:
+          error: Se ha producido un error al importar este conflicto participativo.
+          success: El procesos participativo se ha importado correctamente.
+        new:
+          title: Importar proceso participativo
+      participatory_process_publications:
+        create:
+          error: Se ha producido un error al publicar este proceso participativo.
+          success: El proceso participativo se ha publicado correctamente.
+        destroy:
+          error: Se ha producido un error al despublicar este proceso participativo.
+          success: El proceso participativo se ha despublicado correctamente.
+      participatory_process_step_activations:
+        create:
+          error: Se ha producido un error al activar esta fase del proceso participativo.
+          success: La fase del proceso participativo se ha activado correctamente.
+      participatory_process_steps:
+        create:
+          error: Se ha producido un error al crear una nueva fase del proceso participativo.
+          success: La fase del proceso participativo se ha creado correctamente.
+        destroy:
+          error:
+            last_step: No se puede eliminar la última fase de un conflicto.
+          success: La fase del proceso participativo se ha eliminado correctamente.
+        edit:
+          cta_deprecated:
+            body_html: 'La configuración del CTA a través de la Fase del proceso participativo está obsoleta con el nuevo diseño. Ahora esto se hace en la <b>Página de Inicio</b>, usando el bloque de contenido <b>Imagen principal y botón de acción</b> .Lo hemos dejado aquí para que migres las CTAs que necesites. Los campos <i>Ruta del botón de acción</i> y <i>Texto del botón de acción</i> se eliminaran en la próxima versión.'
+          title: Editar fase del proceso participativo
+        index:
+          steps_title: Fases del conflicto
+        new:
+          title: Nueva fase del proceso participativo
+        ordering:
+          error: Se ha producido un error en la reordenación de las fases de este proceso participativo.
+        update:
+          error: Se ha producido un error en la actualización de esta fase del proceso participativo.
+          success: La fase del proceso participativo se ha actualizado correctamente.
+      participatory_process_user_roles:
+        create:
+          error: Ha habido un error al añadir una participante a este proceso participativo.
+          success: La administradora ha sido añadida correctamente a este conflicto participativu.
+        destroy:
+          success: La administradora ha sido eliminada correctamente de este proceso participativo.
+        edit:
+          title: Actualitzar administradora del conflicto particiaptivo
+        index:
+          process_admins_title: Administradoras del proceso participativo
+        new:
+          title: Nueva administradora del proceso participativo
+        update:
+          error: Se ha producido un error al actualizar una administradora para este proceso participativo.
+          success: Administradora actualizada correctamente para este proceso participativo.
+      participatory_processes:
+        create:
+          error: Se ha producido un error al crear un nuevo proceso participativo.
+          success: El proceso participativo se ha creado correctamente. Sigue ahora con la configuración de las fases.
+        manage_trash:
+          title: conflictos participativos eliminados
+        new:
+          title: Nuevo proceso participativo
+        update:
+          error: Se ha producido un error al actualizar este proceso participativo.
+          success: El proceso participativo se ha actualizado correctamente.
+      participatory_processes_duplicates:
+        create:
+          error: Se ha producido un error al duplicar este proceso participativo.
+          success: El proceso participativo se ha duplicado correctamente.
+      participatory_processes_group:
+        create:
+          error: Se ha producido un error al crear este grupo de conflictos participativos.
+          success: Grupo de conflictos participativos creado correctamente.
+      participatory_space_private_users_csv_imports:
+        create:
+          success: 'El archivo CSV se ha cargado correctamente, estamos enviando un correo de invitación a las participantes. Este conflicto puede tardar un poco.'
+      taxonomy_filters:
+        index:
+          description: 'Un filtro de taxonomía permite a las administradoras ordenar y filtrar espacios de participación basados en una taxonomía. Por ejemplo, añadir un filtro de taxonomías para ordenar conflictos por ámbito territorial.'
+        space_filter_for:
+          assemblies: Todas los círculos
+          participatory_processes: Todos los conflictos participativos
+      titles:
+        assemblies: círculos
+        assemblies_deleted: círculos eliminadas
+        assemblies_types: Tipo de círculo
+        participatory_process_groups: Grupos de conflictos participativos
+        participatory_process_types: Tipos de conflictos participativos
+        participatory_processes: conflictos participativos
+        participatory_processes_deleted: conflictos participativos eliminados
+      tooltips:
+        deleted_assemblies_info: "Una círculo solo se puede eliminar si su estado es 'Despublicada'."
+        deleted_processes_info: "Un conflicto solo se pueden eliminar si su estado es 'Despublicado'."
+    admin_log:
+      assembly:
+        create: '%{user_name} creó el círculo %{resource_name}'
+        duplicate: '%{user_name} ha duplicado el círculo %{resource_name}'
+        export: '%{user_name} ha exportado el círculo %{resource_name}'
+        import: '%{user_name} ha importado el círculo %{resource_name}'
+        publish: '%{user_name} publicó el círculo %{resource_name}'
+        publish_all_members: '%{user_name} publicó todas las miembros del círculo %{resource_name}'
+        restore: '%{user_name} ha restaurado el círculo %{resource_name}'
+        soft_delete: '%{user_name} ha movido a la papelera el círculo %{resource_name}'
+        unpublish: '%{user_name} despublicó el círculo %{resource_name}'
+        unpublish_all_members: '%{user_name} despublicó a todas las miembros del círculo %{resource_name}'
+        update: '%{user_name} actualizó el círculo %{resource_name}'
+      assembly_member:
+        create: '%{user_name} creó el miembro %{resource_name} en el círculo %{space_name}'
+        delete: '%{user_name} eliminó %{resource_name} del círculo %{space_name}'
+        update: '%{user_name} actualizó el miembro %{resource_name} del círculo %{space_name}'
+      assembly_setting:
+        update: '%{user_name} ha actualizado la configuración de los círculos'
+      assembly_type:
+        create: '%{user_name} creó el tipo de círculo %{resource_name}'
+        delete: '%{user_name} eliminó el tipo de círculo %{resource_name}'
+        publish: '%{user_name} publicó el tipo de círculo %{resource_name}'
+        unpublish: '%{user_name} despublicó el tipo de círculo %{resource_name}'
+        update: '%{user_name} actualizó el tipo de círculo %{resource_name}'
+      assembly_user_role:
+        create: '%{user_name} invitó %{resource_name} a el círculo %{space_name}'
+        delete: '%{user_name} eliminó a la participante %{resource_name} del círculo %{space_name}'
+        update: '%{user_name} cambió el rol de %{resource_name} en el círculo %{space_name}'
+      participatory_process:
+        create: '%{user_name} creó el conflicto participativo %{resource_name}'
+        duplicate: '%{user_name} ha duplicado el conflicto participativo %{resource_name}'
+        export: '%{user_name} ha exportado el conflicto participativo %{resource_name}'
+        import: '%{user_name} ha importado el conflicto participativo %{resource_name}'
+        publish: '%{user_name} publicó el conflicto participativo %{resource_name}'
+        publish_all_members: '%{user_name} publicó todas las miembros del conflicto participativo %{resource_name}'
+        restore: '%{user_name} restauró el conflicto participativo "%{resource_name}"'
+        soft_delete: '%{user_name} ha enviado a la papelera el conflicto participativo "%{resource_name}"'
+        unpublish: '%{user_name} despublicó el conflicto participativo %{resource_name}'
+        unpublish_all_members: '%{user_name} despublicó a todas las miembros del conflicto participativo %{resource_name}'
+        update: '%{user_name} actualizó el conflicto participativo %{resource_name}'
+      participatory_process_group:
+        create: '%{user_name} creó el grupo de conflictos participativos de %{resource_name}'
+        unpublish: '%{user_name} ha despublicado el grupo de conflictos participativos: %{resource_name}'
+        update: '%{user_name} actualizó el grupo de conflictos participativos de %{resource_name}'
+      participatory_process_step:
+        activate: '%{user_name} activó la fase %{resource_name} en el conflicto participativo %{space_name}'
+        create: '%{user_name} creó la fase %{resource_name} en el conflicto participativo %{space_name}'
+        delete: '%{user_name} eliminó la fase %{resource_name} en el conflicto participativo %{space_name}'
+        update: '%{user_name} actualizó la fase %{resource_name} en el conflicto participativo %{space_name}'
+      participatory_process_type:
+        create: '%{user_name} ha creado el tipo de conflicto participativo %{resource_name}'
+        delete: '%{user_name} ha borrado el tipo de conflicto participativo %{resource_name}'
+        update: '%{user_name} ha actualizado el tipo de conflicto participativo %{resource_name}'
+      participatory_process_user_role:
+        create: '%{user_name} invitó a la participante %{resource_name} al conflicto participativo %{space_name}'
+        delete: '%{user_name} eliminó a la participante %{resource_name} del conflicto participativo %{space_name}'
+        update: '%{user_name} cambió el rol de la participante %{resource_name} en el conflicto participativo %{space_name}'
+    assemblies:
+      admin:
+        assemblies:
+          form:
+            announcement_help: El texto que introduzcas aquí se mostrará a la participante justo debajo de la información del círculo.
+            duration_help: 'Si la duración de este circulo es limitada, selecciona la fecha de finalización. De lo contrario, aparecerá como indefinida.'
+            included_at_help: Selecciona la fecha en la que se añadió este circulo a la plataforma. No necesariamente tiene que ser la misma que la fecha de creación.
+            select_parent_assembly: Selecciona una círculo madre
+            slug_help_html: 'Los textos cortos de URL se utilizan para generar las URL que apuntan a este circulo. Sólo acepta letras, números y guiones, y debe comenzar con una letra. Ejemplo: %{url}'
+        assembly_duplicates:
+          form:
+            slug_help_html: 'Los textos cortos de URL se utilizan para generar las URL que apuntan a este circulo. Solo acepta letras, números y guiones, y debe comenzar con una letra. Ejemplo: %{url}'
+        assembly_imports:
+          form:
+            slug_help_html: 'Los textos cortos de URL se utilizan para generar las URL que apuntan a este circulo. Sólo acepta letras, números y guiones, y debe comenzar con una letra. Ejemplo: %{url}'
+      assemblies:
+        description:
+          data: "Datos del círculo"
+          title: "Visión"
+        show:
+          title: "Visión"
+      content_blocks:
+        highlighted_assemblies:
+          name: círculos destacados
+
+    menu:
+      processes: Conflictos
+      assemblies: Círculos
+    statistics:
+      processes_count: conflictos
+      assemblies_count: círculos
+    participatory_process_groups:
+      content_blocks:
+        participatory_processes:
+          active: conflictos participativos activos
+          name: conflictos participativos
+        title:
+          participatory_processes:
+            one: 1 conflicto
+            other: '%{count} conflictos'
+      show:
+        title: Grupos de conflictos participativos
+    participatory_processes:
+      index:
+        title: conflictos participativos
+      last_activity:
+        new_participatory_process: 'Nuevo conflicto participativo:'
+      participatory_processes:
+        description:
+          data: Datos del conflicto
+          title: Acerca de este conflicto
+        filters:
+          counters:
+            active:
+              one: Un conflicto activo
+              other: '%{count} conflictos activos'
+            all:
+              one: Un conflicto
+              other: '%{count} conflictos'
+            past:
+              one: Un conflicto pasado
+              other: '%{count} conflictos pasados'
+            upcoming:
+              one: Un próximo conflicto
+              other: '%{count} próximos conflictos'
+          explanations:
+            no_active: Sin conflictos activos.
+            no_active_nor_upcoming: No hay conflictos activos ni futuros.
+            no_active_nor_upcoming_callout: No hay conflictos activos ni futuros. Aquí hay una lista de los pasados.
+        show:
+          title: Acerca de este conflicto
+      show:
+        belongs_to_group: Este conflicto pertenece a
+        related_assemblies: círculos relacionadas
+    assemblies:
+      content_blocks:
+        children_assemblies:
+          name: círculos
+        related_assemblies:
+          name: círculos relacionadas
+      index:
+        title: círculos
+      last_activity:
+        new_assembly: 'Nueva círculo:'
+      pages:
+        home:
+          highlighted_assemblies:
+            active_spaces: círculos activas
+            see_all_spaces: Ver todas los círculos
+      show:
+        private_space: Esta es una círculo privada
+        social_networks_title: Visita el círculo en
+      assemblies:
+        description:
+          data: "Datos del círculo"
+          title: "Acerca de este círculo"
+        show:
+          title: "Acerca de este círculo"
+  layouts:
+    decidim:
+      assemblies:
+        index:
+          promoted_assemblies: Círculos
+        metadata:
+          children_item:
+            one: 'Foro'
+            other: '%{count} círculos'
+        order_by_assemblies:
+          assemblies:
+            one: 'Foro'
+            other: '%{count} círculos'

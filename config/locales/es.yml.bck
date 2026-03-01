@@ -1,6 +1,14 @@
 es:
+  activemodel:
+    attributes:
+      assembly:
+        composition: Propuestas de modificación
   decidim:
-    
+    open_data:
+      help:
+        assemblies:
+          composition: La Propuestas de modificación del círculo
+
     proposals:
       actions:
         parent_objective_label: "Necesidad"
@@ -16,6 +24,8 @@ es:
         decidim/proposals/proposal_form:
         parent_objective_id: "Necesidad"
     
+
+
     # MENÚ PRINCIPAL
     menu:
       assemblies: "Círculos"

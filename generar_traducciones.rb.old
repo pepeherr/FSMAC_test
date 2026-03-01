@@ -1,0 +1,211 @@
+# generar_traducciones.rb
+# Script para generar YAML de traducciones (Asamblea -> Círculo)
+# Ejecutar con: rails runner generar_traducciones.rb
+
+def generate_ready_to_use_yaml(
+  terms = [/asamblea/i, /la asamblea/i, /asambleas/i, /las asambleas/i, /proceso/i, /procesos/i],
+  replacements = {
+    /asamblea/i => "círculo",
+    /la asamblea/i => "el círculo",
+    /Asamblea/ => "Círculo",
+    /ASAMBLEA/ => "CÍRCULO",
+    /asambleas/i => "círculos",
+    /las asambleas/i => "los círculos",
+    /Asambleas/ => "Círculos",
+    /ASAMBLEAS/ => "CÍRCULOS",
+    /proceso/i => "conflicto",
+    /Proceso/ => "Conflicto",
+    /PROCESO/ => "PROCESO",
+    /procesos/i => "conflictos",
+    /Procesos/ => "Conflictos",
+    /PROCESOS/ => "CONFLICTOS"
+  },
+  exclude_patterns = [/admin/, /devise/, /doorkeeper/],
+  output_file = "traducciones_circulo.yml"
+)
+  
+  puts "🔍 Buscando traducciones que contengan 'asamblea'..."
+  
+  # Asegurar locale español
+  I18n.locale = :es
+  I18n.t("decidim").keys
+  all_translations = I18n.backend.translations[:es]
+  
+  if all_translations.nil?
+    puts "❌ Error: No se encontraron traducciones en español"
+    return
+  end
+  
+  results = {}
+  
+  # Función para reemplazar texto respetando mayúsculas/minúsculas
+  def smart_replace(text, replacements)
+    modified = text.dup
+    replacements.each do |pattern, replacement|
+      modified.gsub!(pattern, replacement)
+    end
+    modified
+  end
+  
+  # Búsqueda recursiva
+  search_recursive = lambda do |hash, current_path|
+    hash.each do |key, value|
+      new_path = current_path.empty? ? key.to_s : "#{current_path}.#{key}"
+      
+      # Saltar si contiene algún patrón de exclusión
+      next if exclude_patterns.any? { |p| new_path.match?(p) }
+      
+      if value.is_a?(Hash)
+        search_recursive.call(value, new_path)
+      elsif value.is_a?(String)
+        terms.each do |term|
+          if value.match?(term)
+            parts = new_path.split('.')
+            current = results
+            parts.each_with_index do |part, index|
+              if index == parts.length - 1
+                current[part] = smart_replace(value, replacements)
+              else
+                current[part] ||= {}
+                current = current[part]
+              end
+            end
+            break
+          end
+        end
+      end
+    end
+  end
+  
+  search_recursive.call(all_translations, "")
+  
+  # Función para ordenar hash alfabéticamente
+  def sort_hash(obj)
+    return obj unless obj.is_a?(Hash)
+    sorted = {}
+    obj.keys.sort.each do |key|
+      sorted[key] = sort_hash(obj[key])
+    end
+    sorted
+  end
+  
+  # Función para generar YAML con indentación
+  def hash_to_yaml(hash, indent = 0)
+    output = []
+    hash.each do |key, value|
+      if value.is_a?(Hash)
+        output << "#{'  ' * indent}#{key}:"
+        output << hash_to_yaml(value, indent + 1)
+      else
+        # Añadir comillas solo si es necesario
+        if value.match?(/[:\{\}\[\],&*#?|\-<>=!%@`]/)
+          output << "#{'  ' * indent}#{key}: \'#{value}\'"
+        else
+          output << "#{'  ' * indent}#{key}: #{value}"
+        end
+      end
+    end
+    output.flatten.join("\n")
+  end
+  
+  # Contar claves
+  def count_keys(hash)
+    count = 0
+    hash.each do |_, value|
+      if value.is_a?(Hash)
+        count += count_keys(value)
+      else
+        count += 1
+      end
+    end
+    count
+  end
+  
+  sorted_results = sort_hash(results)
+  
+  # Generar YAML
+  yaml_output = "# Archivo generado automáticamente el #{Time.now.strftime('%Y-%m-%d %H:%M')}\n"
+  yaml_output << "# Reemplaza 'Asamblea' por 'Círculo' en el frontend\n"
+  yaml_output << "# Ejecutado con: rails runner #{File.basename(__FILE__)}\n\n"
+  yaml_output << "es:\n"
+  yaml_output << hash_to_yaml(sorted_results, 1)
+  
+  # Guardar archivo
+  File.write(output_file, yaml_output)
+  
+  # Mostrar resultados
+  total_keys = count_keys(sorted_results)
+  puts "\n" + "=" * 70
+  puts "✅ PROCESO COMPLETADO"
+  puts "=" * 70
+  puts "📊 Total traducciones encontradas: #{total_keys}"
+  puts "📁 Archivo generado: #{File.expand_path(output_file)}"
+  puts "📦 Tamaño: #{File.size(output_file)} bytes"
+  
+  # Mostrar vista previa
+  puts "\n🔍 VISTA PREVIA (primeras 15 líneas):"
+  puts "-" * 50
+  system("head -n 15 #{output_file}") if File.exist?(output_file)
+  
+  puts "\n📋 Para usar este archivo:"
+  puts "   1. Revisa el contenido de #{output_file}"
+  puts "   2. Copia las líneas que necesites a config/locales/overrides.es.yml"
+  puts "   3. O si prefieres, renombra este archivo como overrides.es.yml y muévelo a config/locales/"
+  
+  sorted_results
+end
+
+# También podemos crear una versión simplificada para solo ver el árbol
+def mostrar_arbol_traducciones
+  puts "\n" + "=" * 70
+  puts "🌳 ÁRBOL DE TRADUCCIONES PARA decidim"
+  puts "=" * 70
+  
+  def print_hash(hash, indent = 0)
+    hash.each do |key, value|
+      if value.is_a?(Hash)
+        puts "#{'  ' * indent}📁 #{key}:"
+        print_hash(value, indent + 1)
+      else
+        puts "#{'  ' * indent}📄 #{key}: \"#{value}\""
+      end
+    end
+  end
+  
+  assemblies_tree = I18n.t("decidim") rescue {}
+  print_hash(assemblies_tree)
+end
+
+# Ejecutar según argumentos
+I18n.locale = :es
+I18n.t("decidim").keys
+
+if ARGV.include?("--tree")
+  mostrar_arbol_traducciones
+else
+  # Parámetros personalizables
+  output_file = ARGV[0] || "traducciones_circulo.yml"
+  
+  # Ejecutar generación principal
+  generate_ready_to_use_yaml(
+    [/asamblea/i, /la asamblea/i, /asambleas/i, /las asambleas/i, /proceso/i, /procesos/i],
+    {
+      /asamblea/i => "círculo",
+      /la asamblea/i => "el círculo",
+      /Asamblea/ => "Círculo",
+      /ASAMBLEA/ => "CÍRCULO",
+      /asambleas/i => "círculos",
+      /las asambleas/ => "los círculos",
+      /Asambleas/ => "Círculos",
+      /ASAMBLEAS/ => "CÍRCULOS",
+      /proceso/i => "conflicto",
+      /Proceso/ => "Conflicto",
+      /PROCESO/ => "PROCESO",
+      /procesos/i => "conflictos",
+      /Procesos/ => "Conflictos",
+      /PROCESOS/ => "CONFLICTOS"
+    },
+    [/admin/, /devise/, /doorkeeper/],
+    output_file
+  )
+end
