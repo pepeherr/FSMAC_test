@@ -4,10 +4,10 @@ La denominación "Asamblea" y "Proceso" son las nativas de Decidim pero para nju
 
 1. Ejecutamos desde la raiz del proyecto
 ```
-rails runner x_scripts/generar_traduccion_concreta.rb
+rails runner x_scripts/generar_traducciones_es.rb
 
 ```
-nos generará el archivo traducciones_completas.yml en la raiz del proyecto
+nos generará el archivo traducciones_es.yml en la raiz del proyecto
 2. Revisamos y cambiamos lo que creamos conveniente el archivo generado y lo copiamos:
 ```
 cp traducciones_completas.yml config/locales/overrides.yml

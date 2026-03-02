@@ -1,13 +1,13 @@
-# x_scripts/generar_traducciones_completo.rb
-# Ejecutar: rails runner generar_traducciones_filtradas_completo.rb
+# x_scripts/generar_traducciones_eu.rb
+# Ejecutar: rails runner generar_traducciones_eu.rb
 
-def generate_filtered_yaml(output_file = "traducciones_filtradas_completo.yml")
+def generate_filtered_yaml(output_file = "traducciones_eu.yml")
   puts "=" * 70
   puts "🔍 GENERANDO TRADUCCIONES FILTRADAS (TODOS LOS NAMESPACES)"
   puts "=" * 70
   
   # Forzar carga de traducciones
-  I18n.locale = :es
+  I18n.locale = :eu
   
   # Cargar diferentes namespaces para forzar su inicialización
   puts "⏳ Cargando todos los namespaces de traducciones..."

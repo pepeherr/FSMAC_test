@@ -1,0 +1,789 @@
+# Archivo generado automáticamente el 2026-03-01 22:21
+# SOLO claves que contienen: asamblea, proceso (y variantes)
+# Incluye TODOS los namespaces (decidim, activemodel, activerecord, layouts, etc.)
+# Reemplazos aplicados: asamblea→círculo, proceso→conflicto
+
+es:
+  activerecord:
+    models:
+      decidim/participatory_process:
+        one: procés participatiu
+        other: processes participatius
+      decidim/participatory_process_group:
+        one: Grups de processes participatius
+        other: Grups de processes participatius
+      decidim/assembly:
+        one: cercle
+      decidim/assembly_member:
+        one: "Membre de l'cercle"
+        other: "Membres de l'cercle"
+      decidim/assembly_user_role:
+        one: "Rol d'administració de l'cercle"
+        other: "Rol d'administradores de l'cercle"
+  decidim:
+    admin:
+      actions:
+        confirm_delete_process: "Segur que vols esborrar aquest conflicte? Si canvies d'opinió, el pots restaurar més endavant."
+        new_process: Nou conflicte
+        new_process_group: Nou grup de conflictes
+        new_process_user_role: Nova administradora del conflicte
+        see_process: Veure el conflicte
+        view_deleted_processes: Veure els conflictes eliminats
+        confirm_delete_assembly: "Segur que vols esborrar aquesta cercle? Si canvies d'opinió, la pots restaurar més endavant."
+        new_assembly: Nova cercle
+        view_deleted_assemblies: Veure les cercles eliminades
+      filters:
+        decidim_participatory_process_group_id_eq:
+          label: Per grup de conflictes
+      menu:
+        authorization_revocation:
+          before_date_info: Útil si el conflicte ja ha començat i vols revocar els permisos del conflicte anterior.
+        participatory_process_groups: Grups de conflictes
+        participatory_processes: conflictes
+        participatory_processes_submenu:
+          info: Quant a aquest conflicte
+          process_admins: Administradores del conflicte
+          steps: Fases del conflicte
+        assemblies_submenu:
+          assembly_admins: "Administradores de l'cercle"
+          info: Quant a aquesta cercle
+          see_assembly: "Veure l'cercle"
+      models:
+        participatory_process:
+          name: procés participatiu
+        participatory_process_group:
+          name: Grup de conflictes
+        participatory_process_step:
+          name: Fase del procés participatiu
+        participatory_process_user_role:
+          name: Administradora de procés participatiu
+        assembly:
+          name: cercle
+        assembly_user_role:
+          name: "Administradora de l'cercle"
+      newsletters:
+        select_recipients_to_deliver:
+          select_participatory_processes: Seleccionar processes participatius
+      taxonomy_filters:
+        index:
+          description: 'Un filtre de taxonomia permet a les administradores ordenar i filtrar espais de participació basats en una taxonomia. Per exemple, afegir un filtre de taxonomies per ordenar conflictes per àmbit territorial.'
+        space_filter_for:
+          participatory_processes: Tots els processes participatius
+          assemblies: Totes les cercles
+      titles:
+        participatory_process_groups: Grups de processes participatius
+        participatory_process_types: Tipus de processes participatius
+        participatory_processes: processes participatius
+        participatory_processes_deleted: processes participatius eliminats
+      tooltips:
+        deleted_processes_info: "Un conflicte només es poden eliminar si el seu estat és 'Despublicat'."
+        deleted_assemblies_info: "Aquesta cercle es pot eliminar si el seu estat és 'Despublicada'."
+      participatory_process_duplicates:
+        new:
+          title: Duplicar el procés participatiu
+      participatory_process_groups:
+        destroy:
+          error: Hi ha hagut un error en eliminar el grup de processes participatius.
+          success: "El grup de processes participatius s'ha eliminat correctament."
+        edit:
+          title: Edita grup de conflicte
+        new:
+          title: Nou grup de conflictes
+        update:
+          error: "S'ha produït un error en actualitzar aquest grup de processes participatius."
+          success: Grup de processes participatius actualitzat correctament.
+      participatory_process_imports:
+        create:
+          error: "S'ha produït un error en actualitzar aquest procés participatiu."
+          success: "El procés participatiu s'ha importat correctament."
+        new:
+          title: Importar el procés participatiu
+      participatory_process_publications:
+        create:
+          error: "S'ha produït un error en publicar aquest procés participatiu."
+          success: "El procés participatiu s'ha publicat correctament."
+        destroy:
+          error: "S'ha produït un error en despublicar aquest procés participatiu."
+          success: "El procés participatiu s'ha despublicat correctament."
+      participatory_process_step_activations:
+        create:
+          error: "S'ha produït un error en activar aquesta fase del procés participatiu."
+          success: "La fase del procés participatiu s'ha activat correctament."
+      participatory_process_steps:
+        create:
+          error: "S'ha produït un error en crear una nova fase del procés participatiu."
+          success: "La fase del procés participatiu s'ha creat correctament."
+        destroy:
+          error:
+            last_step: "No es pot eliminar l'última fase d'un conflicte."
+          success: "La fase del procés participatiu s'ha eliminat correctament."
+        edit:
+          title: Edita fase de procés participatiu
+        index:
+          steps_title: Fases del conflicte
+        new:
+          title: Nova fase de procés participatiu
+        ordering:
+          error: "S'ha produït un error en la reordenació de les fases d'aquest procés participatiu."
+        update:
+          error: "S'ha produït un error en l'actualització d'aquesta fase de procés participatiu."
+          success: "La fase de procés participatiu s'ha actualitzat correctament."
+      participatory_process_user_roles:
+        create:
+          error: "S'ha produït un error en afegir una participant en aquest procés participatiu."
+          success: "L'administradora s'ha afegit correctament a aquest procés participatiu."
+        destroy:
+          success: "L'administradora s'ha eliminat correctament d'aquest procés participatiu."
+        edit:
+          title: Actualitzar administradora de procés participatiu
+        index:
+          process_admins_title: Administradores del procés participatiu
+        new:
+          title: Nova administradora del procés participatiu
+        update:
+          error: "S'ha produït un error en actualitzar una administradora per a aquest procés participatiu."
+          success: Administradora actualitzada correctament per a aquest procés participatiu.
+      participatory_processes:
+        create:
+          error: "S'ha produït un error en crear un nou procés participatiu."
+          success: "El procés participatiu s'ha creat correctament. Continua ara amb la configuració de les fases."
+        manage_trash:
+          title: processes participatius eliminats
+        new:
+          title: Nou procés participatiu
+        update:
+          error: "S'ha produït un error en actualitzar aquest procés participatiu."
+          success: "El procés participatiu s'ha actualitzat correctament."
+      participatory_processes_duplicates:
+        create:
+          error: "S'ha produït un error en duplicar aquest procés participatiu."
+          success: El procés participatiu ha estat duplicat correctament.
+      participatory_processes_group:
+        create:
+          error: "S'ha produït un error en crear aquest grup de processes participatius."
+          success: Grup de processes participatius creat correctament.
+      assemblies:
+        create:
+          error: "S'ha produït un error en crear una nova cercle."
+          success: 'cercle creada amb èxit. Ara pots afegir-hi components i configurar-los.'
+        new:
+          title: Nova cercle
+        update:
+          error: "S'ha produït un error en actualitzar aquesta cercle."
+          success: "L'cercle s'ha actualitzat correctament."
+      assemblies_duplicates:
+        create:
+          error: "S'ha produït un error en duplicar aquesta cercle."
+          success: "L'cercle s'ha duplicat correctament."
+      assembly_duplicates:
+        new:
+          title: cercle duplicada
+      assembly_imports:
+        create:
+          error: Hi ha hagut un problema important aquesta cercle.
+          success: cercle importada amb èxit.
+        new:
+          title: Importar cercle
+      assembly_publications:
+        create:
+          error: "S'ha produït un error en publicar aquesta cercle."
+          success: cercle publicada correctament.
+        destroy:
+          error: "S'ha produït un error en publicar aquesta cercle."
+          success: cercle despublicada correctament.
+      assembly_user_roles:
+        create:
+          error: "S'ha produït un error en afegir una administradora per a aquesta cercle."
+          success: "L'administradora s'ha afegit correctament a aquesta cercle."
+        destroy:
+          success: "L'administradora s'ha eliminat correctament d'aquesta cercle."
+        edit:
+          title: "Actualitzar administradora de l'cercle"
+        index:
+          assembly_admins_title: "Administradores de l'cercle"
+        update:
+          error: "S'ha produït un error en actualitzar una administradora per a aquesta cercle."
+          success: "L'administradora s'ha actualitzat correctament per a aquesta cercle."
+    admin_log:
+      participatory_process:
+        create: '%{user_name} ha creat el procés participatiu %{resource_name}'
+        duplicate: '%{user_name} ha duplicat el procés participatiu %{resource_name}'
+        export: '%{user_name} ha exportat el procés participatiu %{resource_name}'
+        import: '%{user_name} ha importat el procés participatiu %{resource_name}'
+        publish: '%{user_name} ha publicat el procés participatiu %{resource_name}'
+        publish_all_members: '%{user_name} va publicar a totes les membres del procés participatiu %{resource_name}'
+        restore: '%{user_name} ha restaurat el procés participatiu "%{resource_name}"'
+        soft_delete: '%{user_name} ha enviat a la paperera el procés participatiu "%{resource_name}"'
+        unpublish: '%{user_name} ha despublicat el procés participatiu %{resource_name}'
+        unpublish_all_members: '%{user_name} va despublicar a totes les membres del procés participatiu %{resource_name}'
+        update: '%{user_name} ha actualitzat el procés participatiu %{resource_name}'
+      participatory_process_group:
+        create: '%{user_name} ha creat el grup de processes participatius %{resource_name}'
+        unpublish: '%{user_name} ha despublicat el grup de processes participatius: %{resource_name}'
+        update: '%{user_name} ha actualitzat el grup de processes participatius %{resource_name}'
+      participatory_process_step:
+        activate: '%{user_name} ha activat la fase %{resource_name} en el procés participatiu %{space_name}'
+        create: '%{user_name} ha creat la fase %{resource_name} en el procés participatiu %{space_name}'
+        delete: '%{user_name} ha eliminat la fase %{resource_name} en el procés participatiu %{space_name}'
+        update: '%{user_name} ha actualitzat la fase %{resource_name} en el procés participatiu %{space_name}'
+      participatory_process_type:
+        create: '%{user_name} ha creat el tipus de procés participatiu %{resource_name}'
+        delete: '%{user_name} ha esborrat el tipus de procés participatiu %{resource_name}'
+        update: '%{user_name} ha actualitzat el tipus de procés participatiu %{resource_name}'
+      participatory_process_user_role:
+        create: '%{user_name} ha convidat la participant %{resource_name} al procés participatiu %{space_name}'
+        delete: '%{user_name} ha eliminat la participant %{resource_name} del procés participatiu %{space_name}'
+        update: '%{user_name} ha canviat el rol de la participant %{resource_name} en el procés participatiu %{space_name}'
+      assembly:
+        create: "%{user_name} ha creat l'cercle %{resource_name}"
+        duplicate: '%{user_name} ha duplicat la cercle %{resource_name}'
+        export: "%{user_name} ha exportat l'cercle %{resource_name}"
+        import: "%{user_name} ha importat l'cercle %{resource_name}"
+        publish: "%{user_name} ha publicat l'cercle %{resource_name}"
+        publish_all_members: "%{user_name} va publicar a totes les membres de l'cercle %{resource_name}"
+        restore: "%{user_name} ha restaurat l'cercle %{resource_name}"
+        soft_delete: "%{user_name} ha mogut a la paperera l'cercle %{resource_name}"
+        unpublish: "%{user_name} ha despublicat l'cercle %{resource_name}"
+        unpublish_all_members: "%{user_name} va despublicar a totes les membres de l'cercle %{resource_name}"
+        update: "%{user_name} ha actualitzat l'cercle %{resource_name}"
+      assembly_member:
+        create: "%{user_name} ha afegit el membre %{resource_name} a l'cercle %{space_name}"
+        delete: "%{user_name} esborrat el membre %{resource_name} de l'cercle %{space_name}"
+        update: "%{user_name} ha actualitzat el membre %{resource_name} de l'cercle %{space_name}"
+      assembly_setting:
+        update: '%{user_name} ha actualitzat la configuració de les cercles'
+      assembly_type:
+        create: "%{user_name} ha creat l'cercle %{resource_name}"
+        delete: "%{user_name} ha eliminat el tipus d'cercle %{resource_name}"
+        publish: "%{user_name} ha publicat el tipus d'cercle %{resource_name}"
+        unpublish: "%{user_name} ha despublicat el tipus d'cercle %{resource_name}"
+        update: "%{user_name} ha actualitzat el tipus d'cercle %{resource_name}"
+      assembly_user_role:
+        create: "%{user_name} ha convidat %{resource_name} a l'cercle %{space_name}"
+        delete: "%{user_name} ha eliminat la participant %{resource_name} de l'cercle %{space_name}"
+        update: "%{user_name} ha canviat el rol de %{resource_name} a l'cercle %{space_name}"
+    download_your_data:
+      show:
+        participatory_processes: Exportar els processes participatius
+        assemblies: Exportar les cercles
+    events:
+      participatory_process:
+        role_assigned:
+          email_intro: "T'han assignat el rol de %{role} al procés participatiu \"%{resource_title}\"."
+          email_outro: "Reps aquesta notificació perquè se t'ha assignat el rol de %{role} a l procés participatiu \"%{resource_title}\"."
+          notification_title: "Se t'ha assignat el rol de %{role} al procés participatiu <a href=\"%{resource_url}\">%{resource_title}</a>."
+      assemblies:
+        create_assembly_member:
+          email_intro: "Una administradora de l'cercle <a href=\"%{resource_url}\">%{resource_name}</a> t'ha afegit com a un dels seus membres."
+          email_outro: "Reps aquesta notificació perquè t'han convidat a una cercle. Entra en <a href=\"%{resource_url}\">assembly page</a> per a contribuir-hi!"
+          email_subject: "T'han convidat a ser membre de l'cercle %{resource_name}!"
+          notification_title: "T'han registrat com a membre de l'cercle <a href=\"%{resource_path}\">%{resource_name}</a>. Entra a <a href=\"%{resource_path}\">la pàgina de l'cercle</a> per a contribuir-hi!"
+      assembly:
+        role_assigned:
+          email_intro: "T'han assignat el rol de %{role} a l'cercle \"%{resource_title}\"."
+          email_outro: "Reps aquesta notificació perquè se t'ha assignat el rol de %{role} a l'cercle \"%{resource_title}\"."
+          notification_title: "Se t'ha assignat el rol de %{role} a l'cercle <a href=\"%{resource_url}\">%{resource_title}</a>."
+    help:
+      main_topic:
+        default_page:
+          content: '<p>A %{organization} pots participar i decidir sobre diferents temes, a través dels espais que veus al menú superior: conflictes, cercles, Iniciatives, Consultes.</p> <p>Dins de cada un trobaràs diferents opcions per participar: fer propostes - a nivell individual o amb altres persones -, prendre part en debats, prioritzar projectes a executar, assistir a trobades presencials i altres accions.</p>'
+      participatory_spaces:
+        participatory_processes:
+          contextual: "<p>Un <strong>procés participatiu</strong> és una seqüència d'activitats participatives (p.e. primer omplir una enquesta, després realitzar propostes, debatre-les en trobades presencials o virtuals, i finalment prioritzar-les) amb l'objectiu de definir y prendre una decisió sobre un tema específic.</p> <p>Exemples de processes participatius són: un conflicte d'elecció de les membres d'un comitè (on primer es presenten unes candidatures, després es debat i finalment s'escull una candidatura), pressupostos participatius (on es realitzen propostes, es valoren econòmicament i es voten amb el pressupost disponible), un conflicte de planificació estratègica, la redacció col·laborativa d'un reglament o norma, el disseny d'un espai urbà o la producció d'un pla de polítiques públiques.</p>"
+          page: "<p>Un <strong>procés participatiu</strong> és una seqüència d'activitats participatives (p.e. primer omplir una enquesta, després realitzar propostes, debatre-les en trobades presencials o virtuals, i finalment prioritzar-les) amb l'objectiu de definir y prendre una decisió sobre un tema específic.</p> <p>Exemples de processes participatius són: un conflicte d'elecció de les membres d'un comitè (on primer es presenten unes candidatures, després es debat i finalment s'escull una candidatura), pressupostos participatius (on es realitzen propostes, es valoren econòmicament i es voten amb el pressupost disponible), un conflicte de planificació estratègica, la redacció col·laborativa d'un reglament o norma, el disseny d'un espai urbà o la producció d'un pla de polítiques públiques.</p>"
+          title: 'Què és un procés participatiu?'
+        assemblies:
+          contextual: "<p>Una <strong>cercle</strong> és un grup format per membres d'una organització que es reuneixen periòdicament per prendre decisions sobre un àmbit o àrea específica de la mateixa.</p> <p>Les cercles realitzen trobades, algunes són privades i altres són obertes. Si són obertes s’hi pot participar (per exemple: assistint si l'aforament ho permet, afegint punts a l'ordre del dia, o comentant les propostes i decisions preses per aquest òrgan).</p> <p>Exemples: Una cercle general (que es reuneix un cop l'any per definir les línies principals d'acció de l'organització així com als seus òrgans executius per votació), una consell assessor d'igualtat (que es reuneix cada dos mesos per fer propostes de com millorar les relacions de gènere en l'organització), una comissió d'avaluació (que es reuneix cada mes per fer el seguiment d'un conflicte) o una òrgan de garanties (que recull les incidències, abusos o propostes de millora dels procediments de presa de decisions) són tot exemples d'cercles.</p>"
+          page: "<p>Una <strong>cercle</strong> és un grup format per membres d'una organització que es reuneixen periòdicament per prendre decisions sobre un àmbit o àrea específica de la mateixa.</p> <p>Les cercles realitzen trobades, algunes són privades i altres són obertes. Si són obertes s’hi pot participar (per exemple: assistint si l'aforament ho permet, afegint punts a l'ordre del dia, o comentant les propostes i decisions preses per aquest òrgan).</p> <p>Exemples: Una cercle general (que es reuneix un cop l'any per definir les línies principals d'acció de l'organització així com als seus òrgans executius per votació), una consell assessor d'igualtat (que es reuneix cada dos mesos per fer propostes de com millorar les relacions de gènere en l'organització), una comissió d'avaluació (que es reuneix cada mes per fer el seguiment d'un conflicte) o una òrgan de garanties (que recull les incidències, abusos o propostes de millora dels procediments de presa de decisions) són tot exemples d'cercles.</p>"
+          title: 'Què són les cercles?'
+    log:
+      value_types:
+        participatory_process_type_presenter:
+          not_found: "Aquest tipus de conflicte no s'ha trobat a la base de dades (ID: %{id})."
+        assembly_presenter:
+          not_found: "L'cercle no s'ha trobada a la base de dades (ID: %{id})"
+        assembly_type_presenter:
+          not_found: "El tipus d'cercle no s'ha trobat a la base de dades (ID: %{id})"
+    menu:
+      processes: conflictes
+    onboarding_action_message:
+      finish_authorization_process: Pots finalitzar el conflicte de verificació
+    open_data:
+      help:
+        participatory_processes:
+          area: "L'àrea a què pertany aquest conflicte"
+          created_at: La data en què es va crear aquest procés participatiu
+          description: Una descripció llarga del conflicte
+          developer_group: El grup promotor del conflicte. Qui està promovent el conflicte.
+          end_date: La data de finalització del conflicte
+          follows_count: "El número d'usuàries que segueixen aquest procés participatiu"
+          id: "L'identificador únic del conflicte"
+          local_area: "L'àrea d'organització del conflicte. Això és l'àrea d'organització de la qual depèn d'aquest conflicte."
+          meta_scope: "Les metadades de l'àmbit territorial del conflicte"
+          participatory_process_group: "El grup de conflictes, si en forma part d'algun"
+          participatory_process_type: El tipus de conflicte
+          participatory_scope: "L'àmbit territorial de la participació del conflicte"
+          participatory_structure: "L'estructura participativa del conflicte. Això és com es decideix al conflicte."
+          promoted: Si el conflicte està destacat o no
+          published_at: La data en què es va publicar aquest procés participatiu
+          reference: La referència única del procés participatiu
+          remote_hero_image_url: "L'URL de la imatge principal del conflicte"
+          scope: "L'àmbit territorial del conflicte"
+          short_description: Una descripció breu del conflicte
+          slug: "El nom curt del conflicte (utilitzat per a finalitats d'identificació, per a l'URL)"
+          start_date: "La data d'inici del conflicte"
+          subtitle: El subtítol del conflicte
+          target: Les destinatàries del conflicte. Qui està cridat a participar en el conflicte.
+          title: El títol del conflicte
+          updated_at: "La data de la darrera actualització d'aquest procés participatiu"
+          url: "L'URL del procés participatiu"
+        assemblies:
+          area: "L'àrea a la qual correspon l'cercle"
+          assembly_type: "El tipus d'cercle"
+          closing_date: "La data de tancament de l'cercle"
+          closing_date_reason: "Perquè es va tancar l'cercle"
+          composition: "La composició de l'cercle"
+          created_at: La data en què es va crear aquesta cercle
+          created_by: "Qui va crear l'cercle"
+          created_by_other: "L'àrea a la qual correspon l'cercle"
+          creation_date: "La data de creació d'aquesta cercle"
+          decidim_scope_id: "L'àmbit territorial de l'cercle"
+          description: "Una descripció llarga de l'cercle"
+          developer_group: "El grup promotor de l'cercle"
+          duration: "La durada de l'cercle"
+          follows_count: "El número d'usuàries que segueixen aquesta cercle"
+          included_at: "La data en què l'cercle es va incloure a la plataforma"
+          internal_organisation: "L'organització interna d'aquesta cercle"
+          is_transparent: "Si l'cercle és transparent o no"
+          local_area: "L'àrea d'organització de l'cercle"
+          meta_scope: "Les metadades de l'àmbit territorial de l'cercle"
+          participatory_scope: "L'àmbit territorial de la participació de l'cercle"
+          participatory_structure: "L'estructura participativa de l'cercle"
+          promoted: "Si l'cercle està destacada o no"
+          published_at: La data en què es va publicar aquesta cercle
+          purpose_of_action: "El propòsit de l'acció de l'cercle"
+          reference: "La referència única de l'cercle"
+          remote_banner_image_url: "L'URL de la imatge de capçalera (imatge principal) de l'cercle"
+          remote_hero_image_url: "L'URL de la imatge principal de l'cercle"
+          scope: "L'àmbit territorial de l'cercle"
+          short_description: "Una descripció breu de l'cercle"
+          slug: "El nom curt de l'cercle (utilitzat per a finalitats d'identificació, per a l'URL)"
+          special_features: Quines característiques especials té aquesta cercle
+          subtitle: "El subtítol d'cercle"
+          target: "L'objectiu de l'cercle"
+          title: "El títol de l'cercle"
+          updated_at: "La data de la darrera actualització d'aquesta cercle"
+          url: "L'URL de l'cercle"
+        pages:
+          participatory_space: 'A quin espai pertany aquesta pàgina (procés participatiu, cercle, etc.)'
+        proposals:
+          participatory_space: 'A quin espai pertany aquest projecte (procés participatiu, cercle, etc.)'
+        meetings:
+          participatory_space: 'A quin espai pertany aquesta trobada (procés participatiu, cercle, etc.)'
+        projects:
+          participatory_space: 'A quin espai pertany aquest projecte (procés participatiu, cercle, etc.)'
+        debates:
+          participatory_space: 'A quin espai pertany aquest debat (procés participatiu, cercle, etc.)'
+        posts:
+          participatory_space: 'A quin espai pertany aquesta publicació (procés participatiu, cercle, etc.)'
+      index:
+        description: "Benvinguda a la pàgina de dades oberta %{organization_name}. Aquí trobaràs fitxers de dades que es generen regularment a partir de diversos conflictes deliberats i de governança dins %{organization_name}. Aquests fitxers estan disponibles per promoure la transparència, accessibilitat i col·laboració. A continuació, trobaràs informació detallada sobre quins són aquests fitxers, com obrir i treballar amb ells, i una descripció del contingut i l'estructura de cada fitxer."
+        explanation:
+          body_1: "Aquests fitxers són conjunts de dades exportades des dels processes participatius de %{organization_name}, com ara propostes, comentaris i reunions. Es proporcionen dades crues i estructurades que poden ser utilitzades per a l'anàlisi, la investigació o la integració amb altres eines. Les dades s'actualitzen automàticament cada 24 hores, per assegurar tenir accés a la informació més recent possible."
+    pages:
+      home:
+        extended:
+          how_to_participate: 'Com participo en un conflicte?'
+        hero:
+          participate_title: Participa en els conflictes de la plataforma
+    statistics:
+      processes_count: conflictes
+      processes_count_tooltip: El nombre de processes participatius disponibles públicament.
+    system:
+      oauth_applications:
+        form:
+          scopes_help_html: "Els àmbits seleccionats estaran disponibles perquè les aplicacions connectades els sol·licitin durant el conflicte d'autorització. La usuària rebrà informació detallada sobre la sol·licitud d'autorització quan inicieu sessió mitjançant OAuth.
+<br>
+Els diferents àmbits proporcionen característiques diferents per a la usuària autenticada utilitzant els autentifcadors (tokens) d'accés concedits.
+<br>
+<strong>Nota:</strong> Si només necessites autenticar les usuàries de les teves aplicacions externes, només necessites l'àmbit <strong>perfil</strong>. Les aplicacions que interactuen amb l'API de Decidim també necessiten altres àmbits.
+"
+    participatory_process_groups:
+      content_blocks:
+        participatory_processes:
+          active: processes participatius actius
+          name: processes participatius
+        title:
+          participatory_processes:
+            one: Un conflicte
+            other: '%{count} conflictes'
+      related_processes:
+        help: 'Tots els conflictes seleccionats seran assignats a aquest grup, incloent-hi els que ja estan assignats a altres grups.'
+      show:
+        title: Grups de processes participatius
+    participatory_process_steps:
+      index:
+        process_steps: Fases del conflicte
+    participatory_processes:
+      admin:
+        content_blocks:
+          democratic_quality_stats_settings_form:
+            citizen_influence:
+              citizen_decisional_intervention:
+                legend: 'De totes les fases del conflicte (des de la selecció de les propostes fins al seguiment de la seva execució), en quantes ha tingut la ciutadania la capacitat de prendre decisions o emprendre accions executives?'
+              citizen_influence_level:
+                legend: "Fins a quin punt la ciutadania té autoritat decisòria en aquest conflicte, des de la recepció d'informació fins a la influència decisiva en les decisions i en la gestió de recursos?"
+            inclusiveness:
+              functional_diversity_invited:
+                legend: "Com s'avalua el grau de diversitat d'agents i participants pel que fa a la població de referència en el conflicte?"
+              languages_communicated:
+                legend: "Quants idiomes s'han fet servir en el conflicte?"
+            informativeness:
+              information_provided:
+                legend: "S'ha facilitat informació a les participants sobre quina era la capacitat d'influència que tenia en el tema que es debatia? (tant a la comunicació del conflicte i les invitacions, com a l'inici de cada sessió de debat)"
+        participatory_process_duplicates:
+          form:
+            slug_help_html: "Els segments d'URL s'utilitzen per generar les URL que apunten a aquest conflicte. Només accepta lletres, números i guions, i ha de començar amb una lletra. Exemple: %{url}"
+        participatory_process_groups:
+          form:
+            title: Quant a aquest conflicte
+        participatory_process_imports:
+          form:
+            slug_help_html: "Els noms curts d'URL s'utilitzen per generar les URL que apunten a aquest conflicte. Només accepta lletres, números i guions, i ha de començar amb una lletra. Exemple: %{url}"
+        participatory_processes:
+          form:
+            announcement_help: El text que introdueixis aquí es mostrarà a la participant just a sota de la informació del conflicte.
+            related_processes: conflictes relacionats
+            select_process_group: Selecciona un grup de conflictes
+            slug_help_html: "Els noms curts d'URL s'utilitzen per generar les URL que apunten a aquest conflicte. Només accepta lletres, números i guions, i ha de començar amb una lletra. Exemple: %{url}"
+      content_blocks:
+        democratic_quality_stats:
+          automatic_metrics:
+            indicators:
+              hybridization_tooltip: Aquest indicador mesura el nivell de combinació entre espais presencials i digitals durant el conflicte
+              influence_tooltip: "Aquest indicador mesura el nivell d'influència ciutadana en les propostes acceptades i els resultats del conflicte."
+              traceability_tooltip: "Aquest indicador mesura la transparència i la traçabilitat del procés participatiu. Reflecteix amb quina facilitat la ciutadania poden seguir l'evolució de les propostes i verificar les accions institucionals a través dels registres publicats."
+          global_score:
+            description_html: "A continuació es mostren un conjunt d'indicadors emprats per avaluar la qualitat democràtica d'aquest procés participatiu. Per a més detalls sobre com es calculen, consulteu la pàgina <a href=\"%{info_url}\">d'informació sobre els indicadors de qualitat democràtica</a>."
+          qualitative_metrics:
+            description: "Aquests indicadors s'obtenen de les respostes a una enquesta d'autoavaluació feta pels responsables del procés participatiu."
+            indicators:
+              informativeness_tooltip: Mesura el nivell de claredat i la informació proporcionada dins del conflicte.
+        highlighted_processes:
+          name: conflictes destacats
+        related_processes:
+          name: conflictes relacionats
+      index:
+        title: processes participatius
+      last_activity:
+        new_participatory_process: 'Nou procés participatiu:'
+      pages:
+        home:
+          highlighted_processes:
+            active_spaces: conflictes actius
+            see_all_spaces: Veure tots els conflictes
+      participatory_processes:
+        description:
+          data: Dades del conflicte
+          title: Quant a aquest conflicte
+        filters:
+          counters:
+            active:
+              one: Un conflicte actiu
+              other: '%{count} conflictes actius'
+            all:
+              one: Un conflicte
+              other: '%{count} conflictes'
+            past:
+              one: Un conflicte passat
+              other: '%{count} conflictes passats'
+            upcoming:
+              one: Un conflicte proper
+              other: '%{count} conflictes propers'
+          explanations:
+            no_active: Sense conflictes actius.
+            no_active_nor_upcoming: No hi ha conflictes actius ni futurs.
+            no_active_nor_upcoming_callout: No hi ha conflictes actius ni futurs. Aquí hi ha una llista dels anteriors.
+        show:
+          title: Quant a aquest conflicte
+      show:
+        belongs_to_group: Aquest conflicte pertany a
+        private_space: Aquest és un conflicte privat
+        related_processes: conflictes relacionats
+      static_pages:
+        democratic_quality_indicators:
+          content: "<h2>Sistema d’indicadors per mesurar la qualitat de la participació a Decidim.</h2>
+
+<h3>Introducció</h3>
+<p>La qualitat democràtica és un principi bàsic de Decidim. Per mantenir-lo, s’ha desenvolupat un sistema d’indicadors que ajuden a avaluar la qualitat dels processes participatius a la plataforma. En aquest article expliquem com es calculen aquests indicadors.
+
+<h3>Com es calculen els indicadors?
+<p>S'han definit dos mètodes per a la col·lecció d'indicadors de qualitat:</p>
+
+<ol>
+<li><strong>Mètriques automàtiques:</strong> es calculen directament a partir de les dades de Dedicim.</li>
+<li><strong>Mètriques d’autoavaluació:</strong> es basen en un formulari que omple un administrador.</li>
+</ol>.
+
+<p>Cada indicador s'expressa com a percentatge (n/total). A continuació, aquest percentatge es converteix en una puntuació en una escala d’1 a 5:</p>
+
+<ul>
+<li>1 = 0-20%</li>
+<li>2 = 20-40%</li>
+<li>3 = 40-60%</li>
+<li>4 = 60-80%</li>
+<li>5 = 80-100%</li>
+</ul>
+
+<br> <br>
+<h3>Mètriques automàtiques</h3>
+<p>Aquests indicadors s'obtenen automàticament a partir de les dades recollides a la plataforma. S’avaluen per a cada procés participatiu i poden ser públics pels responsables del conflicte, de manera que totes les participants hi puguin accedir.
+
+<p>S’han definit quatre indicadors principals: Influència Ciutadana, Hibridació, Capacitat de resposta i Traçabilitat:</p>
+
+<h3>Influència ciutadana</h3>
+<p>Aquest indicador mesura el nivell d'influència ciutadana en les propostes acceptades i els resultats del conflicte</p>
+
+<ul>
+<li>
+Influència ciutadana en les propostes
+<ul>
+<li>Percentatge de propostes acceptades (n/total)</li>
+<li>Percentatge de propostes <em>ciutadanes</em> aprovades sobre el total de propostes ciutadanes (influència ciutadana total en propostes aprovades)</li>
+<li>Percentatge de propostes ciutadanes aprovades sobre propostes aprovades totals (influència relativa ciutadana en la proposta aprovada)</li>
+</ul>
+</li>
+<li>Influència ciutadana en els resultats
+<ul>
+<li>Percentatge de resultats vinculats a les propostes ciutadanes sobre els resultats totals (influència total ciutadana en els resultats)</li>
+</ul>
+</li>
+</ul>
+
+<h3>Hibridació</h3>
+
+<p>Aquest indicador mesura el nivell de combinació entre els espais de cara i la cara i els espais digitals durant el conflicte.</p>
+<ul>
+<li>Hi ha algun component de les trobades? (Sí = 5, no = 0)</li>
+<li>Hi ha trobades de presencials? (Sí = 5, no = 0)</li>
+<li>Hi ha trobades en línia? (Sí = 5, no = 0)</li>
+<li>Hi ha trobades híbrides? (Sí = 5, no = 0)</li>
+<li>Es creen propostes a partir de les trobades? (Sí = 5, no = 0)</li>
+</ul>
+
+<h3>Capacitat de resposta</h3>
+
+<p>Aquest indicador mesura el nivell de resposta de l’organització a les contribucions de les participants i reflecteix el seu compromís mitjançant respostes i decisions oficials implementades.</p><p>
+<ul>
+<li>Percentatge de propostes amb resposta (n/total) - Capacitat de resposta institucional de la proposta</li>
+<li>Percentatge dels resultats completats al 100% (n/total)</li>
+</ul>
+
+<h3>Traçabilitat</h3>
+
+<p>Aquest indicador mesura la transparència i la traçabilitat del procés participatiu. Reflecteix amb el que facilita els ciutadans poden seguir l'evolució de les propostes i verificar les accions institucionals a través dels registres publicats.</p>
+<ul>
+<li>Nombre de propostes amb historial (n/total)</li>
+<li>Percentatge de resultats vinculats a les propostes (n/total)</li>
+<li>Percentatge de trobades tancades amb l'acte publicat (n/total)</li>
+<li>Obrir l’activació del mòdul de dades (dicotòmic: 0 o 5)</li>
+<li>Percentatge de propostes relacionades amb els pressupostos (n/total)</li>
+</ul>
+
+<br> <br>
+<h3>Mètriques d’autoavaluació</h3>
+
+<p>A més de les mètriques automàtiques, proposem l’ús d’una <strong>forma d’autoavaluació</strong> per avaluar les dimensions qualitatives de cada procés participatiu. Aquest formulari s’omplirà, al final de cada procés participatiu, pels responsables d’aquests, i les respostes es mostraran públicament al bloc de contingut de l’indicador.</p>
+
+<p>Aquestes preguntes pretenen capturar aspectes de la qualitat democràtica que no es poden avaluar només mitjançant dades quantitatives. És important tenir en compte que les respostes a aquesta enquesta estan esbiaixades per l’opinió dels responsables del procés participatiu en qüestió.</p>
+
+<br><br>
+<h3>Preguntes d'autoavaluació</h3>
+
+<p>A continuació s’exposen les preguntes que formen el formulari d’autoavaluació que responen les responsables del conflicte, així com els valors associats a cada resposta.</p>
+
+<h4>Inclusivitat</h4>
+
+<p>Inclusivitat segons l’origen cultural i la diversitat funcional.</p>
+
+<ol>
+<li>S’ha convidat a participar persones d’orígens diversos?
+<ul>
+<li>Sí = 5</li>
+<li>No = 0</li>
+</ul>
+</li>
+<li>Quantes persones d’orígens culturals diversos han participat fora de a qui s’havia convidat?
+<ul>
+<li>0-20% = 1</li>
+<li>20-40% = 2</li>
+<li>40-60% = 3</li>
+<li>60-80% = 4</li>
+<li>80-100% = 5</li>
+</ul>
+</li>
+<li>S'ha convidat a participar grups de persones amb diversitat funcional?
+<ul>
+<li>Sí = 5</li>
+<li>No = 0</li>
+</ul>
+</li>
+<li>Quantes persones amb diversitat funcional han participat de a qui s’havia convidat?
+<ul>
+<li>0-20% = 1</li>
+<li>20-40% = 2</li>
+<li>40-60% = 3</li>
+<li>60-80% = 4</li>
+<li>80-100% = 5</li>
+</ul>
+</li>
+</ol>
+
+<h4>Rellevància</h4>
+
+<p>Rellevància de l’impacte, com ara: percentatge del pressupost de l’organització, dels recursos humans que va implicar l’organització o de la població total, que es veurà afectada pels resultats del conflicte i el temps dedicat a aquest impacte.</p></p>
+
+<ol>
+<li>Percentatge del pressupost de l’organització, de recursos humans que va implicar l’organització o de la població total, que es veurà afectada pels resultats del conflicte.
+<ul>
+<li>0-20% = 1</li>
+<li>20-40% = 2</li>
+<li>40-60% = 3</li>
+<li>60-80% = 4</li>
+<li>80-100% = 5</li>
+</ul>
+</li>
+</ol>
+<h4> Influència ciutadana </h4>
+<ol>
+<li>Nivell d’influència del conflicte tenint en compte els mecanismes de participació autoritzats, segons l’escala definida per Satin i Arnstein (1969).
+<ul>
+<li>Informatiu = 0
+<p>El flux d'informació és unidireccional, del personal municipal cap a la ciutadania, sense canal de retroalimentació ni capacitat de negociació.
+</li>
+<li>Consultiu = 1
+<p>Un procés participatiu en què es demana als ciutadans la seva opinió, normalment mitjançant enquestes o trobades, però sense garantia que la seva contribució influeixi en les decisions.
+</li>
+<li>Participació simbòlica = 2
+<p>Un procés participatiu en què els ciutadans tenen una influència limitada, sovint simbòlicament, com la inclusió en articulacions o comitès, però sense poder real, ja que la presa de decisions continua controlada per l’elit del poder tradicional.
+</li>
+<li>Col·laboratiu = 3
+<p>Un procés participatiu en què els ciutadans i el teixit associatiu comparteixen el poder de decisió, permetent als participants negociar, assignar recursos i influència, amb normes que no es poden modificar unilateralment. Normalment sorgeix de la mobilització ciutadana i de l’acció col·lectiva.</p>
+</li>
+<li>Competència delegada = 4
+<p>Un procés participatiu en què els ciutadans adquireixen autoritat, control o finançament per influir en una organització i gestionar -la.
+</li>
+<li>Control ciutadà = 5
+<p>Un nivell de participació més alt on els ciutadans governen plenament un programa o una institució, gestionen polítiques, recursos i presa de decisions sense interferències externes.
+</li>
+</ul>
+</li>
+<li>Percentatge de fases amb intervenció ciutadana en la presa de decisions (de 0 a 5)
+<p>De totes les fases del conflicte (des de la selecció de qüestions fins a la supervisió de l’execució), en quantes d’elles els ciutadans tenen la capacitat de prendre decisions o fer accions executives?</p>
+<ul>
+<li>0-20% = 1</li>
+<li>20-40% = 2</li>
+<li>40-60% = 3</li>
+<li>60-80% = 4</li>
+<li>80-100% = 5</li>
+</ul>
+</li>
+</ol>
+
+<h4>Accessibilitat</h4>
+<ol>
+<li>En quants idiomes s’ha comunicat el conflicte?
+<ul>
+<li>Un idioma = 1</li>
+<li>Menys de la meitat dels idiomes que es parlen a la comunitat = 2,5</li>
+<li>Més de la meitat dels idiomes parlats a la comunitat = 5</li>
+</ul>
+</li>
+<li>Les sales de les trobades presencials: eren accessibles per a persones amb mobilitat reduïda?
+<ul>
+<li>No = 0</li>
+<li>Parcialment = 2,5</li>
+<li>Sí = 5</li>
+</ul>
+</li>
+</ol>"
+    assemblies:
+      admin:
+        assemblies:
+          form:
+            announcement_help: "El text que introdueixis aquí es mostrarà a la participant just a sota de la informació de l'cercle."
+            duration_help: "Si la durada d'aquesta cercle és limitada, selecciona la data de finalització. En cas contrari, apareixerà com a indefinida."
+            included_at_help: Selecciona la data en què es va afegir aquesta cercle a la plataforma. No necessàriament ha de ser la mateixa que la data de creació.
+            select_parent_assembly: Selecciona una cercle mare
+            slug_help_html: "Els noms curts d'URL s'utilitzen per generar les URL que apunten a aquesta cercle. Només accepta lletres, números i guions, i ha de començar amb una lletra. Exemple: %{url}"
+        assembly_duplicates:
+          form:
+            slug_help_html: "Els noms curts d'URL s'utilitzen per generar les URL que apunten a aquesta cercle. Només accepta lletres, números i guions, i ha de començar amb una lletra. Exemple: %{url}"
+        assembly_imports:
+          form:
+            slug_help_html: "Els noms curts d'URL s'utilitzen per generar les URL que apunten a aquesta cercle. Només accepta lletres, números i guions, i ha de començar amb una lletra. Exemple: %{url}"
+      assemblies:
+        description:
+          data: "Administradora de l'cercle"
+          title: Quant a aquesta cercle
+        show:
+          title: Quant a aquesta cercle
+      last_activity:
+        new_assembly: 'Nova cercle:'
+      pages:
+        home:
+          highlighted_assemblies:
+            see_all_spaces: Veure totes les cercles
+      show:
+        private_space: Aquesta és una cercle privada
+        social_networks_title: "Visita l'cercle a"
+    proposals:
+      admin:
+        proposals_imports:
+          create:
+            success: "El conflicte d'importació ha començat. T'avisarem quan hagi finalitzat."
+    budgets:
+      admin:
+        budgets:
+          index:
+            pending_orders: Vots en conflicte
+        projects:
+          index:
+            pending_orders: Vots en conflicte
+      budgets_list:
+        finished_message: 'Has finalitzat el conflicte de votació. Gràcies per participar-hi!'
+      projects:
+        exit_modal:
+          message: 'El teu vot no ha estat registrat perquè encara no ha completat el conflicte de votació. Segur que vols sortir de la votació?'
+  activemodel:
+    attributes:
+      participatory_process:
+        participatory_process_group_id: Grup de conflictes
+        private_space: conflicte privat
+        related_process_ids: conflictes relacionats
+      participatory_process_group:
+        participatory_process_ids: conflictes relacionats
+      assembly:
+        assembly_type: "Tipus d'cercle"
+        assembly_type_other: "Altre tipus d'cercle"
+        parent_id: cercle mare
+        participatory_processes_ids: processes participatius relacionats
+  layouts:
+    decidim:
+      participatory_process_groups:
+        participatory_process_group:
+          browse_resource: 'Explorar el grup de conflictes %{resource_name}'
+          processes_count: 'conflictes:'
+      participatory_processes:
+        index:
+          promoted_processes: conflictes destacats
+        participatory_process:
+          more_info_about: 'Més informació sobre el conflicte %{resource_name}'
+          take_part_in: 'Participa al conflicte %{resource_name}'
+      assemblies:
+        metadata:
+          children_item:
+            one: '%{count} cercle'
+        order_by_assemblies:
+          assemblies:
+            one: '%{count} cercle'

@@ -1,13 +1,13 @@
-# x_scripts/generar_traducciones_es.rb
-# Ejecutar: rails runner generar_traducciones_es.rb
+# x_scripts/generar_traducciones_ca.rb
+# Ejecutar: rails runner generar_traducciones_ca.rb
 
-def generate_filtered_yaml(output_file = "traducciones_es.yml")
+def generate_filtered_yaml(output_file = "traducciones_ca.yml")
   puts "=" * 70
   puts "🔍 GENERANDO TRADUCCIONES FILTRADAS (TODOS LOS NAMESPACES)"
   puts "=" * 70
   
   # Forzar carga de traducciones
-  I18n.locale = :es
+  I18n.locale = :ca
   
   # Cargar diferentes namespaces para forzar su inicialización
   puts "⏳ Cargando todos los namespaces de traducciones..."
@@ -34,10 +34,10 @@ def generate_filtered_yaml(output_file = "traducciones_es.yml")
   puts "\n✅ Namespaces cargados"
   
   # Obtener TODAS las traducciones
-  all_translations = I18n.backend.translations[:es]
+  all_translations = I18n.backend.translations[:ca]
   
   if all_translations.nil?
-    puts "❌ Error: No se encontraron traducciones en español"
+    puts "❌ Error: No se encontraron traducciones en catalán"
     return
   end
   
@@ -46,47 +46,38 @@ def generate_filtered_yaml(output_file = "traducciones_es.yml")
   
   # Definir patrones de búsqueda
   search_patterns = [
-    /asamblea/i,
-    /asambleas/i,
-    /proceso/i,
-    /procesos/i
+    /assemblea/i,
+    /l'assemblea/i,
+    /les assemblees/i,
+    /procés/i,
+    /processos/i
   ]
   
   # Definir reemplazos (ordenados de más específico a más general)
   replacements = {
     # Términos compuestos con asamblea
-    /la asamblea/i => "el círculo",
-    /las asambleas/i => "los círculos",
-    /de la asamblea/i => "del círculo",
-    /de las asambleas/i => "de los círculos",
-    /a la asamblea/i => "al círculo",
-    /a las asambleas/i => "a los círculos",
-    /en la asamblea/i => "en el círculo",
-    /en las asambleas/i => "en los círculos",
+    /assemblea/i => "cercle",
+    /l'assemblea/i => "el cercle",
+    /de l'assemblea/i => "del cercle",
+    /de las assemblees/i => "dels cercles",
+    /a les assemblees/ => 'als  cercles',
+    /a l'assemblea/i => 'al cercle',
     
     # Términos individuales asamblea
-    /\basamblea\b/i => "círculo",
-    /\bAsamblea\b/ => "Círculo",
-    /\bASAMBLEA\b/ => "CÍRCULO",
-    /\basambleas\b/i => "círculos",
-    /\bAsambleas\b/ => "Círculos",
-    /\bASAMBLEAS\b/ => "CÍRCULOS",
-    
-    # Términos compuestos con proceso
-    /el proceso/i => "el conflicto",
-    /los procesos/i => "los conflictos",
-    /del proceso/i => "del conflicto",
-    /de los procesos/i => "de los conflictos",
-    /al proceso/i => "al conflicto",
-    /a los procesos/i => "a los conflictos",
+    /\bassemblea\b/i => "cercle",
+    /\bAsseblea\b/ => "Cercle",
+    /\bASSEMBLEA\b/ => "CERCLE",
+    /\bassemblees\b/i => "cercles",
+    /\bAssemblees\b/ => "Cercles",
+    /\bASSEMBLEES\b/ => "CERCLES",
     
     # Términos individuales proceso
-    /\bproceso\b/i => "conflicto",
-    /\bProceso\b/ => "Conflicto",
-    /\bPROCESO\b/ => "CONFLICTO",
-    /\bprocesos\b/i => "conflictos",
-    /\bProcesos\b/ => "Conflictos",
-    /\bPROCESOS\b/ => "CONFLICTOS"
+    /\bprocés\b/i => "conflicte",
+    /\bProcés\b/ => "Conflicte",
+    /\bPROCÉS\b/ => "CONFLICTE",
+    /\bprocessos\b/i => "conflictes",
+    /\bProcessos\b/ => "Conflictes",
+    /\bPROCESSOS\b/ => "CONFLICTES"
   }
   
   # Función para verificar si un valor contiene algún patrón

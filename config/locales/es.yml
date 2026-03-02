@@ -1,0 +1,25 @@
+es:
+  activemodel:
+    attributes:
+      assembly:
+        composition: Propuestas de modificación
+  decidim:
+    open_data:
+      help:
+        assemblies:
+          composition: La Propuestas de modificación del círculo
+
+    proposals:
+      actions:
+        parent_objective_label: "Necesidad"
+        parent_objective_blank: "Elige una opción"
+
+    activerecord:
+      attributes:
+        decidim/proposals/proposal:
+        parent_objective: "Necesidad"
+
+    activemodel:
+      attributes:
+        decidim/proposals/proposal_form:
+        parent_objective_id: "Necesidad"
