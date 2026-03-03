@@ -2,8 +2,7 @@
 # SOLO claves que contienen: asamblea, proceso (y variantes)
 # Incluye TODOS los namespaces (decidim, activemodel, activerecord, layouts, etc.)
 # Reemplazos aplicados: asamblea→círculo, proceso→conflicto
-
-es:
+ca:
   activerecord:
     models:
       decidim/participatory_process:
