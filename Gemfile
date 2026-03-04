@@ -6,10 +6,10 @@ ruby RUBY_VERSION
 
 gem "decidim", "0.31.1"
 # gem "decidim-ai", "0.31.1"
-# gem "decidim-collaborative_texts", "0.31.1"
+gem "decidim-collaborative_texts", "0.31.1"
 # gem "decidim-conferences", "0.31.1"
 # gem "decidim-demographics", "0.31.1"
-# gem "decidim-design", "0.31.1"
+gem "decidim-design", "0.31.1"
 # gem "decidim-elections", "0.31.1"
 # gem "decidim-initiatives", "0.31.1"
 # gem "decidim-templates", "0.31.1"
