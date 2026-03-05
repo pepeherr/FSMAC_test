@@ -7,17 +7,17 @@ es:
   activerecord:
     models:
       decidim/participatory_process:
-        one: conflicto participativo
-        other: conflictos participativos
+        one: Conflicto
+        other: Conflictos participativos
       decidim/participatory_process_group:
-        one: Grupo de conflictos participativos
-        other: Grupos de conflictos participativos
+        one: Grupo de conflictos
+        other: Grupos de conflictos
       decidim/assembly:
-        one: círculo
-        other: círculos
+        one: Foro
+        other: Círculos
       decidim/assembly_member:
-        one: Miembro de el círculo
-        other: Miembros de el círculo
+        one: Miembro del círculo
+        other: Miembros del círculo
       decidim/assembly_user_role:
         one: Rol de participante de el círculo
         other: Roles de participante de el círculo
@@ -30,9 +30,9 @@ es:
         new_process_user_role: Nueva administradora de conflicto
         see_process: Ver el conflicto
         view_deleted_processes: Ver los conflictos eliminados
-        confirm_delete_assembly: '¿Seguro que quieres eliminar esta círculo? Si cambias de opinión, puedes restaurarla más tarde.'
+        confirm_delete_assembly: '¿Seguro que quieres eliminar este círculo? Si cambias de opinión, puedes restaurarla más tarde.'
         new_assembly: Nueva círculo
-        view_deleted_assemblies: Ver los círculos eliminadas
+        view_deleted_assemblies: Ver los círculos eliminados
       filters:
         decidim_participatory_process_group_id_eq:
           label: Por grupo de conflictos
@@ -40,16 +40,16 @@ es:
         authorization_revocation:
           before_date_info: Útil si el conflicto ya ha comenzado y quieres revocar los permisos del conflicto anterior.
         participatory_process_groups: Grupos de conflictos
-        participatory_processes: conflictos
+        participatory_processes: Conflictos
         participatory_processes_submenu:
           info: Acerca de este conflicto
           process_admins: Administradoras del conflicto
-          steps: Fases del conflicto
-        assemblies: círculos
+          steps: Fases del proceso
+        assemblies: Pactos
         assemblies_submenu:
           assembly_admins: Administradoras de el círculo
-          info: Acerca de esta círculo
-          see_assembly: Ver el círculo
+          info: Acerca de este pacto
+          see_assembly: Ver el pacto
       models:
         participatory_process:
           name: conflicto participativo
@@ -75,14 +75,14 @@ es:
           description: 'Un filtro de taxonomía permite a las administradoras ordenar y filtrar espacios de participación basados en una taxonomía. Por ejemplo, añadir un filtro de taxonomías para ordenar conflictos por ámbito territorial.'
         space_filter_for:
           participatory_processes: Todos los conflictos participativos
-          assemblies: Todas los círculos
+          assemblies: Todos los círculos
       titles:
-        participatory_process_groups: Grupos de conflictos participativos
-        participatory_process_types: Tipos de conflictos participativos
-        participatory_processes: conflictos participativos
+        participatory_process_groups: Grupos de conflictos
+        participatory_process_types: Tipos de procesos participativos
+        participatory_processes: Procesos participativos
         participatory_processes_deleted: conflictos participativos eliminados
         assemblies: círculos
-        assemblies_deleted: círculos eliminadas
+        assemblies_deleted: Círculos eliminados
         assemblies_types: Tipo de círculo
       tooltips:
         deleted_processes_info: "Un conflicto solo se pueden eliminar si su estado es 'Despublicado'."
@@ -129,9 +129,9 @@ es:
         edit:
           cta_deprecated:
             body_html: 'La configuración del CTA a través de la Fase del conflicto participativo está obsoleta con el nuevo diseño.
-Ahora esto se hace en la <b>Página de Inicio</b>, usando el bloque de contenido <b>Imagen principal y botón de acción</b> .
-Lo hemos dejado aquí para que migres las CTAs que necesites. Los campos <i>Ruta del botón de acción</i> y
-<i>Texto del botón de acción</i> se eliminaran en la próxima versión.'
+            Ahora esto se hace en la <b>Página de Inicio</b>, usando el bloque de contenido <b>Imagen principal y botón de acción</b> .
+            Lo hemos dejado aquí para que migres las CTAs que necesites. Los campos <i>Ruta del botón de acción</i> y
+            <i>Texto del botón de acción</i> se eliminaran en la próxima versión.'
           title: Editar fase del conflicto participativo
         index:
           steps_title: Fases del conflicto
@@ -181,7 +181,7 @@ Lo hemos dejado aquí para que migres las CTAs que necesites. Los campos <i>Ruta
           error: Se ha producido un error al crear una nueva círculo.
           success: círculo creada con éxito. Ahora puedes añadir componentes y configurarlos.
         manage_trash:
-          title: círculos eliminadas
+          title: Círculos eliminados
         new:
           title: Nueva círculo
         update:
@@ -303,20 +303,15 @@ Lo hemos dejado aquí para que migres las CTAs que necesites. Los campos <i>Ruta
     help:
       main_topic:
         default_page:
-          content: '<p>En %{organization} puedes participar y decidir sobre diferentes temas, a través de los espacios que ves en el menú superior: conflictos, círculos, Iniciativas, Consultas.</p> <p>Dentro de cada uno encontrarás diferentes opciones para participar: hacer propuestas (individualmente o con otras personas), tomar parte en debates, priorizar proyectos a ejecutar, asistir a encuentros presenciales y otras acciones.</p>
-'
+          content: '<p>En %{organization} puedes participar y decidir sobre diferentes temas, a través de los espacios que ves en el menú superior: conflictos, círculos, Iniciativas, Consultas.</p> <p>Dentro de cada uno encontrarás diferentes opciones para participar: hacer propuestas (individualmente o con otras personas), tomar parte en debates, priorizar proyectos a ejecutar, asistir a encuentros presenciales y otras acciones.</p>'
       participatory_spaces:
         participatory_processes:
-          contextual: '<p>Un <strong>conflicto participativo</strong> es una secuencia de actividades participativas (p.e. primero rellenar una encuesta, luego realizar propuestas, debatirlas en encuentros presenciales o virtuales, y finalmente priorizarlas) con el objetivo de definir y tomar una decisión sobre un tema específico.</p> <p>Ejemplos de conflictos participativos son: un conflicto de elección de los miembros de un comité (donde primero se presentan unas candidaturas, luego se debate y finalmente se elige una candidatura), presupuestos participativos (donde se realizan propuestas, se valoran económicamente y se vota con el dinero disponible), un conflicto de planificación estratégica, la redacción colaborativa de un reglamento o norma, el diseño de un espacio urbano o la producción de un plan de políticas públicas.</p>
-'
-          page: '<p>Un <strong>conflicto participativo</strong> es una secuencia de actividades participativas (p.e. primero rellenar una encuesta, luego realizar propuestas, debatirlas en encuentros presenciales o virtuales, y finalmente priorizarlas) con el objetivo de definir y tomar una decisión sobre un tema específico.</p> <p>Ejemplos de conflictos participativos son: un conflicto de elección de los miembros de un comité (donde primero se presentan unas candidaturas, luego se debate y finalmente se elige una candidatura), presupuestos participativos (donde se realizan propuestas, se valoran económicamente y se vota con el dinero disponible), un conflicto de planificación estratégica, la redacción colaborativa de un reglamento o norma, el diseño de un espacio urbano o la producción de un plan de políticas públicas.</p>
-'
+          contextual: '<p>Un <strong>conflicto participativo</strong> es una secuencia de actividades participativas (p.e. primero rellenar una encuesta, luego realizar propuestas, debatirlas en encuentros presenciales o virtuales, y finalmente priorizarlas) con el objetivo de definir y tomar una decisión sobre un tema específico.</p> <p>Ejemplos de conflictos participativos son: un conflicto de elección de los miembros de un comité (donde primero se presentan unas candidaturas, luego se debate y finalmente se elige una candidatura), presupuestos participativos (donde se realizan propuestas, se valoran económicamente y se vota con el dinero disponible), un conflicto de planificación estratégica, la redacción colaborativa de un reglamento o norma, el diseño de un espacio urbano o la producción de un plan de políticas públicas.</p>'
+          page: '<p>Un <strong>conflicto participativo</strong> es una secuencia de actividades participativas (p.e. primero rellenar una encuesta, luego realizar propuestas, debatirlas en encuentros presenciales o virtuales, y finalmente priorizarlas) con el objetivo de definir y tomar una decisión sobre un tema específico.</p> <p>Ejemplos de conflictos participativos son: un conflicto de elección de los miembros de un comité (donde primero se presentan unas candidaturas, luego se debate y finalmente se elige una candidatura), presupuestos participativos (donde se realizan propuestas, se valoran económicamente y se vota con el dinero disponible), un conflicto de planificación estratégica, la redacción colaborativa de un reglamento o norma, el diseño de un espacio urbano o la producción de un plan de políticas públicas.</p>'
           title: '¿Qué es un conflicto participativo?'
         assemblies:
-          contextual: '<p>Una <strong>círculo</strong> es un grupo formado por miembros de una organización que se reúnen periódicamente para tomar decisiones sobre un ámbito o área específica de la misma.</p><p>los círculos realizan encuentros, algunos son privados y otros son abiertos. Si son abiertos se puede participar en ellos (por ejemplo: asistiendo si el aforo lo permite, añadiendo puntos al orden del día, o comentando las propuestas y decisiones tomadas por dicho órgano).</p> <p>Ejemplos: Una círculo general (que se reúne una vez al año para definir las líneas principales de acción de la organización así como para escojer a sus órganos ejecutivos por votación), una consejo asesor de igualdad (que se reúne cada dos meses para realizar propuestas de cómo mejorar las relaciones de género en la organización), una comisión de evaluación (que se reúne cada mes para realizar el seguimiento de un conflicto) o un órgano de garantías (que recoge las incidencias, abusos o propuestas de mejora de los procedimientos de toma de decisiones) son todo ejemplos de círculos.</p>
-'
-          page: '<p>Una <strong>círculo</strong> es un grupo formado por miembros de una organización que se reúnen periódicamente para tomar decisiones sobre un ámbito o área específica de la misma.</p><p>los círculos realizan encuentros, algunos son privados y otros son abiertos. Si son abiertos se puede participar en ellos (por ejemplo: asistiendo si el aforo lo permite, añadiendo puntos al orden del día, o comentando las propuestas y decisiones tomadas por dicho órgano).</p> <p>Ejemplos: Una círculo general (que se reúne una vez al año para definir las líneas principales de acción de la organización así como para escojer a sus órganos ejecutivos por votación), una consejo asesor de igualdad (que se reúne cada dos meses para realizar propuestas de cómo mejorar las relaciones de género en la organización), una comisión de evaluación (que se reúne cada mes para realizar el seguimiento de un conflicto) o un órgano de garantías (que recoge las incidencias, abusos o propuestas de mejora de los procedimientos de toma de decisiones) son todo ejemplos de círculos.</p>
-'
+          contextual: '<p>Una <strong>círculo</strong> es un grupo formado por miembros de una organización que se reúnen periódicamente para tomar decisiones sobre un ámbito o área específica de la misma.</p><p>los círculos realizan encuentros, algunos son privados y otros son abiertos. Si son abiertos se puede participar en ellos (por ejemplo: asistiendo si el aforo lo permite, añadiendo puntos al orden del día, o comentando las propuestas y decisiones tomadas por dicho órgano).</p> <p>Ejemplos: Una círculo general (que se reúne una vez al año para definir las líneas principales de acción de la organización así como para escojer a sus órganos ejecutivos por votación), una consejo asesor de igualdad (que se reúne cada dos meses para realizar propuestas de cómo mejorar las relaciones de género en la organización), una comisión de evaluación (que se reúne cada mes para realizar el seguimiento de un conflicto) o un órgano de garantías (que recoge las incidencias, abusos o propuestas de mejora de los procedimientos de toma de decisiones) son todo ejemplos de círculos.</p>'
+          page: '<p>Una <strong>círculo</strong> es un grupo formado por miembros de una organización que se reúnen periódicamente para tomar decisiones sobre un ámbito o área específica de la misma.</p><p>los círculos realizan encuentros, algunos son privados y otros son abiertos. Si son abiertos se puede participar en ellos (por ejemplo: asistiendo si el aforo lo permite, añadiendo puntos al orden del día, o comentando las propuestas y decisiones tomadas por dicho órgano).</p> <p>Ejemplos: Una círculo general (que se reúne una vez al año para definir las líneas principales de acción de la organización así como para escojer a sus órganos ejecutivos por votación), una consejo asesor de igualdad (que se reúne cada dos meses para realizar propuestas de cómo mejorar las relaciones de género en la organización), una comisión de evaluación (que se reúne cada mes para realizar el seguimiento de un conflicto) o un órgano de garantías (que recoge las incidencias, abusos o propuestas de mejora de los procedimientos de toma de decisiones) son todo ejemplos de círculos.</p>'
           title: '¿Qué son los círculos?'
     log:
       value_types:
@@ -327,10 +322,10 @@ Lo hemos dejado aquí para que migres las CTAs que necesites. Los campos <i>Ruta
         assembly_type_presenter:
           not_found: 'El tipo de círculo no se encontró en la base de datos (ID: %{id})'
     menu:
-      processes: conflictos
-      assemblies: círculos
+      processes: Conflictos
+      assemblies: Pactos ecosociales
     onboarding_action_message:
-      finish_authorization_process: Puedes terminar el conflicto de verificación
+      finish_authorization_process: Puedes terminar el proceso de verificación
     open_data:
       help:
         participatory_processes:
@@ -415,28 +410,27 @@ Lo hemos dejado aquí para que migres las CTAs que necesites. Los campos <i>Ruta
     pages:
       home:
         extended:
-          how_to_participate: '¿Cómo participo en un conflicto?'
+          how_to_participate: '¿Cómo participo en un proceso?'
         hero:
-          participate_title: Participa en los conflictos de la plataforma
+          participate_title: Participa en los procesos de la plataforma
     statistics:
-      processes_count: conflictos
-      processes_count_tooltip: El número de conflictos participativos que están disponibles públicamente.
-      assemblies_count: círculos
-      assemblies_count_tooltip: El número de círculos públicas donde se toman las decisiones colectivas.
+      processes_count: Conflictos
+      processes_count_tooltip: El número de conflictos que están disponibles públicamente.
+      assemblies_count: Círculos
+      assemblies_count_tooltip: El número de círculos públicos donde se toman las decisiones colectivas.
     system:
       oauth_applications:
         form:
           scopes_help_html: 'Los ámbitos seleccionados estarán disponibles para que las aplicaciones conectadas los soliciten durante el conflicto de autorización. La usuaria recibirá información detallada sobre la solicitud de autorización cuando inicie sesión mediante OAuth.
-<br>
-Los diferentes ámbitos proporcionan diferentes características para la usuaria autenticada utilizando los autentifcadores (tokens) de acceso concedidos.
-<br>
-<strong>Nota:</strong> Si sólo necesitas autenticar a las usuarias de tus aplicaciones externas, sólo necesitas el ámbito <strong>perfil</strong>. Las aplicaciones que interactúan con la API de Decidim también necesitan otros ámbitos.
-'
+          <br>
+          Los diferentes ámbitos proporcionan diferentes características para la usuaria autenticada utilizando los autentifcadores (tokens) de acceso concedidos.
+          <br>
+          <strong>Nota:</strong> Si sólo necesitas autenticar a las usuarias de tus aplicaciones externas, sólo necesitas el ámbito <strong>perfil</strong>. Las aplicaciones que interactúan con la API de Decidim también necesitan otros ámbitos.'
     participatory_process_groups:
       content_blocks:
         participatory_processes:
-          active: conflictos participativos activos
-          name: conflictos participativos
+          active: Conflictos activos
+          name: Conflictos
         title:
           participatory_processes:
             one: 1 conflicto
@@ -493,13 +487,13 @@ Los diferentes ámbitos proporcionan diferentes características para la usuaria
             indicators:
               informativeness_tooltip: Mide el nivel de claridad y la información proporcionada dentro del conflicto.
         highlighted_processes:
-          name: conflictos destacados
+          name: Conflictos destacados
         related_processes:
-          name: conflictos relacionados
+          name: Conflictos relacionados
       index:
-        title: conflictos participativos
+        title: Conflictos participativos
       last_activity:
-        new_participatory_process: 'Nuevo conflicto participativo:'
+        new_participatory_process: 'Nuevo conflicto:'
       pages:
         home:
           highlighted_processes:
@@ -528,209 +522,209 @@ Los diferentes ámbitos proporcionan diferentes características para la usuaria
             no_active_nor_upcoming: No hay conflictos activos ni futuros.
             no_active_nor_upcoming_callout: No hay conflictos activos ni futuros. Aquí hay una lista de los pasados.
         show:
-          title: Acerca de este conflicto
+          title: Descripción del conflicto
       show:
         belongs_to_group: Este conflicto pertenece a
         private_space: Este es un conflicto privado
-        related_processes: conflictos relacionados
-        related_assemblies: círculos relacionadas
+        related_processes: Conflictos relacionados
+        related_assemblies: Círculos relacionadas
       static_pages:
         democratic_quality_indicators:
           content: '<h2>Sistema de indicadores para medir la calidad de la participación en Decidim.</h2>
 
-<h3>Introducción</h3>
-<p>La calidad democrática es un principio básico de Decidim. Para mantenerlo, se ha desarrollado un sistema de indicadores que ayudan a evaluar la calidad de los conflictos participativos en la plataforma. En este artículo explicamos cómo se calculan estos indicadores.</p>
+            <h3>Introducción</h3>
+            <p>La calidad democrática es un principio básico de Decidim. Para mantenerlo, se ha desarrollado un sistema de indicadores que ayudan a evaluar la calidad de los procesos participativos en la plataforma. En este artículo explicamos cómo se calculan estos indicadores.</p>
 
-<h3>¿Cómo se calculan los indicadores?</h3>
-<p>Se han definido dos métodos para la recogida de indicadores de calidad:</p> 
+            <h3>¿Cómo se calculan los indicadores?</h3>
+            <p>Se han definido dos métodos para la recogida de indicadores de calidad:</p> 
 
-<ol>
-<li><strong>Métricas automáticas:</strong> Se calculan directamente a partir de los datos de la plataforma Decidim.</li>
-<li><strong>Métricas de autoevaluación:</strong> Se basan en un formulario que rellena un administrador.</li>
-</ol>.
+            <ol>
+            <li><strong>Métricas automáticas:</strong> Se calculan directamente a partir de los datos de la plataforma Decidim.</li>
+            <li><strong>Métricas de autoevaluación:</strong> Se basan en un formulario que rellena un administrador.</li>
+            </ol>.
 
-<p>Cada indicador se expresa como un porcentaje (n/total). A continuación, este porcentaje se convierte en una puntuación en una escala de 1 a 5:</p>
+            <p>Cada indicador se expresa como un porcentaje (n/total). A continuación, este porcentaje se convierte en una puntuación en una escala de 1 a 5:</p>
 
-<ul>
-<li>1 = 0-20%</li>
-<li>2 = 20-40%</li>
-<li>3 = 40-60%</li>
-<li>4 = 60-80%</li>
-<li>5 = 80-100%</li>
-</ul>
+            <ul>
+            <li>1 = 0-20%</li>
+            <li>2 = 20-40%</li>
+            <li>3 = 40-60%</li>
+            <li>4 = 60-80%</li>
+            <li>5 = 80-100%</li>
+            </ul>
 
-<br><br>
-<h3>Métricas automáticas</h3>
-<p>Estos indicadores se obtienen automáticamente a partir de los datos recogidos en la plataforma. Se evalúan por cada conflicto participativo y pueden ser hechas públicas por las responsables del conflicto, para que todas las participantes puedan acceder a ellas.</p>
+            <br><br>
+            <h3>Métricas automáticas</h3>
+            <p>Estos indicadores se obtienen automáticamente a partir de los datos recogidos en la plataforma. Se evalúan por cada proceso participativo y pueden ser hechas públicas por las responsables del proceso, para que todas las participantes puedan acceder a ellas.</p>
 
-<p>Se han definido cuatro indicadores principales: Influencia Ciudadana, Hibridación, Capacidad de Respuesta y Trazabilidad:</p>
+            <p>Se han definido cuatro indicadores principales: Influencia Ciudadana, Hibridación, Capacidad de Respuesta y Trazabilidad:</p>
 
-<h3>Influencia ciudadana</h3>
-<p>Este indicador mide el nivel de influencia ciudadana en las propuestas aceptadas y los resultados del conflicto</p>
+            <h3>Influencia ciudadana</h3>
+            <p>Este indicador mide el nivel de influencia ciudadana en las propuestas aceptadas y los resultados del proceso</p>
 
-<ul>
-<li>
-Influencia ciudadana en las propuestas
-<ul>
-<li>Porcentaje de propuestas aceptadas (n/total)</li>
-<li>Porcentaje de propuestas <em>ciudadanas</em> aprobadas sobre el total de propuestas ciudadanas (influencia ciudadana total en propuestas aprobadas)</li>
-<li>Porcentaje de propuestas ciudadanas aprobadas sobre total de propuestas aprobadas (influencia ciudadana relativa sobre propuesta aprobada)</li>
-</ul>
-</li>
-<li>Influencia ciudadana sobre los resultados
-<ul>
-<li>Porcentaje de resultados vinculados a propuestas ciudadanas sobre el total de resultados (influencia ciudadana total sobre resultados)</li>
-</ul>
-</li>
-</ul>
+            <ul>
+            <li>
+            Influencia ciudadana en las propuestas
+            <ul>
+            <li>Porcentaje de propuestas aceptadas (n/total)</li>
+            <li>Porcentaje de propuestas <em>ciudadanas</em> aprobadas sobre el total de propuestas ciudadanas (influencia ciudadana total en propuestas aprobadas)</li>
+            <li>Porcentaje de propuestas ciudadanas aprobadas sobre total de propuestas aprobadas (influencia ciudadana relativa sobre propuesta aprobada)</li>
+            </ul>
+            </li>
+            <li>Influencia ciudadana sobre los resultados
+            <ul>
+            <li>Porcentaje de resultados vinculados a propuestas ciudadanas sobre el total de resultados (influencia ciudadana total sobre resultados)</li>
+            </ul>
+            </li>
+            </ul>
 
-<h3>Hibridación</h3>
+            <h3>Hibridación</h3>
 
-<p>Este indicador mide el nivel de combinación entre espacios presenciales y digitales durante el conflicto.</p> 
-<ul>
-<li>¿Hay algún componente de encuentros? (Sí=5, No=0)</li>
-<li>¿Hay encuentros presenciales? (Sí=5, No=0)</li>
-<li>¿Hay encuentros online? (Sí=5, No=0)</li>
-<li>¿Hay encuentros híbridas? (Sí=5, No=0)</li>
-<li>¿Se crean propuestas a partir de los encuentros? (Sí=5, No=0)</li>
-</ul>
+            <p>Este indicador mide el nivel de combinación entre espacios presenciales y digitales durante el proceso.</p> 
+            <ul>
+            <li>¿Hay algún componente de encuentros? (Sí=5, No=0)</li>
+            <li>¿Hay encuentros presenciales? (Sí=5, No=0)</li>
+            <li>¿Hay encuentros online? (Sí=5, No=0)</li>
+            <li>¿Hay encuentros híbridas? (Sí=5, No=0)</li>
+            <li>¿Se crean propuestas a partir de los encuentros? (Sí=5, No=0)</li>
+            </ul>
 
-<h3>Capacidad de respuesta</h3>
+            <h3>Capacidad de respuesta</h3>
 
-<p>Este indicador mide el nivel de respuesta de la organización a las aportaciones de las participantes, y refleja su compromiso a través de respuestas oficiales y decisiones implementadas.</p> <p>
-<ul>
-<li>Porcentaje de propuestas con respuesta (n/total) - Capacidad de respuesta institucional de la propuesta</li>
-<li>Porcentaje de resultados completados al 100% (n/total)</li>
-</ul>
+            <p>Este indicador mide el nivel de respuesta de la organización a las aportaciones de las participantes, y refleja su compromiso a través de respuestas oficiales y decisiones implementadas.</p> <p>
+            <ul>
+            <li>Porcentaje de propuestas con respuesta (n/total) - Capacidad de respuesta institucional de la propuesta</li>
+            <li>Porcentaje de resultados completados al 100% (n/total)</li>
+            </ul>
 
-<h3>Trazabilidad</h3>
+            <h3>Trazabilidad</h3>
 
-<p>Este indicador mide la transparencia y trazabilidad del conflicto participativo. Refleja con qué facilidad la ciudadanía pueden seguir la evolución de las propuestas y verificar las acciones institucionales a través de los registros publicados.</p> 
-<ul>
-<li>Número de propuestas con historial (n/total)</li>
-<li>Porcentaje de resultados vinculados a propuestas (n/total)</li>
-<li>Porcentaje de encuentros cerrados con acta publicada (n/total)</li>
-<li>Activación del módulo de datos abiertos (dicotómico: 0 ó 5)</li>
-<li>Porcentaje de propuestas relacionadas con presupuestos (n/total)</li>
-</ul>
+            <p>Este indicador mide la transparencia y trazabilidad del proceso participativo. Refleja con qué facilidad la ciudadanía pueden seguir la evolución de las propuestas y verificar las acciones institucionales a través de los registros publicados.</p> 
+            <ul>
+            <li>Número de propuestas con historial (n/total)</li>
+            <li>Porcentaje de resultados vinculados a propuestas (n/total)</li>
+            <li>Porcentaje de encuentros cerrados con acta publicada (n/total)</li>
+            <li>Activación del módulo de datos abiertos (dicotómico: 0 ó 5)</li>
+            <li>Porcentaje de propuestas relacionadas con presupuestos (n/total)</li>
+            </ul>
 
-<br><br>
-<h3>Métricas de autoevaluación</h3>
+            <br><br>
+            <h3>Métricas de autoevaluación</h3>
 
-<p>Además de las métricas automáticas, proponemos el uso de un <strong>formulario de autoevaluación</strong> para valorar las dimensiones cualitativas de cada conflicto participativo. Este formulario será rellenado, al finalizar cada conflicto participativo, por las responsables de estos, y las respuestas se mostrarán públicamente en el bloque de contenido de indicadores.</p> 
+            <p>Además de las métricas automáticas, proponemos el uso de un <strong>formulario de autoevaluación</strong> para valorar las dimensiones cualitativas de cada proceso participativo. Este formulario será rellenado, al finalizar cada proceso participativo, por las responsables de estos, y las respuestas se mostrarán públicamente en el bloque de contenido de indicadores.</p> 
 
-<p>Estas preguntas pretenden captar aspectos de la calidad democrática que no pueden evaluarse únicamente a través de datos cuantitativos. Es importante tener en cuenta que las respuestas a esta encuesta están sesgadas por la opinión de las responsables del conflicto participativo en cuestión.</p> 
+            <p>Estas preguntas pretenden captar aspectos de la calidad democrática que no pueden evaluarse únicamente a través de datos cuantitativos. Es importante tener en cuenta que las respuestas a esta encuesta están sesgadas por la opinión de las responsables del proceso participativo en cuestión.</p> 
 
-<br><br>
-<h3>Preguntas de autoevaluación</h3>
+            <br><br>
+            <h3>Preguntas de autoevaluación</h3>
 
-<p>A continuación se exponen las preguntas que componen el formulario de autoevaluación respondidas por las responsables del conflicto, así como los valores asociados a cada respuesta.</p> 
+            <p>A continuación se exponen las preguntas que componen el formulario de autoevaluación respondidas por las responsables del proceso, así como los valores asociados a cada respuesta.</p> 
 
-<h4>Inclusividad</h4>
+            <h4>Inclusividad</h4>
 
-<p>Inclusividad según el origen cultural y la diversidad funcional.</p>
+            <p>Inclusividad según el origen cultural y la diversidad funcional.</p>
 
-<ol>
-<li>¿Se ha invitado a participar a personas de orígenes diversos?
-<ul>
-<li>Sí = 5</li>
-<li>No = 0</li>
-</ul>
-</li>
-<li>¿Cuántas personas de orígenes culturales diversos han participado al margen de a quien se havia incitado?
-<ul>
-<li>0-20% = 1</li>
-<li>20-40% = 2</li>
-<li>40-60% = 3</li>
-<li>60-80% = 4</li>
-<li>80-100% = 5</li>
-</ul>
-</li>
-<li>¿Se ha invitado a grupos de personas con diversidad funcional a participar?
-<ul>
-<li>Sí = 5</li>
-<li>No = 0</li>
-</ul>
-</li>
-<li>¿Cuántas personas con diversidad funcional han participado al margen de a quien se havia invitado?
-<ul>
-<li>0-20% = 1</li>
-<li>20-40% = 2</li>
-<li>40-60% = 3</li>
-<li>60-80% = 4</li>
-<li>80-100% = 5</li>
-</ul>
-</li>
-</ol>
+            <ol>
+            <li>¿Se ha invitado a participar a personas de orígenes diversos?
+            <ul>
+            <li>Sí = 5</li>
+            <li>No = 0</li>
+            </ul>
+            </li>
+            <li>¿Cuántas personas de orígenes culturales diversos han participado al margen de a quien se havia incitado?
+            <ul>
+            <li>0-20% = 1</li>
+            <li>20-40% = 2</li>
+            <li>40-60% = 3</li>
+            <li>60-80% = 4</li>
+            <li>80-100% = 5</li>
+            </ul>
+            </li>
+            <li>¿Se ha invitado a grupos de personas con diversidad funcional a participar?
+            <ul>
+            <li>Sí = 5</li>
+            <li>No = 0</li>
+            </ul>
+            </li>
+            <li>¿Cuántas personas con diversidad funcional han participado al margen de a quien se havia invitado?
+            <ul>
+            <li>0-20% = 1</li>
+            <li>20-40% = 2</li>
+            <li>40-60% = 3</li>
+            <li>60-80% = 4</li>
+            <li>80-100% = 5</li>
+            </ul>
+            </li>
+            </ol>
 
-<h4>Relevancia</h4>
+            <h4>Relevancia</h4>
 
-<p>Relevancia del impacto, tales como: porcentaje del presupuesto de la organización, de los recursos humanos la organización implicados, o del total de la población, que se verá afectada por los resultados del conflicto, y el tiempo dedicado a tal impacto.</p>
+            <p>Relevancia del impacto, tales como: porcentaje del presupuesto de la organización, de los recursos humanos la organización implicados, o del total de la población, que se verá afectada por los resultados del proceso, y el tiempo dedicado a tal impacto.</p>
 
-<ol>
-<li>Porcentaje del presupuesto de la organización, de los recursos humanos la organización implicados, o del total de la población, que se verá afectada por los resultados del conflicto.
-<ul>
-<li>0-20% = 1</li>
-<li>20-40% = 2</li>
-<li>40-60% = 3</li>
-<li>60-80% = 4</li>
-<li>80-100% = 5</li>
-</ul>
-</li>
-</ol>
-<h4>Influencia ciudadana</h4>
-<ol>
-<li>Nivel de influencia del conflicto teniendo en cuenta los mecanismos de participación habilitados, de acuerdo a la escalera de participación definida por Satin y Arnstein (1969).
-<ul>
-<li>Informativo = 0
-<p>El flujo de información es unidireccional -del personal municipal hacia la ciudadanía- sin canal de retroalimentación ni capacidad de negociación.</p>
-</li>
-<li>Consultivo = 1
-<p>Un conflicto participativo en el que se pide a la ciudadanía su opinión, normalmente a través de encuestas o reuniones, pero sin garantía de que su aportación influya en las decisiones.</p>
-</li>
-<li>Participación simbólica = 2
-<p>Un conflicto participativo en el que se concede a la ciudadanía una influencia limitada, a menudo de forma simbólica, como la inclusión en juntas o comités, pero sin poder real, ya que la toma de decisiones sigue controlada por la élite de poder tradicional.</p>
-</li>
-<li>Colaborativo = 3
-<p>Un conflicto participativo en el que la ciudadanía y el tejido asociativo comparten el poder de decisión, lo que permite a las participantes negociar, asignar recursos e influir en la planificación, con normas que no pueden modificarse unilateralmente. Suele surgir de la movilización ciudadana y la acción colectiva.</p>
-</li>
-<li>Competencia delegada = 4
-<p>Un conflicto participativo en el que la ciudadanía adquiere autoridad, control o financiación para influir en una organización y gestionarla.</p>
-</li>
-<li>Control ciudadano = 5
-<p>Un nivel de participación más alto donde la ciudadanía gobierna plenamente un programa o institución, gestionan políticas, recursos y toma de decisiones sin interferencia externa.</p>
-</li>
-</ul>
-</li>
-<li>Porcentaje de fases con intervención ciudadana en la toma de decisiones (de 0 a 5)
-<p>De todas las fases del conflicto (desde la selección de temas hasta la supervisión de la ejecución), ¿en cuántas de ellas la ciudadanía tiene capacidad para tomar decisiones o emprender acciones ejecutivas?</p>
-<ul>
-<li>0-20% = 1</li>
-<li>20-40% = 2</li>
-<li>40-60% = 3</li>
-<li>60-80% = 4</li>
-<li>80-100% = 5</li>
-</ul>
-</li>
-</ol>
+            <ol>
+            <li>Porcentaje del presupuesto de la organización, de los recursos humanos la organización implicados, o del total de la población, que se verá afectada por los resultados del proceso.
+            <ul>
+            <li>0-20% = 1</li>
+            <li>20-40% = 2</li>
+            <li>40-60% = 3</li>
+            <li>60-80% = 4</li>
+            <li>80-100% = 5</li>
+            </ul>
+            </li>
+            </ol>
+            <h4>Influencia ciudadana</h4>
+            <ol>
+            <li>Nivel de influencia del proceso teniendo en cuenta los mecanismos de participación habilitados, de acuerdo a la escalera de participación definida por Satin y Arnstein (1969).
+            <ul>
+            <li>Informativo = 0
+            <p>El flujo de información es unidireccional -del personal municipal hacia la ciudadanía- sin canal de retroalimentación ni capacidad de negociación.</p>
+            </li>
+            <li>Consultivo = 1
+            <p>Un proceso participativo en el que se pide a la ciudadanía su opinión, normalmente a través de encuestas o reuniones, pero sin garantía de que su aportación influya en las decisiones.</p>
+            </li>
+            <li>Participación simbólica = 2
+            <p>Un proceso participativo en el que se concede a la ciudadanía una influencia limitada, a menudo de forma simbólica, como la inclusión en juntas o comités, pero sin poder real, ya que la toma de decisiones sigue controlada por la élite de poder tradicional.</p>
+            </li>
+            <li>Colaborativo = 3
+            <p>Un proceso participativo en el que la ciudadanía y el tejido asociativo comparten el poder de decisión, lo que permite a las participantes negociar, asignar recursos e influir en la planificación, con normas que no pueden modificarse unilateralmente. Suele surgir de la movilización ciudadana y la acción colectiva.</p>
+            </li>
+            <li>Competencia delegada = 4
+            <p>Un proceso participativo en el que la ciudadanía adquiere autoridad, control o financiación para influir en una organización y gestionarla.</p>
+            </li>
+            <li>Control ciudadano = 5
+            <p>Un nivel de participación más alto donde la ciudadanía gobierna plenamente un programa o institución, gestionan políticas, recursos y toma de decisiones sin interferencia externa.</p>
+            </li>
+            </ul>
+            </li>
+            <li>Porcentaje de fases con intervención ciudadana en la toma de decisiones (de 0 a 5)
+            <p>De todas las fases del proceso (desde la selección de temas hasta la supervisión de la ejecución), ¿en cuántas de ellas la ciudadanía tiene capacidad para tomar decisiones o emprender acciones ejecutivas?</p>
+            <ul>
+            <li>0-20% = 1</li>
+            <li>20-40% = 2</li>
+            <li>40-60% = 3</li>
+            <li>60-80% = 4</li>
+            <li>80-100% = 5</li>
+            </ul>
+            </li>
+            </ol>
 
-<h4>Accesibilidad</h4>
-<ol>
-<li>¿En cuántos idiomas se ha comunicado el conflicto?
-<ul>
-<li>Un idioma = 1</li>
-<li>Menos de la mitad de los idiomas hablados en la comunidad = 2,5</li>
-<li>Más de la mitad de los idiomas hablados en la comunidad = 5</li>
-</ul>
-</li>
-<li>¿Las salas de los encuentros presenciales: eran accesibles para las personas con movilidad reducida?
-<ul>
-<li>No = 0</li>
-<li>Parcialmente = 2,5</li>
-<li>Sí = 5</li>
-</ul>
-</li>
-</ol>'
+            <h4>Accesibilidad</h4>
+            <ol>
+            <li>¿En cuántos idiomas se ha comunicado el conflicto?
+            <ul>
+            <li>Un idioma = 1</li>
+            <li>Menos de la mitad de los idiomas hablados en la comunidad = 2,5</li>
+            <li>Más de la mitad de los idiomas hablados en la comunidad = 5</li>
+            </ul>
+            </li>
+            <li>¿Las salas de los encuentros presenciales: eran accesibles para las personas con movilidad reducida?
+            <ul>
+            <li>No = 0</li>
+            <li>Parcialmente = 2,5</li>
+            <li>Sí = 5</li>
+            </ul>
+            </li>
+            </ol>'
     assemblies:
       admin:
         assemblies:
@@ -751,37 +745,37 @@ Influencia ciudadana en las propuestas
           data: Datos de el círculo
           title: Acerca de esta círculo
         show:
-          title: Acerca de esta círculo
+          title: Visión
       content_blocks:
         children_assemblies:
-          name: círculos
+          name: Círculos
         highlighted_assemblies:
-          name: círculos destacadas
+          name: Círculos destacados
         related_assemblies:
-          name: círculos relacionadas
+          name: Círculos relacionados
       index:
-        title: círculos
+        title: Círculos
       last_activity:
         new_assembly: 'Nueva círculo:'
       pages:
         home:
           highlighted_assemblies:
-            active_spaces: círculos activas
-            see_all_spaces: Ver todas los círculos
+            active_spaces: Foro y Círculos activos
+            see_all_spaces: Ver todos los círculos
       show:
-        private_space: Esta es una círculo privada
+        private_space: Esta es un círculo privado
         social_networks_title: Visita el círculo en
     proposals:
       admin:
         proposals_imports:
           create:
-            success: el conflicto de importación ha comenzado. Te avisaremos cuando haya terminado.
+            success: el proceso de importación ha comenzado. Te avisaremos cuando haya terminado.
     budgets:
       budgets_list:
-        finished_message: 'Has terminado el conflicto de votación. ¡Gracias por participar!'
+        finished_message: 'Has terminado el proceso de votación. ¡Gracias por participar!'
       projects:
         exit_modal:
-          message: 'Tu voto no ha sido registrado porque aún no has completado el conflicto de votación. ¿Seguro que quieres salir de la votación?'
+          message: 'Tu voto no ha sido registrado porque aún no has completado el proceso de votación. ¿Seguro que quieres salir de la votación?'
   activemodel:
     attributes:
       participatory_process:
@@ -794,7 +788,7 @@ Influencia ciudadana en las propuestas
         assembly_type: Tipo de círculo
         assembly_type_other: Otro tipo de círculo
         parent_id: círculo madre
-        participatory_processes_ids: conflictos participativos relacionados
+        participatory_processes_ids: conflictos relacionados
   layouts:
     decidim:
       participatory_process_groups:
@@ -816,5 +810,5 @@ Influencia ciudadana en las propuestas
             other: '%{count} círculos'
         order_by_assemblies:
           assemblies:
-            one: '%{count} círculos'
+            one: 'Pacto Social'
             other: '%{count} círculos'

@@ -322,3 +322,38 @@ Permite crear y reutilizar plantillas para:
     Formularios
 
     Componentes comunes
+
+## Instalación de decidim-design
+
+### Instalación
+Modificar Gemfile descomentando gem "decidim-design", "0.31.1"
+
+y después
+
+	```
+	bundle install
+	```
+Con ello obtenemos acceso a la guia de decidim-design en
+	```
+	http:// localhost:3000/design
+	 ```
+## Instalación de decidim-collaborative_texts
+### Instalación
+He podido crear un colorative text con:
+Añadir la gema en Gemfile
+gem "decidim-collaborative_texts", "0.31.1"
+Ejecutar:
+```
+bundle install
+rails decidim_collaborative_texts:install:migrations
+rails db:migrate
+```
+Se añade a config/routes.rb
+
+```
+mount Decidim::CollaborativeTexts::Engine => '/' 
+```
+Reiniciamos el server
+
+Entonces aparece el nuevo componente en el desplegable de componentes "Textos colaborativos"
+
