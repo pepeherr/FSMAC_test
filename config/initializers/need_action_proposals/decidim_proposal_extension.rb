@@ -6,9 +6,13 @@
 #      desaparecen; simplemente quedan sin padre (más seguro)
 # defined? evita que se ejecute antes de que el engine cargue.
 
+# frozen_string_literal: true
+
 Rails.application.config.to_prepare do
    next unless defined?(Decidim::Proposals::Proposal)
+      
       Decidim::Proposals::Proposal.class_eval do
+
          belongs_to :parent_objective,
             class_name: "Decidim::Proposals::Proposal",
             optional: true

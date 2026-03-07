@@ -1,8 +1,13 @@
 es:
-  activemodel:
-    attributes:
-      assembly:
-        composition: Propuestas de modificación
+  fsmac:
+    need: Necesidad
+    action: Propuesta
+    list: "Propuestas asociadas:"
+  
+  helpers:
+    placeholder:
+      parent_objective: "Necesidad"
+
   decidim:
     open_data:
       help:
@@ -17,9 +22,9 @@ es:
     activerecord:
       attributes:
         decidim/proposals/proposal:
-        parent_objective: "Necesidad"
+          parent_objective: "Necesidad"
 
     activemodel:
       attributes:
         decidim/proposals/proposal_form:
-        parent_objective_id: "Necesidad"
+          parent_objective_id: "Necesidad"

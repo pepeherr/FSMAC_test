@@ -6,11 +6,10 @@ Rails.application.config.to_prepare do
   next unless defined?(Decidim::Proposals::ProposalsController)
 
   Decidim::Proposals::ProposalsController.class_eval do
+    private
 
-   private
-
-   def proposal_params
-    super.merge(parent_objective_id: params.dig(:proposal, :parent_objective_id))
-   end
+    def proposal_params
+      super.merge(parent_objective_id: params.dig(:proposal, :parent_objective_id))
+    end
   end
 end
