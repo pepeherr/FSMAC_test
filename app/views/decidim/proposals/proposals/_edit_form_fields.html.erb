@@ -37,22 +37,17 @@
 <!-- Selección del parent_objective_id de la Necesidad para las acciones -->
 <!-- ------------------------------------------------------------------- -->
 
-<% if current_component.fsmac_action? %> <!-- ID del componente Acciones -->
-  <% objective_component = current_component.participatory_space.components.detect(&:fsmac_need?) %>
-  <div class="field">
-    <label for="proposal_parent_objective_id">
-       t("Necesidad")
-    </label>
-    <%= form.collection_select :parent_objective_id,
-          need_component = current_component.participatory_space.components
-                         .detect(&:fsmac_need?),
-          Decidim::Proposals::Proposal
-            .where(decidim_component_id: need_component.id)
-            .where(parent_objective_id: nil),
-          :id,
-          ->(proposal) { translated_attribute(proposal.title) },
-          { include_blank: t("fsmac.choose_option") },
-          { required: true }
-    %>
-  </div>
+<% need_component = current_component.participatory_space.components.detect(&:fsmac_need?) %>
+
+<% if need_component %>
+  <%= form.label :parent_objective_id, t("fsmac.need") %>
+  <%= form.collection_select :parent_objective_id,
+        Decidim::Proposals::Proposal
+          .where(decidim_component_id: need_component.id)
+          .where(parent_objective_id: nil),
+        :id,
+        ->(proposal) { translated_attribute(proposal.title) },
+        { include_blank: t("decidim.proposals.actions.parent_objective_blank") },
+        { required: true }
+  %>
 <% end %>

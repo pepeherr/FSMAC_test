@@ -42,3 +42,7 @@ en:
     attributes:
       decidim/proposals/proposal_form:
       parent_objective_id: "Need"
+  
+  fsmac:
+    need: Need
+    action: Proposal

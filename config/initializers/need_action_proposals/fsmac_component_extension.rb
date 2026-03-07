@@ -9,12 +9,12 @@ Rails.application.config.to_prepare do
     }
 
     def fsmac_action?
-      fsmac_role == :action
+      action?
     end
 
     def fsmac_need?
-      fsmac_role == :need
+      need?
     end
-
+    
   end
 end

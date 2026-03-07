@@ -109,25 +109,7 @@ extra_admin_link(
   <%= cell "decidim/tags", @proposal %>
 
   <%= render partial: "actions" %>
-
-  <% if @proposal.child_actions.any? %>
-   <section class="layout-main__section">
-    
-    <h2 class="h4 decorator" style="margin-bottom: 20px">Acciones asociadas:<br></h2>
-      <p style="margin-bottom: 20px">
-      <div class="participatory-space__nav-container">
-        <% @proposal.child_actions.each do |action| %>
-          <div class="card card--simple">
-            <%= link_to resource_locator(action).path do %>
-              <strong><%= translated_attribute(action.title) %></strong>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-   </section>
-  <% end %>  
-
-
+  
   <% content_for :item_footer do %>
     <%= comments_for @proposal %>
 
@@ -158,6 +140,31 @@ extra_admin_link(
         </div>
       </div>
     <% end %>
+
+    <!-- AQUI INCLUIMOS EL LISTADO DE PROPUESTAS ASOCIADAS A LA NECESIDAD -->
+  <!-- ============================================================== -->
+  
+  <% if @proposal.child_actions.any? %>
+   <section class="layout-main__section">
+    
+    <h2 class="h4 decorator" style="margin-bottom: 20px"><%= t("fsmac.list") %> <br></h2>
+      <p style="margin-bottom: 20px">
+      <div class="participatory-space__nav-container">
+        <% @proposal.child_actions
+          .sort_by{ |a| translated_attribute(a.title).to_s.downcase }
+          .each do |action| %>
+          <div class="card card--simple">
+            <%= link_to resource_locator(action).path do %>
+              <strong><%= translated_attribute(action.title) %></strong>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+   </section>
+  <% end %>  
+  
+  <!-- ============================================================== -->
+
   <% end %>
 
 <% end %>
