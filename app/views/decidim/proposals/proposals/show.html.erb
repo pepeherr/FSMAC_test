@@ -140,31 +140,38 @@ extra_admin_link(
         </div>
       </div>
     <% end %>
-
-    <!-- AQUI INCLUIMOS EL LISTADO DE PROPUESTAS ASOCIADAS A LA NECESIDAD -->
-  <!-- ============================================================== -->
+  <% end %>
+  <!-- AQUI INCLUIMOS EL LISTADO DE PROPUESTAS ASOCIADAS A LA NECESIDAD Y EL BOTÓN PARA NUEVA PROPUESTA-->
+  <!-- =============================================================================================== -->
   
+  <% action_component = current_component.participatory_space.components.find_by(fsmac_role: "action") %>
   <% if @proposal.child_actions.any? %>
-   <section class="layout-main__section">
+    <section class="layout-main__section">
     
-    <h2 class="h4 decorator" style="margin-bottom: 20px"><%= t("fsmac.list") %> <br></h2>
+      <h2 class="h4 decorator" style="margin-bottom: 20px"><%= t("fsmac.list") %> <br></h2>
       <p style="margin-bottom: 20px">
       <div class="participatory-space__nav-container">
-        <% @proposal.child_actions
-          .sort_by{ |a| translated_attribute(a.title).to_s.downcase }
+        <% @proposal.child_actions.sort_by{ |a| translated_attribute(a.title).to_s.downcase }
           .each do |action| %>
-          <div class="card card--simple">
-            <%= link_to resource_locator(action).path do %>
-              <strong><%= translated_attribute(action.title) %></strong>
-            <% end %>
-          </div>
+            <div class="card card--simple">
+              <%= link_to resource_locator(action).path do %>
+                <strong><%= translated_attribute(action.title) %></strong>
+              <% end %>
+            </div>
         <% end %>
       </div>
-   </section>
-  <% end %>  
+
+    </section>  
+  <% end %> 
   
-  <!-- ============================================================== -->
+  <br>
+  
+  <% if action_component && current_component.fsmac_need? && @proposal.parent_objective_id.nil? %>
 
+    <%= link_to t("fsmac.new_action"),
+      "#{main_component_path(action_component)}/new?parent_objective_id=#{@proposal.id}",
+        class: "button button__secondary" %>
+        
   <% end %>
-
+  <!-- ============================================================== -->
 <% end %>

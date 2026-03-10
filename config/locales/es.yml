@@ -2,7 +2,9 @@ es:
   fsmac:
     need: Necesidad
     action: Propuesta
+    new_action: "Nueva propuesta"
     list: "Propuestas asociadas:"
+    parent_need: "Necesidad para la que se hace esta propuesta:"
   
   helpers:
     placeholder:
