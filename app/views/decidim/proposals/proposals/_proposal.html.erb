@@ -1,0 +1,30 @@
+<!-- app/views/decidim/proposals/proposals/_proposal.html.erb -->
+
+<%= card_for proposal, from: proposal, size: card_size, show_voting: %>
+
+<!-- =========================================================== -->
+<!-- Propuestas asociadas a la necesidad -->
+<!-- =========================================================== -->
+
+<% if current_component.fsmac_need? %>
+  <% actions = proposal.child_actions %>
+
+  <% if actions.any? %>
+    <div class="fsmac-actions-list mt-4">
+      <strong><%= t("fsmac.list") %> ( <%= actions.count %> ) </strong>
+
+      <ul class="mt-2">
+        <% actions
+            .sort_by { |a| translated_attribute(a.title).to_s.downcase }
+            .each do |action| %>
+
+          <li>
+            <%= link_to translated_attribute(action.title),
+                  resource_locator(action).path %>
+          </li>
+
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

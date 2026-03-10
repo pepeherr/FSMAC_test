@@ -31,7 +31,7 @@ es:
         see_process: Ver el conflicto
         view_deleted_processes: Ver los conflictos eliminados
         confirm_delete_assembly: '¿Seguro que quieres eliminar este círculo? Si cambias de opinión, puedes restaurarla más tarde.'
-        new_assembly: Nueva círculo
+        new_assembly: Nuevo círculo
         view_deleted_assemblies: Ver los círculos eliminados
       filters:
         decidim_participatory_process_group_id_eq:
@@ -756,7 +756,7 @@ es:
       index:
         title: Círculos
       last_activity:
-        new_assembly: 'Nueva círculo:'
+        new_assembly: 'Nuevo círculo:'
       pages:
         home:
           highlighted_assemblies:
