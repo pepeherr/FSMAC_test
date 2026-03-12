@@ -1,0 +1,35 @@
+<!-- app/views/decidim/participatory_processes/participatory_processes/_collection.html.erb
+ Partial modificado para incluir listado de necesidades asociadas al conflicto (Proceso participativo=
+) -->
+<div class="card__grid-grid">
+  <% collection.each do |process| %>
+
+    <div class="fsmac-process-wrapper">
+
+      <%= card_for process, size: :g %>
+	  
+	  <!-- Incluye Fsmac::FsmacMethods definida en app/models/concerns/fsmac/fsmac_methods.rb -->
+      <% needs = process.needs %>
+
+      <% if needs.any? %>
+        <div class="fsmac-needs-list mt-2">
+          <strong> <%= t("fsmac.needs") %> ( <%= needs.count %> ) </strong>
+
+          <ul>
+            <% needs.limit(6).each do |need| %>
+              <li>
+                <%= link_to translated_attribute(need.title),
+                      resource_locator(need).path %>
+              </li>
+            <% end %>
+			<% if needs.count > 6 %>
+				<%= link_to t("fsmac.see_they_f"), participatory_process_path(process) %>
+			<% end %>
+          </ul>
+        </div>
+      <% end %>
+
+    </div>
+
+  <% end %>
+</div>
