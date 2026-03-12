@@ -803,7 +803,7 @@ es:
           take_part_in: 'Participa en el conflicto %{resource_name}'
       assemblies:
         index:
-          promoted_assemblies: Círculos
+          promoted_assemblies: círculos destacadas
         metadata:
           children_item:
             one: '%{count} círculo'
