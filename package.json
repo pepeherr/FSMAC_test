@@ -12,7 +12,7 @@
     "@decidim/eslint-config": "^0.31.2",
     "@decidim/prettier-config": "^0.31.2",
     "@decidim/stylelint-config": "^0.31.2",
-    "shakapacker": "^8.3.0"
+    "shakapacker": "^9.5.0"
   },
   "browserslist": [
     "extends @decidim/browserslist-config"
