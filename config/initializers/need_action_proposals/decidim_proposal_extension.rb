@@ -1,4 +1,4 @@
-#config/initializars/decidim_proposal_extension.rb
+# config/initializars/decidim_proposal_extension.rb
 # child_actions → una necesidad (propuesta) puede tener muchas acciones hijas.
 # parent_objective → una acción puede tener una necesidad madre
 # optional: true → permite que existan necesidades sin padre (necesidades raíz)
