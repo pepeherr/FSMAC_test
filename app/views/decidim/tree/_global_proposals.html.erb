@@ -1,0 +1,52 @@
+<!-- app/views/decidim/tree/_global_proposas.html.erb -->
+<!-- requisere el controlador
+     app/controllers/decidim/tree_controller.rb -->
+<!-- Este parcial muestra propuestas de forma recursiva,
+     buscando hijas en TODOS los componentes -->
+
+<%
+   madre_id = local_assigns[:madre_id] || nil
+   nivel = local_assigns[:nivel] || 0
+   espacio_nombre = local_assigns[:espacio_nombre] || ""
+   
+   # Buscar hijas de esta madre en TODAS las propuestas
+   hijas = @todas_proposals.select { |p| p.parent_objective_id == madre_id }
+%>
+
+<% if hijas.any? %>
+  <div style="margin-left: <%= nivel * 20 %>px; margin-top: 5px; 
+              <%= nivel > 0 ? 'border-left: 1px dashed #4CAF50; padding-left: 10px;' : '' %>">
+    
+    <% if madre_id.nil? && nivel == 0 %>
+      <strong style="color: #2c3e50; display: block; margin-bottom: 8px;">
+        📄 Propuestas raíz:
+      </strong>
+    <% end %>
+    
+    <% hijas.each do |hija| %>
+      <div style="margin: 8px 0;">
+        <div style="display: flex; align-items: flex-start;">
+          <span style="margin-right: 5px; color: #666; min-width: 20px;">
+            <%= "└─" if nivel > 0 %>
+          </span>
+          <span role="img" aria-label="Propuesta" style="margin-right: 5px;">📄</span>
+          <div>
+            <%= link_to titulo_objeto(hija), enlace_objeto(hija), 
+                        style: "text-decoration: none; color: #2c3e50;" %>
+            <% if @mostrar_id %>
+              <small style="margin-left: 5px; color: #999;">
+                (ID: <%= hija.id %>, Comp: <%= hija.decidim_component_id %>)
+              </small>
+            <% end %>
+            <%# Renderizar hijas de esta propuesta recursivamente %>
+            <%= render partial: "decidim/tree/global_proposals", 
+                       locals: { 
+                         madre_id: hija.id,
+                         nivel: nivel + 1
+                       } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

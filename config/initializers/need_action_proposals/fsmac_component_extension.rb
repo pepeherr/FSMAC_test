@@ -15,6 +15,6 @@ Rails.application.config.to_prepare do
     def fsmac_need?
       need?
     end
-    
+
   end
 end

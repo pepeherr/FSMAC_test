@@ -1,0 +1,130 @@
+<!-- app/views/decidim/tree/index.html.erb -->
+<!-- usa el controlador app/controllers/decidim/tree_controller.rb -->
+<% add_decidim_page_title("Árbol de la organización") %>
+
+<div class="container">
+  <div class="row">
+    <div class="columns large-12">
+        <div class="card-section">
+          <div class="tree-view">
+            <% if @asambleas_raiz.any? %>
+              <ul class="tree" style="list-style: none; padding-left: 0;">
+                <% @asambleas_raiz.each_with_index do |raiz, idx| %>
+                  <%= render partial: "node_assembly", 
+                             locals: { nodo: raiz, 
+                                       nivel: 0, 
+                                       es_ultimo: idx == @asambleas_raiz.size - 1 } %>
+                <% end %>
+              </ul>
+            <% else %>
+              <p class="alert alert-warning">No hay asambleas en esta organización</p>
+            <% end %>
+          </div>
+          
+          <% if @procesos_por_asamblea[nil]&.any? %>
+            <div class="callout warning mt-4">
+              <h3>Conflictos sin círculo asignado</h3>
+              <ul style="list-style: none; padding-left: 20px;">
+                <% @procesos_por_asamblea[nil].each_with_index do |proceso, idx| %>
+                  <li style="margin: 5px 0;">
+                    <span role="img" aria-label="Proceso">🔥</span>
+                    <%= link_to titulo_objeto(proceso), enlace_objeto(proceso) %>
+                    <% if @mostrar_id %>
+                      <small>(ID: <%= proceso.id %>)</small>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+.tree-view {
+  font-family: monospace;
+  line-height: 1.8;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+.tree ul {
+  list-style: none;
+  margin-left: 20px;
+  padding-left: 20px;
+  border-left: 1px dashed #ccc;
+}
+.tree li {
+  margin: 8px 0;
+  position: relative;
+}
+.tree li:last-child {
+  border-left: 2px solid transparent;
+}
+.tree .node-content {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.2s;
+}
+.tree .node-content:hover {
+  background: #e6f7ff;
+  border-color: #1890ff;
+  transform: translateX(5px);
+}
+.tree .children {
+  margin-left: 30px;
+}
+.component-list {
+  margin-left: 40px;
+  font-size: 0.9em;
+  color: #666;
+  background: #f5f5f5;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-top: 5px;
+}
+.component-list ul {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.component-list li {
+  margin: 3px 0;
+}
+.proposal-list {
+  margin-left: 60px;
+  font-size: 0.85em;
+  color: #444;
+}
+.callout.warning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 20px;
+}
+.statistic {
+  text-align: center;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.statistic__title {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 10px;
+}
+.statistic__number {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #1890ff;
+}
+</style>

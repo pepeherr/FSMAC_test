@@ -16,16 +16,17 @@ No pueden confundirse los roles con el admin global de la plataforma (nivel orga
 ## Sobre los roles
 Los roles tanto para Circulos como para Conflictos son los siguientes:
 
-Acción	                           Admin	Colaboradora	Moderadora	Evaluadora
-Configurar el espacio	            ✅	       ❌	         ❌	        ❌
-Crear componentes	                ✅	       ❌	         ❌	        ❌
-Editar contenidos generales	        ✅	       ✅ (limitado)	 ❌	        ❌
-Ver contenido no publicado	        ✅	       ✅	         ❌	        ❌
-Moderar/ocultar contenido	        ✅	       ❌	         ✅	        ❌
-Gestionar denuncias	                ✅	       ❌	         ✅	        ❌
-Evaluar propuestas (notas privadas)	✅	       ❌	         ❌	        ✅
-Exportar datos	                    ✅	       ❌	         ❌	        ❌
-Invitar nuevos usuarios	            ✅	       ❌	         ❌	        ❌
+|Acción|Admin|Colaboradora|Moderadora|Evaluadora|
+|:-----|:---:|:----------:|:--------:|:--------:|
+|Configurar el espacio|✅|❌|❌|❌|
+|Crear componentes|✅|❌|❌|❌|
+|Editar contenidos generales|✅|✅(limitado)|❌|❌|
+|Ver contenido no publicado|✅|✅|❌|❌|
+|Moderar/ocultar contenido|✅|❌|✅|❌|
+|Gestionar denuncias|✅|❌|✅|❌|
+|Evaluar propuestas (notas privadas)|✅|❌|❌|✅|
+|Exportar datos|✅|❌|❌|❌|	                    
+|Invitar nuevos usuarios|✅|❌|❌|❌|
 
 En Decidim, cada espacio participativo (Asamblea, Proceso) tiene su propia configuración de roles y permisos, los roles del Circulo no se heredan a los Procesos.
 

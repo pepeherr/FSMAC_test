@@ -1,0 +1,18 @@
+es:
+  decidim:
+    tree:
+      index:
+        title: Árbol del %{organization}
+        structure: Estructura jerárquica completa
+        no_assemblies: No hay círculos en esta organización
+        processes_without_assembly: Conflictos sin círculo asignado
+        statistics: Estadísticas
+        assemblies: Círculos
+        processes: Conflictos
+        components: Componentes
+        proposals: Propuestas
+        with_assembly: con círculo
+        without_assembly: sin círculo
+        roots: raíces
+  menu:
+    tree: Árbol
