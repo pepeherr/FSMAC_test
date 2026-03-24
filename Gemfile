@@ -33,10 +33,11 @@ end
 group :development do
   gem "letter_opener_web", "~> 2.0"
   gem "listen", "~> 3.1"
+  gem "solargraph"
   gem "web-console", "~> 4.2"
 end
 
-group :production do
+gem "erb_lint", require: false
 
+group :production do
 end
-gem "solargraph", group: :development

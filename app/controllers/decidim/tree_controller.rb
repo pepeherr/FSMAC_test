@@ -2,12 +2,10 @@
 # frozen_string_literal: true
 
 module Decidim
-
   class TreeController < Decidim::ApplicationController
-
     helper_method :titulo_objeto,
                   :enlace_objeto,
-                  :icono_objeto,
+                  # :icono_objeto,
                   :nombre_organizacion,
                   :proposals_hijas,
                   :mostrar_componente_proposals?
@@ -30,8 +28,7 @@ module Decidim
     private
 
     def cargar_datos_tree
-
-    #Configuración del arbol
+      # Configuración del arbol
 
       @mostrar_id = false
 
@@ -43,12 +40,27 @@ module Decidim
                    .includes(:parent)
                    .order(:parent_id, :id)
 
-      @procesos = Decidim::ParticipatoryProcess
-                  .published
-                  .where(decidim_organization_id: @org_id)
-                  .order(:parent_assembly_id, :id)
+      links = Decidim::ParticipatorySpaceLink
+              .where(from: @asambleas)
+              .where(name: "included_participatory_processes")
 
-      @procesos_por_asamblea = @procesos.group_by(&:parent_assembly_id)
+      procesos = Decidim::ParticipatoryProcess
+                 .published
+                 .where(id: links.pluck(:to_id))
+                 .index_by(&:id)
+
+      # @procesos = Decidim::ParticipatoryProcess
+      #             .published
+      #             .where(decidim_organization_id: @org_id)
+      #             .order(:parent_assembly_id, :id)
+
+      @procesos = procesos.values
+
+      # @procesos_por_asamblea = @procesos.group_by(&:parent_assembly_id)
+
+      @procesos_por_asamblea = links.group_by(&:from_id).transform_values do |links_array|
+        links_array.map { |l| procesos[l.to_id] }.compact
+      end
 
       @comps_assembly = Decidim::Component
                         .where(participatory_space_type: "Decidim::Assembly")
@@ -60,6 +72,7 @@ module Decidim
                        .where(participatory_space_id: @procesos.pluck(:id))
                        .group_by(&:participatory_space_id)
 
+      # Almacena los ID's de las propuestas
       component_ids_proposals = Decidim::Component
                                 .where(participatory_space_type: ["Decidim::Assembly", "Decidim::ParticipatoryProcess"])
                                 .where(participatory_space_id: @asambleas.pluck(:id) + @procesos.pluck(:id))
@@ -80,25 +93,25 @@ module Decidim
       # Propuestas agrupadas por componente (para filtrar por espacio)
       @proposals_por_componente = @todas_proposals.group_by(&:decidim_component_id)
 
-      @proposals_por_componente = @todas_proposals.group_by(&:decidim_component_id)
       @asambleas_raiz = @asambleas.select { |a| a.parent_id.nil? }
 
-      Rails.logger.debug "=" * 50
-      Rails.logger.debug "Total proposals: #{@todas_proposals.size}"
-      Rails.logger.debug "Componentes con proposals: #{@proposals_por_componente.keys.join(', ')}"
-      @proposals_por_componente.each do |comp_id, props|
-        Rails.logger.debug "  Componente #{comp_id}: #{props.size} proposals"
-        raices = props.select { |p| p.parent_objective_id.nil? }.size
-        hijas = props.select { |p| p.parent_objective_id.present? }.size
-        Rails.logger.debug "    Raíces: #{raices}, Hijas: #{hijas}"
-      end
+      # Rails.logger.debug "=" * 50
+      # Rails.logger.debug { "Total propuestas: #{@todas_proposals.size}" }
+      # Rails.logger.debug { "Componentes con propuestas: #{@proposals_por_componente.keys.join(", ")}" }
+
+      # @proposals_por_componente.each do |comp_id, props|
+      #   Rails.logger.debug { "  Componente #{comp_id}: #{props.size} proposals" }
+      #   raices = props.select { |p| p.parent_objective_id.nil? }.size
+      #   hijas = props.select { |p| p.parent_objective_id.present? }.size
+      #   Rails.logger.debug { "    Raíces: #{raices}, Hijas: #{hijas}" }
+      # end
     end
 
     def titulo_objeto(objeto, defecto = "SIN TÍTULO")
       return defecto unless objeto&.respond_to?(:title)
-      
+
       locale = @locale.to_s
-      
+
       if objeto.is_a?(Decidim::Proposals::Proposal)
         if objeto.title.is_a?(Hash)
           objeto.title[locale] || objeto.title["es"] || objeto.title["en"] || objeto.title.values.first || defecto
@@ -109,11 +122,11 @@ module Decidim
         objeto.title[locale] || objeto.title["es"] || objeto.title["en"] || defecto
       end
     end
-    
+
     # Rutas
     def enlace_objeto(objeto)
       return "#" unless objeto
-      
+
       case objeto.class.name
       when "Decidim::Assembly"
         "/assemblies/#{objeto.slug}"
@@ -133,40 +146,44 @@ module Decidim
           else
             "/processes/#{componente.participatory_space.slug}/f/#{componente.id}/proposals/#{objeto.id}"
           end
-        rescue
+        rescue StandardError
           "#"
         end
       else
         "#"
       end
     end
-    
-    def icono_objeto(objeto)
-      case objeto.class.name
-      when "Decidim::Assembly"
-        "🏛️"
-      when "Decidim::ParticipatoryProcess"
-        "🔥"
-      when "Decidim::Component"
-        "🔧"
-      when "Decidim::Proposals::Proposal"
-        "📄"
-      else
-        "📌"
-      end
-    end
+
+    # def icono_objeto(objeto)
+    #   case objeto.class.name
+    #   when "Decidim::Assembly"
+    #     "🏛️"
+    #   when "Decidim::ParticipatoryProcess"
+    #     "🔥"
+    #   when "Decidim::Component"
+    #     "🔧"
+    #   when "Decidim::Proposals::Proposal"
+    #     "📄"
+    #   else
+    #     "📌"
+    #   end
+    # end
 
     # Helper para encontrar propuestas hijas (buscando en TODOS los componentes)
     def proposals_hijas(madre_id)
       return [] unless madre_id
+
       @todas_proposals.select { |p| p.parent_objective_id == madre_id }
     end
 
     # Helper para determinar si un componente de propuestas debe mostrarse en el nivel 1
-    def mostrar_componente_proposals?(componente_id)
-      if Decidim::Component.exists?(componente_id)
-        a = Decidim::Component.find(componente_id)
-        return true unless a.manifest_name == 'proposals' && a.fsmac_action?
+    def mostrar_componente_proposals?(componente_proposal)
+      if Decidim::Component.exists?(componente_proposal)
+        a = Decidim::Component.find(componente_proposal)
+        # La siguiente línea tiene en cuenta si es una propuesta tipo acción, que
+        # en el desarroyo inicial contemplé para ver si era una propuesta hija (acción)
+        # de otra propuesta madre. Antes tenia && a.fsmac_action?
+        return true if a.published?
       end
       false
     end

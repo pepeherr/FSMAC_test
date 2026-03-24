@@ -1,130 +1,214 @@
 <!-- app/views/decidim/tree/index.html.erb -->
-<!-- usa el controlador app/controllers/decidim/tree_controller.rb -->
+<!-- Usa app/controllers/decidim/tree_controller.rb
+    config/initializers/tree/tree_menu.rb
+    y las vistas incluidas en app/views/decidim/tree
+    el archivo config/routes.rb incluye la ruta
+    get "tree", to: "decidim/tree#index", as: :tree
+    También el patial
+    app/views/layouts/decidim/header/_main_links_desktop.html.erb
+    para renderizar el elemento en el menú main-bar
+
+-->
+
 <% add_decidim_page_title("Árbol de la organización") %>
 
-<div class="container">
-  <div class="row">
-    <div class="columns large-12">
-        <div class="card-section">
-          <div class="tree-view">
-            <% if @asambleas_raiz.any? %>
-              <ul class="tree" style="list-style: none; padding-left: 0;">
-                <% @asambleas_raiz.each_with_index do |raiz, idx| %>
-                  <%= render partial: "node_assembly", 
-                             locals: { nodo: raiz, 
-                                       nivel: 0, 
-                                       es_ultimo: idx == @asambleas_raiz.size - 1 } %>
-                <% end %>
-              </ul>
-            <% else %>
-              <p class="alert alert-warning">No hay asambleas en esta organización</p>
+<div class="row">
+  <div class="columns large-12">
+    <div class="card">
+      <div class="card__section">
+        <% if @asambleas_raiz.any? %>
+          <ul class="tree-view">
+            <% @asambleas_raiz.each_with_index do |raiz, idx| %>
+              <%= render partial: "node_assembly", 
+                         locals: { nodo: raiz, 
+                                   nivel: 0, 
+                                   es_ultimo: idx == @asambleas_raiz.size - 1 } %>
+
             <% end %>
+          </ul>
+        <% else %>
+          <div class="callout warning">
+            <p class="text-muted">
+              <%= icon "alert-triangle", class: "icon--small" %>
+              <%= t("decidim.tree.index.no_assemblies") %>
+            </p>
           </div>
-          
-          <% if @procesos_por_asamblea[nil]&.any? %>
-            <div class="callout warning mt-4">
-              <h3>Conflictos sin círculo asignado</h3>
-              <ul style="list-style: none; padding-left: 20px;">
-                <% @procesos_por_asamblea[nil].each_with_index do |proceso, idx| %>
-                  <li style="margin: 5px 0;">
-                    <span role="img" aria-label="Proceso">🔥</span>
-                    <%= link_to titulo_objeto(proceso), enlace_objeto(proceso) %>
-                    <% if @mostrar_id %>
-                      <small>(ID: <%= proceso.id %>)</small>
-                    <% end %>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-        </div>
+        <% end %>
+
       </div>
     </div>
+
+    <% if @procesos_por_asamblea[nil]&.any? %>
+      <div class="callout warning mt-md">
+        <h3 class="heading3">
+          <%= d_icon "component", css: "text-muted" %>
+          <%= t("decidim.tree.index.processes_without_assembly") %>
+        </h3>
+
+        <ul class="no-bullet mt-sm">
+          <% @procesos_por_asamblea[nil].each do |proceso| %>
+            <li class="mb-xs">
+              <%= icon "git-branch", class: "icon--small text-muted" %>
+              <%= link_to titulo_objeto(proceso), enlace_objeto(proceso), class: "link" %>
+              <% if @mostrar_id %>
+                <span class="text-muted small">
+                  (ID: <%= proceso.id %>)
+                </span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+
+      </div>
+    <% end %>
   </div>
 </div>
-
-
 <style>
-.tree-view {
-  font-family: monospace;
-  line-height: 1.8;
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-}
-.tree ul {
-  list-style: none;
-  margin-left: 20px;
-  padding-left: 20px;
-  border-left: 1px dashed #ccc;
-}
-.tree li {
-  margin: 8px 0;
-  position: relative;
-}
-.tree li:last-child {
-  border-left: 2px solid transparent;
-}
-.tree .node-content {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 20px;
-  background: #fff;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: all 0.2s;
-}
-.tree .node-content:hover {
-  background: #e6f7ff;
-  border-color: #1890ff;
-  transform: translateX(5px);
-}
-.tree .children {
-  margin-left: 30px;
-}
-.component-list {
-  margin-left: 40px;
-  font-size: 0.9em;
-  color: #666;
-  background: #f5f5f5;
-  padding: 10px 15px;
+  .tree-view {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .tree-view ul {
+    list-style: none;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid #e5e7eb; /* gris suave Decidim */
+  }
+
+  .tree-view li {
+  margin: 0.5rem 0;
+  }
+
+  .tree-node {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  }
+
+  .tree-node:hover {
+  background: #f8fafc;
   border-radius: 6px;
-  margin-top: 5px;
+  }
+  .tree-view__children {
+  list-style: none;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #e5e7eb;
+  }
+
+  .tree-view__item {
+  margin: 0.4rem 0;
+  }
+
+  .tree-node__title {
+  line-height: 1.2;
+  }
+
+  .tree-node {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  }
+  .tree-section {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  }
+
+  .tree-section__title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.3rem;
+  }
+
+  .tree-sublist {
+  list-style: none;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid #e5e7eb;
+  }
+
+  .tree-sublist__item {
+  margin: 0.3rem 0;
+  }
+
+  .tree-proposals {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: #f9fafb;
+  border-radius: 6px;
+  }
+
+  .icon {
+  display: inline-flex;
+  vertical-align: middle;
+  }
+
+  .icon--small {
+  width: 20px;
+  height: 20px;
+  }
+
+  .icon--medium {
+  width: 26px;
+  height: 26px;
+  }
+  
+  .tree-toggle,
+  .tree-toggle-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem;  
+  height: 1.2rem; 
+  }
+
+  .tree-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0;
+  }
+
+  .tree-toggle-placeholder {
+  visibility: hidden;
+  }
+
+  .tree-children {
+  margin-left: 1.5rem;
+  }
+
+  .tree-children.is-collapsed {
+  display: none;
 }
-.component-list ul {
-  margin-top: 5px;
-  margin-bottom: 5px;
+
+  .tree-toggle.open .tree-toggle-icon {
+    transform: rotate(90deg);
 }
-.component-list li {
-  margin: 3px 0;
-}
-.proposal-list {
-  margin-left: 60px;
-  font-size: 0.85em;
-  color: #444;
-}
-.callout.warning {
-  background-color: #fff3cd;
-  border: 1px solid #ffeeba;
-  border-radius: 4px;
-  padding: 15px;
-  margin-top: 20px;
-}
-.statistic {
-  text-align: center;
-  padding: 15px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.statistic__title {
-  font-size: 1.1em;
-  color: #666;
-  margin-bottom: 10px;
-}
-.statistic__number {
-  font-size: 2.5em;
-  font-weight: bold;
-  color: #1890ff;
-}
+
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".tree-toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.dataset.target;
+      const el = document.getElementById(targetId);
+
+      if (!el) return;
+
+      el.classList.toggle("is-collapsed");
+
+      // Cambiar iconito ▸ / ▾
+      btn.textContent = el.classList.contains("is-collapsed") ? "▸" : "▾";
+    });
+  });
+});
+</script>

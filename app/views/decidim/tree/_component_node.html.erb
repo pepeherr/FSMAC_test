@@ -1,0 +1,68 @@
+<li class="tree-sublist__item">
+
+  <% propuestas = @proposals_por_componente[comp_proc.id] || [] %>
+  <% tiene_hijos = propuestas.any? %>
+
+  <div class="tree-node">
+
+    <% if tiene_hijos %>
+      <button class="tree-toggle" data-target="component-<%= comp_proc.id %>">
+        ▸
+      </button>
+    <% else %>
+      <span class="tree-toggle-placeholder"></span>
+    <% end %>
+
+    <%= d_icon "component", css: "text-muted" %>
+
+    <%= link_to comp_proc.name[@locale.to_s] || comp_proc.name['es'] || comp_proc.manifest_name,
+                enlace_objeto(comp_proc),
+                class: "link" %>
+
+    <% if @mostrar_id %>
+      <span class="text-muted small">
+        (<%= comp_proc.manifest_name %>, ID: <%= comp_proc.id %>)
+      </span>
+    <% end %>
+
+    <%# contador %>
+    <% if tiene_hijos %>
+      <span class="text-muted small">
+        (<%= propuestas.size %>)
+      </span>
+    <% end %>
+
+  </div>
+
+  <%# SOLO si tiene contenido hijo %>
+  <% if tiene_hijos %>
+    <div id="component-<%= comp_proc.id %>" class="tree-children is-collapsed">
+
+      <ul class="tree-sublist">
+        <% propuestas.each do |propuesta| %>
+          <li class="tree-sublist__item">
+
+            <div class="tree-node">
+              <span class="tree-toggle-placeholder"></span>
+
+              <%= d_icon "proposal", css: "text-muted" %>
+
+              <%= link_to titulo_objeto(propuesta),
+                          enlace_objeto(propuesta),
+                          class: "link" %>
+
+              <% if @mostrar_id %>
+                <span class="text-muted small">
+                  (ID: <%= propuesta.id %>)
+                </span>
+              <% end %>
+            </div>
+
+          </li>
+        <% end %>
+      </ul>
+
+    </div>
+  <% end %>
+
+</li>

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # ruta para el arbol estructural
-  get "tree", to: "decidim/tree#index", as: :tree
+  get "tree" => "decidim/tree#index", as: :tree
 
   # Defines the root path route ("/")
   # root "posts#index"

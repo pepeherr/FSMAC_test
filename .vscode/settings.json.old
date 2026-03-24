@@ -1,0 +1,46 @@
+{
+  "ruby.useBundler": true, //run non-lint commands with bundle exec
+  "ruby.useLanguageServer": true, // use the internal language server (see below)
+  "ruby.lint": {
+    "rubocop": {
+      "useBundler": true // enable rubocop via bundler
+    },
+    "reek": {
+      "useBundler": true // enable reek via bundler
+    }
+  },
+  "ruby.format": "rubocop", // use rubocop for formatting
+
+  // --- Configuración para el Language Server (Solargraph) ---
+  // Define Solargraph como el formateador por defecto para Ruby.
+  // Aunque Solargraph puede formatear, es mejor dejar el formateo a Rubocop.
+  // Esta línea es crucial para activar Solargraph como el "intellisense".
+
+  "ruby.editor": {
+    "defaultFormatter": "rubocop.vscode-rubocop", // El formato lo sigue haciendo Rubocop
+    "formatOnSave": true,
+    "tabSize": 2,
+    "suggestSelection": "first",
+    "semanticHighlighting.enabled": true
+  },
+  
+  // --- Configuración específica de Solargraph ---
+  "solargraph.useBundler": true,          // Usa la versión de solargraph del bundle del proyecto
+  "solargraph.diagnostics": true,         // Habilita los diagnósticos (errores en tiempo real)
+  "solargraph.formatting": false,          // Deshabilitamos el formateo de Solargraph para que no compita con Rubocop
+  "solargraph.autoformat": false,          // Lo mismo para el autoformateo al escribir
+  "solargraph.completion": true,           // Asegura que el autocompletado esté activo
+  "solargraph.definitions": true,          // Habilita ir a la definición
+  "solargraph.references": true,           // Habilita buscar referencias
+  "solargraph.hover": true,                // Habilita la información al pasar el cursor
+  
+  // --- Configuración de Rubocop (solo para formateo y linting, como ya lo tienes) ---
+  "rubocop.mode": "enableViaGemfile",      // Recomendado: usa rubocop desde el Gemfile del proyecto
+  "rubocop.autocorrect": true,              // Permite autocorrecciones al guardar (si formatOnSave está activo)
+  
+  // --- Otras configuraciones útiles ---
+  // Para que ERB se asocie correctamente
+  // "files.associations": {
+  //  "*.html.erb": "erb"                    
+  // }
+}

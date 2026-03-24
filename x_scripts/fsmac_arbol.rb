@@ -57,7 +57,7 @@ def arbol(org_id = 2, locale = "es")
   proposals_por_id = todas_proposals.index_by(&:id)
 
   # Lambda para generar enlaces
-  enlace = ->(objeto) {
+  enlace = lambda { |objeto|
     case objeto.class.name
     when "Decidim::Assembly"
       "#{url_base}/assemblies/#{objeto.slug}"
@@ -82,7 +82,7 @@ def arbol(org_id = 2, locale = "es")
   }
 
   # Función lambda para obtener título con enlace
-  titulo_con_enlace = ->(objeto, defecto = "SIN TÍTULO") {
+  titulo_con_enlace = lambda { |objeto, defecto = "SIN TÍTULO"|
     titulo_texto = if objeto.is_a?(Decidim::Proposals::Proposal)
                      if objeto.title.is_a?(Hash)
                        objeto.title[locale] || objeto.title["es"] || objeto.title["en"] || objeto.title.values.first || defecto
@@ -99,7 +99,7 @@ def arbol(org_id = 2, locale = "es")
 
   # Función lambda para obtener título plano
   # (PODEMOS ELIMINARLO)
-  titulo_plano = ->(objeto, defecto = "SIN TÍTULO") {
+  titulo_plano = lambda { |objeto, defecto = "SIN TÍTULO"|
     if objeto.is_a?(Decidim::Proposals::Proposal)
       if objeto.title.is_a?(Hash)
         objeto.title[locale] || objeto.title["es"] || objeto.title["en"] || objeto.title.values.first || defecto
@@ -111,62 +111,59 @@ def arbol(org_id = 2, locale = "es")
     end
   }
 
-
   # Función para imprimir componentes (usando titulo_con_enlace)
-  print_componentes = ->(componentes, sangria, prefijo_base = "   ") {
-
+  print_componentes = lambda { |componentes, sangria, prefijo_base = "   "|
     return unless componentes && componentes.any?
 
     componentes.each_with_index do |comp, idx|
       es_ultimo = idx == componentes.size - 1
       nombre = comp.name[locale] || comp.name["es"] || comp.name["en"] || comp.manifest_name
       nombre_con_enlace = "\e]8;;#{enlace.call(comp)}\e\\#{nombre}\e]8;;\e\\"
-      puts "#{sangria}#{prefijo_base}#{es_ultimo ? '└─ ' : '├─ '}🔧 #{nombre_con_enlace} (#{comp.manifest_name}, ID: #{comp.id})"
+      puts "#{sangria}#{prefijo_base}#{es_ultimo ? "└─ " : "├─ "}🔧 #{nombre_con_enlace} (#{comp.manifest_name}, ID: #{comp.id})"
 
-      if comp.manifest_name == "proposals" && proposals_por_componente[comp.id]&.any?
-        proposals_del_componente = proposals_por_componente[comp.id]
-        proposals_raiz = proposals_del_componente.select { |p| p.parent_objective_id.nil? }
+      next unless comp.manifest_name == "proposals" && proposals_por_componente[comp.id]&.any?
 
-        if proposals_raiz.any?
-          sangria_proposals = "#{sangria}#{prefijo_base}#{es_ultimo ? '   ' : '│  '}"
-          proposals_raiz.each_with_index do |proposal, p_idx|
-            es_ultima_proposal = p_idx == proposals_raiz.size - 1
-            titulo_proposal = titulo_con_enlace.call(proposal)
-            puts "#{sangria_proposals}#{es_ultima_proposal ? '   └─ ' : '   ├─ '}📄 #{titulo_proposal} (ID: #{proposal.id})"
+      proposals_del_componente = proposals_por_componente[comp.id]
+      proposals_raiz = proposals_del_componente.select { |p| p.parent_objective_id.nil? }
 
-            print_proposals_hijas(proposal.id, proposals_del_componente, proposals_por_id, titulo_con_enlace, 
-                                 sangria_proposals, es_ultima_proposal ? '   ' : '│  ')
-          end
-        end
+      next unless proposals_raiz.any?
+
+      sangria_proposals = "#{sangria}#{prefijo_base}#{es_ultimo ? "   " : "│  "}"
+      proposals_raiz.each_with_index do |proposal, p_idx|
+        es_ultima_proposal = p_idx == proposals_raiz.size - 1
+        titulo_proposal = titulo_con_enlace.call(proposal)
+        puts "#{sangria_proposals}#{es_ultima_proposal ? "   └─ " : "   ├─ "}📄 #{titulo_proposal} (ID: #{proposal.id})"
+
+        print_proposals_hijas(proposal.id, proposals_del_componente, proposals_por_id, titulo_con_enlace,
+                              sangria_proposals, es_ultima_proposal ? "   " : "│  ")
       end
     end
   }
 
-
   # Función recursiva para imprimir el árbol (con enlaces)
-  print_nodo = ->(nodo, nivel, es_ultimo, sangria_acum = "") {
-    prefijo = nivel.zero? ? (es_ultimo ? "└─ " : "├─ ") : (es_ultimo ? "└─ " : "├─ ")
+  print_nodo = lambda { |nodo, nivel, es_ultimo, sangria_acum = ""|
+    prefijo = if nivel.zero?
+                es_ultimo ? "└─ " : "├─ "
+              else
+                (es_ultimo ? "└─ " : "├─ ")
+end
 
     titulo_nodo = titulo_con_enlace.call(nodo)
     puts "#{sangria_acum}#{prefijo}🏛️  #{titulo_nodo} (ID: #{nodo.id})"
 
-    sangria_hijos = "#{sangria_acum}#{es_ultimo ? '   ' : '│  '}"
-    
-    if comps_assembly[nodo.id]&.any?
-      print_componentes.call(comps_assembly[nodo.id], sangria_hijos, "   ")
-    end
+    sangria_hijos = "#{sangria_acum}#{es_ultimo ? "   " : "│  "}"
+
+    print_componentes.call(comps_assembly[nodo.id], sangria_hijos, "   ") if comps_assembly[nodo.id]&.any?
 
     if procesos_por_asamblea[nodo.id]&.any?
       procesos_por_asamblea[nodo.id].each_with_index do |proceso, idx|
         es_ultimo_proceso = idx == procesos_por_asamblea[nodo.id].size - 1
-        sangria_proceso = "#{sangria_hijos}#{es_ultimo_proceso ? '   ' : '│  '}"
+        sangria_proceso = "#{sangria_hijos}#{es_ultimo_proceso ? "   " : "│  "}"
 
         titulo_proceso = titulo_con_enlace.call(proceso)
-        puts "#{sangria_hijos}#{es_ultimo_proceso ? '└─ ' : '├─ '}🔥 #{titulo_proceso} (ID: #{proceso.id})"
+        puts "#{sangria_hijos}#{es_ultimo_proceso ? "└─ " : "├─ "}🔥 #{titulo_proceso} (ID: #{proceso.id})"
 
-        if comps_process[proceso.id]&.any?
-          print_componentes.call(comps_process[proceso.id], sangria_proceso, "   ")
-        end
+        print_componentes.call(comps_process[proceso.id], sangria_proceso, "   ") if comps_process[proceso.id]&.any?
       end
     end
 
@@ -188,10 +185,10 @@ def arbol(org_id = 2, locale = "es")
   else
     puts "   ⚠️  No hay asambleas en esta organización"
   end
-  
+
   # Procesos sin asamblea
   procesos_sin_asamblea = procesos_por_asamblea[nil]
-  
+
   if procesos_sin_asamblea&.any?
     puts "\n   📋 CONFLICTOS SIN CIRCULO ASIGNADO:"
     procesos_sin_asamblea.each_with_index do |proceso, idx|
@@ -202,28 +199,24 @@ def arbol(org_id = 2, locale = "es")
       titulo_proceso = titulo_con_enlace.call(proceso)
       puts "#{prefijo}🔥 #{titulo_proceso} (ID: #{proceso.id})"
 
-      if comps_process[proceso.id]&.any?
-        print_componentes.call(comps_process[proceso.id], sangria_proceso, "   ")
-      end
+      print_componentes.call(comps_process[proceso.id], sangria_proceso, "   ") if comps_process[proceso.id]&.any?
     end
   end
 
-  puts "\n" + "=" * 120
-  
+  puts "\n" + ("=" * 120)
+
   # Estadísticas (usando títulos planos para no saturar)
   total_asambleas = asambleas.size
   total_procesos = procesos.size
   total_componentes = comps_assembly.values.flatten.size + comps_process.values.flatten.size
   total_proposals = todas_proposals.size
-  
+
   proposals_con_hijas = 0
-  if todas_proposals.any?
-    proposals_con_hijas = todas_proposals.count { |p| todas_proposals.any? { |h| h.parent_objective_id == p.id } }
-  end
-  
+  proposals_con_hijas = todas_proposals.count { |p| todas_proposals.any? { |h| h.parent_objective_id == p.id } } if todas_proposals.any?
+
   procesos_con_asamblea = procesos.count { |p| p.parent_assembly_id.present? }
   procesos_sin_asamblea_count = procesos.count { |p| p.parent_assembly_id.nil? }
-  
+
   puts "📊 ESTADÍSTICAS:"
   puts "   🏛️ Circulos: #{total_asambleas}"
   puts "   🔥 Conflictos: #{total_procesos}"
@@ -231,15 +224,15 @@ def arbol(org_id = 2, locale = "es")
   puts "      └─ Sin círculo: #{procesos_sin_asamblea_count}"
   puts "   🔧 Componentes: #{total_componentes}"
   puts "   📄 Propuestas: #{total_proposals}"
-  
-  if total_proposals > 0
-    proposals_raiz = todas_proposals.count { |p| p.parent_objective_id.nil? }
-    proposals_con_madre = todas_proposals.count { |p| p.parent_objective_id.present? }
-    
-    puts "      ├─ Raíces (sin madre): #{proposals_raiz}"
-    puts "      ├─ Con madre: #{proposals_con_madre}"
-    puts "      └─ Con hijas: #{proposals_con_hijas}"
-  end
+
+  return unless total_proposals > 0
+
+  proposals_raiz = todas_proposals.count { |p| p.parent_objective_id.nil? }
+  proposals_con_madre = todas_proposals.count { |p| p.parent_objective_id.present? }
+
+  puts "      ├─ Raíces (sin madre): #{proposals_raiz}"
+  puts "      ├─ Con madre: #{proposals_con_madre}"
+  puts "      └─ Con hijas: #{proposals_con_hijas}"
 end
 
 def print_proposals_hijas(madre_id, todas_proposals_del_componente, proposals_por_id, titulo_con_enlace, sangria_base, prefijo_extra)
@@ -248,14 +241,14 @@ def print_proposals_hijas(madre_id, todas_proposals_del_componente, proposals_po
   hijas.each_with_index do |hija, idx|
     es_ultima_hija = idx == hijas.size - 1
     titulo_hija = titulo_con_enlace.call(hija)
-    puts "#{sangria_base}#{prefijo_extra}#{es_ultima_hija ? '   └─ ' : '   ├─ '}📄 #{titulo_hija} (ID: #{hija.id})"
+    puts "#{sangria_base}#{prefijo_extra}#{es_ultima_hija ? "   └─ " : "   ├─ "}📄 #{titulo_hija} (ID: #{hija.id})"
 
-    print_proposals_hijas(hija.id, todas_proposals_del_componente, proposals_por_id, titulo_con_enlace, 
-                          "#{sangria_base}#{prefijo_extra}", 
-                          es_ultima_hija ? '   ' : '│  ')
+    print_proposals_hijas(hija.id, todas_proposals_del_componente, proposals_por_id, titulo_con_enlace,
+                          "#{sangria_base}#{prefijo_extra}",
+                          es_ultima_hija ? "   " : "│  ")
   end
 end
 
 ########## MAIN #######
 
-arbo,l
+arbol

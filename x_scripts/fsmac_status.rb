@@ -69,7 +69,7 @@ def listar_circulos(org_id)
     puts "=" * 100
 
     # Cabeceras para este idioma
-    #printf "%{-5s} | %{-40s} | %{-8s} | %{-40s}\n", "ID", "CÍRCULO", "MADRE ID", "ASAMBLEA MADRE"
+    puts sprintf("%-5s | %-40s | %-8s | %-40s\n", "ID", "CÍRCULO", "MADRE ID", "ASAMBLEA MADRE")
     puts "-" * 100
 
     # Procesar cada asamblea
