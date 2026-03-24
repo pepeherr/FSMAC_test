@@ -1,0 +1,28 @@
+<% hijas = proposals_hijas(propuesta.id) %>
+<% tiene_hijas = hijas.any? %>
+
+<div class="tree-node">
+
+  <% if tiene_hijas %>
+    <button class="tree-toggle" data-target="proposal-<%= propuesta.id %>">▸</button>
+  <% else %>
+    <button class="tree-toggle" data-target="proposal-<%= propuesta.id %>">▸</button>
+    <span class="tree-toggle-placeholder"></span>
+  <% end %>
+
+  <%= d_icon "proposal", css: "text-muted" %>
+
+  <%= link_to titulo_objeto(propuesta), enlace_objeto(propuesta), class: "link" %>
+
+  <% if @mostrar_id %>
+    <span class="text-muted small">(ID: <%= propuesta.id %>)</span>
+  <% end %>
+</div>
+
+<% if tiene_hijas %>
+  <div id="proposal-<%= propuesta.id %>" class="tree-children is-collapsed">
+  
+    <%= render partial: "decidim/tree/global_proposals",
+               locals: { madre_id: propuesta.id, nivel: 1 } %>
+  </div>
+<% end %>

@@ -1,0 +1,66 @@
+# config/initializers/tree/tree_menu.rb
+# frozen_string_literal: true
+
+# Log inmediato para verificar que el archivo se carga
+puts "🔴 Cargando inicializador tree_menu.rb..." if Rails.env.development?
+Rails.logger.info "🔴 Cargando inicializador tree_menu.rb..."
+
+begin
+  # Verificar que podemos acceder al menú
+  if defined?(Decidim::MenuRegistry)
+    Rails.logger.info "✅ Decidim::MenuRegistry disponible"
+    
+    # Listar menús disponibles para depuración
+    menús_disponibles = []
+    [:navbar, :user_menu, :menu, :main_menu, :admin_menu].each do |menu_name|
+      begin
+        menu = Decidim::MenuRegistry.find(menu_name)
+        menús_disponibles << menu_name
+        Rails.logger.info "  📍 Menú disponible: :#{menu_name}"
+      rescue
+        Rails.logger.info "  ❌ Menú no disponible: :#{menu_name}"
+      end
+    end
+    
+    # Añadir nuestro item al menú navbar (si existe)
+    if menús_disponibles.include?(:navbar)
+      Decidim.menu :navbar do |menu|
+        menu.add_item :tree,
+                      I18n.t("menu.tree", default: "🌳 Árbol"),
+                      main_app.tree,
+                      position: 50,
+                      active: :inclusive
+                      #if: ->(user) { user&.admin? || user&.can_be_contacted? }
+        
+        Rails.logger.info "✅ Item '🌳 Árbol' añadido al menú :navbar (posición 50)"
+      end
+    else
+      Rails.logger.warn "⚠️ Menú :navbar no disponible, intentando alternativas..."
+      
+      # Intentar con otros menús
+      [:user_menu, :menu].each do |menu_name|
+        if menús_disponibles.include?(menu_name)
+          Decidim.menu menu_name do |menu|
+            menu.add_item :tree,
+                          I18n.t("menu.tree", default: "🌳 Árbol"),
+                          "/tree",
+                          position: 50,
+                          active: :inclusive
+
+            Rails.logger.info "✅ Item '🌳 Árbol' añadido al menú :#{menu_name} (posición 50)"
+            break
+          end
+        end
+      end
+    end
+  else
+    Rails.logger.error "❌ Decidim::MenuRegistry no está definido"
+  end
+  
+rescue => e
+  Rails.logger.error "❌ Error en inicializador tree_menu: #{e.message}"
+  Rails.logger.error e.backtrace.first(5).join("\n")
+end
+
+puts "🔴 Finalizando carga de tree_menu.rb" if Rails.env.development?
+Rails.logger.info "🔴 Finalizando carga de tree_menu.rb"

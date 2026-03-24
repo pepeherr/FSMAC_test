@@ -5,7 +5,7 @@ def mostrar_organizacion(org_id)
   org = Decidim::Organization.find(org_id)
   idiomas = org.available_locales
 
-  puts "\n" & ("═" * 82)
+  puts "\n" + ("═" * 82)
   puts "DETALLE DE ORGANIZACIÓN"
   puts "═" * 82
 
@@ -17,7 +17,7 @@ def mostrar_organizacion(org_id)
 
   # Nombres en todos los idiomas
   puts "\n NOMBRES POR IDIOMA:"
-  puts "  " & ("-" * 60)
+  puts "  " + ("-" * 60)
 
   # Obtener nombres
   nombres = org.attributes["name"] || {}
@@ -51,7 +51,7 @@ def listar_circulos(org_id)
   org = Decidim::Organization.find(org_id)
   idiomas = org.available_locales
 
-  # Consulta base (igual que antes)
+  # Consulta base de datos
   asambleas = Decidim::Assembly
               .where(decidim_organization_id: org_id)
               .joins("LEFT JOIN decidim_assemblies AS parents ON parents.id = decidim_assemblies.parent_id")
@@ -64,12 +64,12 @@ def listar_circulos(org_id)
 
   # Iterar sobre cada idioma
   idiomas.each do |locale|
-    puts "\n" & ("=" * 100)
+    puts "\n" + ("=" * 100)
     puts "IDIOMA: #{locale.upcase}"
     puts "=" * 100
 
     # Cabeceras para este idioma
-    printf "%{-5s} | %{-40s} | %{-8s} | %{-40s}\n", "ID", "CÍRCULO", "MADRE ID", "ASAMBLEA MADRE"
+    puts sprintf("%-5s | %-40s | %-8s | %-40s\n", "ID", "CÍRCULO", "MADRE ID", "ASAMBLEA MADRE")
     puts "-" * 100
 
     # Procesar cada asamblea
@@ -92,7 +92,7 @@ def listar_conflictos(org_id)
   org = Decidim::Organization.find(org_id)
   idiomas = org.available_locales
 
-  puts "\n" & ("═" * 120)
+  puts "\n" + ("═" * 120)
   puts "CONFLICTOS Y CÍRCULOS".ljust(110)
   puts "Organización: #{org.name['es']} (ID: #{org_id})"
   puts "Idiomas disponibles: #{idiomas.join(', ')}"
@@ -125,7 +125,7 @@ def listar_conflictos(org_id)
     total += 1
     tiene_circulo = c.assembly_id.present?
 
-    puts "\n" & ("─" * 120)
+    puts "\n" + ("─" * 120)
     puts " CONFLICTO ID: #{c.id}"
 
     # Títulos del conflicto en todos los idiomas

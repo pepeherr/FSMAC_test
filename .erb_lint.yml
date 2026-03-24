@@ -1,0 +1,23 @@
+---
+glob: "**/*.html.erb"
+EnableDefaultLinters: true
+parser: erb
+
+linters:
+  SpaceAroundErbTag:
+    enabled: true
+
+  SelfClosingTag:
+    enabled: true
+
+  Rubocop:
+    enabled: true
+    rubocop_config:
+      inherit_from:
+        - .rubocop.yml
+
+  FinalNewline:
+    enabled: true
+
+  TrailingWhitespace:
+    enabled: true

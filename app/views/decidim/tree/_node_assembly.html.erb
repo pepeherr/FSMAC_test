@@ -1,115 +1,132 @@
 <!-- app/views/decidim/tree/_node_assembly.html.erb -->
-<li>
-  <div class="node-content" style="margin-bottom: 5px;">
-    <span role="img" aria-label="Asamblea">🏛️</span>
-    <%= link_to titulo_objeto(nodo), enlace_objeto(nodo) %>
+
+<li class="tree-view__item">
+
+  <%# Detectar si hay hijos %>
+  <% hijas = @asambleas.select { |a| a.parent_id == nodo.id } %>
+  <% tiene_hijos = hijas.any? || 
+                   @comps_assembly[nodo.id]&.any? || 
+                   @procesos_por_asamblea[nodo.id]&.any? %>
+
+  <!-- CABECERA -->
+  <div class="tree-node">
+
+    <% if tiene_hijos %>
+      <button class="tree-toggle" data-target="assembly-<%= nodo.id %>">
+        <%= nivel == 0 ? "▾" : "▸" %>
+      </button>
+    <% else %>
+      <span class="tree-toggle-placeholder"></span>
+    <% end %>
+
+    <%= d_icon "assembly", css: "text-muted" %>
+
+    <%= link_to titulo_objeto(nodo), enlace_objeto(nodo), class: "link font-semibold" %>
+
     <% if @mostrar_id %>
-      <small>(ID: <%= nodo.id %>)</small>
+      <span class="text-muted small">(ID: <%= nodo.id %>)</span>
     <% end %>
   </div>
-  
-  <%# COMPONENTES DE LA ASAMBLEA %>
-  <% if @comps_assembly[nodo.id]&.any? %>
-    <div class="component-list" style="margin-left: 30px; margin-bottom: 10px;">
-      <strong style="color: #555;">📦 Componentes:</strong>
-      <ul style="list-style: none; padding-left: 20px; margin-top: 5px;">
-        <% @comps_assembly[nodo.id].each do |comp| %>
-          <li style="margin: 3px 0;">
-            <span role="img" aria-label="Componente">🔧</span>
-            <%= link_to comp.name[@locale.to_s] || comp.name['es'] || comp.manifest_name, 
-                        enlace_objeto(comp) %>
-            <% if @mostrar_id %>
-              <small>(<%= comp.manifest_name %>, ID: <%= comp.id %>)</small>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-  <%# CONFLICTOS DEL PACTO %>
-  <% if @procesos_por_asamblea[nodo.id]&.any? %>
-    <div class="component-list" style="margin-left: 30px; margin-bottom: 10px;">
-      <strong style="color: #555;">🔥 <%= t("decidim.menu.processes") %> :</strong>
-      <ul style="list-style: none; padding-left: 20px; margin-top: 5px;">
-        <% @procesos_por_asamblea[nodo.id].each do |proceso| %>
-          <li style="margin: 5px 0;">
-            <span role="img" aria-label="Proceso">🔥</span>
-            <%= link_to titulo_objeto(proceso), enlace_objeto(proceso) %>
-            <% if @mostrar_id %>
-              <small>(ID: <%= proceso.id %>)</small>
-            <% end %>
-            <%# COMPONENTES DEL CONFLICTO %>
-            <% if @comps_process[proceso.id]&.any? %>
-              <ul style="list-style: none; padding-left: 20px; margin-top: 5px;">
-                <% @comps_process[proceso.id].each do |comp_proc| %>
-                  <li style="margin: 3px 0;">
-                    <% if mostrar_componente_proposals?(comp_proc.id) %>
-                      <span role="img" aria-label="Componente">🔧</span>
-                      <%= link_to comp_proc.name[@locale.to_s] || comp_proc.name['es'] || comp_proc.manifest_name, 
-                                  enlace_objeto(comp_proc) %>
-                      <% if @mostrar_id %>
-                        <small>(<%= comp_proc.manifest_name %>, ID: <%= comp_proc.id %>)</small>
-                      <% end %>
-                    <% end %>
-                    <%# PROPUESTAS DEL COMPONENTE (CON BÚSQUEDA GLOBAL) %>
-                    <% if comp_proc.manifest_name == 'proposals' && @proposals_por_componente[comp_proc.id]&.any? %>
-                      <div style="margin-left: 20px; margin-top: 15px; padding: 10px; 
-                                  background: #f8f9fa; border-radius: 4px;">
-                        
-                        <%# Mostrar SOLO las propuestas raíz de ESTE componente %>
-                        <% proposals_raiz = @proposals_por_componente[comp_proc.id].select { |p| p.parent_objective_id.nil? } %>
-                        
-                        <% if proposals_raiz.any? %>
-                          <% proposals_raiz.each do |propuesta_raiz| %>
-                            
-                              <div style="margin: 5px 0;">
-                                <div style="display: flex; align-items: center;">
-                                  <span role="img" aria-label="Propuesta" style="margin-right: 5px;">📄</span>
-                                  <%= link_to titulo_objeto(propuesta_raiz), enlace_objeto(propuesta_raiz),
-                                              style: "text-decoration: none; color: #2c3e50;" %>
-                                  <% if @mostrar_id %>
-                                    <small style="margin-left: 5px; color: #999;">
-                                      (ID: <%= propuesta_raiz.id %>)
-                                    </small>
-                                  <% end %>
-                                </div>
-                                
-                                <%# Buscar hijas de esta propuesta en TODOS los componentes %>
-                                <% hijas = proposals_hijas(propuesta_raiz.id) %>
-                                <% if hijas.any? %>
-                                  <div style="margin-left: 25px; margin-top: 5px;">
-                                    <%= render partial: "decidim/tree/global_proposals", 
-                                              locals: { 
-                                                madre_id: propuesta_raiz.id,
-                                                nivel: 1
-                                              } %>
-                                  </div>
-                                <% end %>
-                              </div>
-                            
-                          <% end %>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </li>
+
+  <!-- HIJOS -->
+  <% if tiene_hijos %>
+    <div id="assembly-<%= nodo.id %>" 
+     class="tree-children <%= nivel == 0 ? '' : 'is-collapsed' %>">
+
+      <!-- COMPONENTES -->
+      <% if @comps_assembly[nodo.id]&.any? %>
+        <div class="tree-section">
+          <div class="tree-section__title">
+            <%= d_icon "component", css: "text-muted" %>
+            <%= t("decidim.tree.index.components") %>
+          </div>
+
+          <ul class="tree-sublist">
+            <% @comps_assembly[nodo.id].each do |comp| %>
+              <li class="tree-sublist__item">
+                <%= d_icon "component", css: "text-muted" %>
+
+                <%= link_to comp.name[@locale.to_s] || comp.name['es'] || comp.manifest_name,
+                            enlace_objeto(comp),
+                            class: "link" %>
+
+                <% if @mostrar_id %>
+                  <span class="text-muted small">
+                    (<%= comp.manifest_name %>, ID: <%= comp.id %>)
+                  </span>
                 <% end %>
-              </ul>
+              </li>
             <% end %>
-          </li>
-        <% end %>
-      </ul>
+          </ul>
+        </div>
+      <% end %>
+
+      <!-- PROCESOS -->
+      <% if @procesos_por_asamblea[nodo.id]&.any? %>
+        <div class="tree-section">
+          <div class="tree-section__title">
+            <%= d_icon "process", css: "text-muted" %>
+            <%= t("decidim.menu.processes") %>
+          </div>
+
+          <ul class="tree-sublist">
+            <% @procesos_por_asamblea[nodo.id].each do |proceso| %>
+              <li class="tree-sublist__item">
+
+                <% tiene_hijos_proceso = @comps_process[proceso.id]&.any? %>
+
+                <div class="tree-node">
+
+                  <% if tiene_hijos_proceso %>
+                    <button class="tree-toggle" data-target="process-<%= proceso.id %>">▸</button>
+                  <% else %>
+                    <span class="tree-toggle-placeholder"></span>
+                  <% end %>
+
+                  <%= d_icon "process", css: "text-muted" %>
+
+                  <%= link_to titulo_objeto(proceso), enlace_objeto(proceso), class: "link" %>
+
+                  <% if @mostrar_id %>
+                    <span class="text-muted small">(ID: <%= proceso.id %>)</span>
+                  <% end %>
+                </div>
+
+                <% if tiene_hijos_proceso %>
+                  <div id="process-<%= proceso.id %>" class="tree-children is-collapsed">
+
+                    <ul class="tree-sublist">
+
+                      <% @comps_process[proceso.id]&.each do |comp_proc| %>
+                        <% if mostrar_componente_proposals?(comp_proc.id) %>
+                          <%= render partial: "decidim/tree/component_node",
+                                     locals: { comp_proc: comp_proc } %>
+                        <% end %>
+                      <% end %>
+                    </ul>
+
+                  </div>
+                <% end %>
+
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <!-- ASAMBLEAS HIJAS -->
+      <% if hijas.any? %>
+        <ul class="tree-view__children">
+          <% hijas.each do |hija| %>
+            <%= render partial: "decidim/tree/node_assembly",
+                       locals: { nodo: hija, 
+                                 nivel: (nivel || 0) + 1 
+                                } %>
+          <% end %>
+        </ul>
+      <% end %>
+
     </div>
   <% end %>
-  
-  <%# ASAMBLEAS HIJAS %>
-  <% hijas = @asambleas.select { |a| a.parent_id == nodo.id } %>
-  <% if hijas.any? %>
-    <ul style="list-style: none; padding-left: 40px; margin-top: 5px;">
-      <% hijas.each do |hija| %>
-        <%= render partial: "decidim/tree/node_assembly", 
-                   locals: { nodo: hija } %>
-      <% end %>
-    </ul>
-  <% end %>
+
 </li>
