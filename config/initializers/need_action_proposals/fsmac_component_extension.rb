@@ -2,6 +2,9 @@
 # Asignamos el rol a las Proposals dependientes y distinguirlas:
 # Proposal Necesidad: need
 Rails.application.config.to_prepare do
+  # inicializa el semáforo en app/controllers/concerns/action_helper.rb
+  Decidim::ApplicationController.include(ActionHelper)
+
   Decidim::Component.class_eval do
     enum fsmac_role: {
       need: "need",
@@ -15,6 +18,5 @@ Rails.application.config.to_prepare do
     def fsmac_need?
       need?
     end
-
   end
 end

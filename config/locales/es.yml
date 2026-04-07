@@ -1,7 +1,7 @@
 es:
   fsmac:
-    need: Necesidad
-    needs: Necesidades
+    need:  Propuesta # Necesidad
+    needs: Propuestas # Necesidades
     action: Propuesta
     new_action: "Nueva propuesta"
     list: "Propuestas asociadas:"
