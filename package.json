@@ -4,7 +4,7 @@
   "dependencies": {
     "@decidim/browserslist-config": "^0.31.3",
     "@decidim/core": "^0.31.3",
-    "@decidim/webpacker": "^0.31.3"
+    "@decidim/webpacker": "^0.32.0-rc2"
   },
   "version": "0.1.0",
   "devDependencies": {
